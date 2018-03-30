@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-//@Entity
+@Entity
 @Table(name = "addresses")
 public class Address {
 
@@ -29,6 +29,10 @@ public class Address {
 
     @Pattern(regexp = "^\\d{1,3}$")
     private String bus;
+
+    @ManyToOne
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
 
 
     /*Used by JPA*/
