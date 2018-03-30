@@ -4,4 +4,5 @@ public class Company {
 
     private byte logo;
 
+
 }

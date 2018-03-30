@@ -14,4 +14,5 @@ public class Campaign {
     private Date endDate;
     private Long price;
 
+
 }

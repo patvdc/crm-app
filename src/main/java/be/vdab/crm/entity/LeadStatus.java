@@ -12,4 +12,5 @@ public class LeadStatus {
     @Column(name="category")
     private String category;
 
+
 }
