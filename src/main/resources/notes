@@ -15,3 +15,7 @@ DROP TABLE IF EXISTS contacts;
 SET foreign_key_checks = 1;
 CREATE TABLE Contacts ...
 
+? facebook-picture on contact
+
+//ex values NEW, CONTACTED,MEETING,WON,LOST
+

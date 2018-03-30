@@ -1,5 +1,15 @@
 package be.vdab.be.entity;
 
-public enum LeadStatus {
-    NEW, CONTACTED,MEETING,WON,LOST
+import javax.persistence.*;
+
+@Entity
+@Table(name = "lead_status")
+public class LeadStatus {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name="category")
+    private String category;
+
 }
