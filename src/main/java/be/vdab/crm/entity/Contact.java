@@ -27,5 +27,9 @@ public class Contact {
 
     private String email;     //?? validation util using pattern
 
+    @OneToMany
+    @JoinColumn(name = "contact_id")
+    private List<Address> addresses;
+
 
 }
