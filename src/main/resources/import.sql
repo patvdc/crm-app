@@ -1,0 +1,5 @@
+insert into lead_status(id, status) values(1, 'NEW')
+insert into lead_status(id, status) values(2, 'CONTACTED')
+insert into lead_status(id, status) values(3, 'MEETING')
+insert into lead_status(id, status) values(4, 'WON')
+insert into lead_status(id, status) values(5, 'LOST')
