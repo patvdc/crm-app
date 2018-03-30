@@ -1,4 +1,4 @@
-package be.vdab.be.config;
+package be.vdab.crm.config;
 
 public class CrmConfig {
 }

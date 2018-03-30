@@ -1,15 +1,13 @@
-package be.vdab.be.entity;
+package be.vdab.crm.entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-//contact can have multiple notes
-
-public class Note {
+public class Zip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String comment;
-
+    private Integer id;         //1
+    private String zipCode;    //9000
+    private String zipCity;    //Gent
 }

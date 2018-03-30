@@ -4,6 +4,8 @@ LogBack + log what ?
 
 ? interface status getStatus with all values of enum (ivo)
 
+? Optimistic locking?
+
 CREATE SCHEMA `crm` DEFAULT CHARACTER SET utf8 ;
 
 script to create scheme

@@ -1,4 +1,4 @@
-package be.vdab.be.entity;
+package be.vdab.crm.entity;
 
 public enum CampaignCategory {
     ONLINE,OFFLINE

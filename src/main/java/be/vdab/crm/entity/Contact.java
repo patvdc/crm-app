@@ -1,4 +1,4 @@
-package be.vdab.be.entity;
+package be.vdab.crm.entity;
 
 
 import javax.persistence.*;
