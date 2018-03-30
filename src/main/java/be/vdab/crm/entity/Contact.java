@@ -22,7 +22,9 @@ public class Contact {
     private String zip;
     @Column(name="city")
     private String city;
-    private Blob picture;    //??facebook api
+    private Blob picture;
+    @OneToOne
+    @Column(name="lead_status")
     private LeadStatus leadStatus;
     private String email;     //?? validation util using pattern
 
