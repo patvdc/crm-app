@@ -9,8 +9,7 @@ public class LeadStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name="category")
-    private String category;
-
+    @Column(name="value")
+    private String leadStatus;
 
 }

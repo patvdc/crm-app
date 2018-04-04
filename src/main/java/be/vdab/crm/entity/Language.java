@@ -4,6 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "quote")
-public class Quote {
+@Table(name = "language")
+public class Language {
 }

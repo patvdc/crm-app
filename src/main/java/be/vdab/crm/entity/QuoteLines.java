@@ -1,9 +1,9 @@
 package be.vdab.crm.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "quote_lines")
 public class QuoteLines {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

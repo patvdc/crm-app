@@ -8,6 +8,6 @@ public class Zip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;         //1
-    private String zipCode;    //9000
-    private String zipCity;    //Gent
+    private String code;    //9000
+    private String city;    //Gent
 }
