@@ -1,8 +1,13 @@
-insert into contacts(id, first_name, last_name, picture, lead_status, email) values(1, 'Patrick', 'Rules', null, 0, 'Patrick.Rules@crm.com');
-insert into contacts(id, first_name, last_name, picture, lead_status, email) values(2, 'Ivo', 'Rocks', null, 1, 'Ivo.Rocks@crm.com');
-insert into contacts(id, first_name, last_name, picture, lead_status, email) values(3, 'Johan', 'Owns', null, 2, 'Johan.Owns@crm.com');
-insert into contacts(id, first_name, last_name, picture, lead_status, email) values(4, 'Gertrude', 'De Nil', null, 3, 'Gertrude.Denil@crm.com');
-insert into contacts(id, first_name, last_name, picture, lead_status, email) values(5, 'Adelbrecht', 'Fonkel', null, 4, 'Adelbrecht.Fonkel@crm.com');
+insert into users(id, first_name, last_name) values(1, 'Jon', 'Terry');
+insert into users(id, first_name, last_name) values(2, 'Vlad', 'Dracusorul');
+insert into users(id, first_name, last_name) values(3, 'Ethel', 'Lufkvist');
+insert into users(id, first_name, last_name) values(4, 'Samuel', 'Estiti');
+
+insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(1, 'Patrick', 'Rules', null, 0, 'Patrick.Rules@crm.com',1);
+insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(2, 'Ivo', 'Rocks', null, 1, 'Ivo.Rocks@crm.com',1);
+insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(3, 'Johan', 'Owns', null, 2, 'Johan.Owns@crm.com',2);
+insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(4, 'Gertrude', 'De Nil', null, 3, 'Gertrude.Denil@crm.com',4);
+insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(5, 'Adelbrecht', 'Fonkel', null, 4, 'Adelbrecht.Fonkel@crm.com',2);
 
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(1, 1, '9000', 'Gent', 'Lange Breestraat', '26', null);
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(2, 2, '2300', 'Kortrijk', 'Feeststraat', '144', null);
