@@ -50,4 +50,64 @@ public class Contact implements java.io.Serializable {
 
     private String twitter;   //api
 
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Blob getPicture() {
+        return picture;
+    }
+
+    public LeadStatus getLeadStatus() {
+        return leadStatus;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public Salutation getSalutation() {
+        return salutation;
+    }
+
+    public LeadSource getLeadSource() {
+        return leadSource;
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
 }
