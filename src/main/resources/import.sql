@@ -1,9 +1,3 @@
-insert into lead_status(id, category) values(1, 'NEW')
-insert into lead_status(id, category) values(2, 'CONTACTED')
-insert into lead_status(id, category) values(3, 'MEETING')
-insert into lead_status(id, category) values(4, 'WON')
-insert into lead_status(id, category) values(5, 'LOST')
-
 insert into contacts(id, first_name, last_name, picture, lead_status, email) values(1, 'Patrick', 'Rules', null, 1, 'Patrick.Rules@crm.com')
 insert into contacts(id, first_name, last_name, picture, lead_status, email) values(2, 'Ivo', 'Rocks', null, 2, 'Ivo.Rocks@crm.com')
 insert into contacts(id, first_name, last_name, picture, lead_status, email) values(3, 'Johan', 'Owns', null, 3, 'Johan.Owns@crm.com')
