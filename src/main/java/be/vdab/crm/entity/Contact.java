@@ -25,23 +25,19 @@ public class Contact implements java.io.Serializable {
 
     private Blob picture;
 
-    @OneToOne
-    @JoinColumn(name="lead_status")
     private LeadStatus leadStatus;
 
     private String email;
 
+    @ManyToOne
     private User owner;     //owner of the lead - from user table
 
     @OneToMany
     @JoinColumn(name = "contact_id")
     private List<Address> addresses;
 
-    //@OneToOne(cascade = CascadeType.ALL)
-    @OneToOne
     private Salutation salutation;
 
-    @OneToOne
     private LeadSource leadSource;
 
     private String accountName;    //Account
