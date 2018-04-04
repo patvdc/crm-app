@@ -10,21 +10,25 @@
 <body>
 <div class="container">
 
+    <div class="header">
+        <h1>Contacts</h1>
+    </div>
+    <br>
 
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Owner</th>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Owner</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="contact : ${contactList}">
-            <th th:text="${contact.id}">1</th>
-            <th th:text="${contact.firstName}">John</th>
+            <td th:text="${contact.id}">1</td>
+            <td th:text="${contact.firstName}">John</td>
             <td th:text="${contact.lastName}">Doe</td>
             <td th:text="${contact.email}">john.doe@email.com</td>
             <td th:text="${contact.owner}">Uncle Sam</td>

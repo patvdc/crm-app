@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact List</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/crm.css"/>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>Edit Contact</h1>
+    </div>
+    <br>
+
+
+    <form th:object="${contact}">
+
+        <input th:field="*{firstName}"/>
+        <input th:field="*{lastName}"/>
+        <input th:field="*{email}"/>
+        <select th:field="*{owner}"/>
+
+
+    </form>
+
+
+</div>
+</body>
+</html>
