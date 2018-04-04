@@ -10,3 +10,6 @@ insert into addresses(id, contact_id, zip_code, city, street_name, house_number,
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(4, 4, '5242', 'Baasrode', 'Paddestraat', '10', null);
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(5, 5, '1834', 'Oostende', 'Lange munte', '4', null);
 
+insert into users(id, first_name, last_name, email, password) values (1,'pat','vdc','patvdc@gmail.com',' ');
+insert into users(id, first_name, last_name, email, password) values (2,'johan','vdn','jvdn.java@gmail.com',' ');
+insert into users(id, first_name, last_name, email, password) values (3,'ivo','stv','ivelinstamatov@gmail.com',' ');

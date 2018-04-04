@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body>
+<div class="container">
+    <div th:replace="fragments/fragments::header"></div>
+    <div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.id}">1</td>
+            <td th:text="${user.firstName}">John</td>
+            <td th:text="${user.lastName}">Doe</td>
+            <td th:text="${user.email}">john.doe@email.com</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <div th:replace="fragments/fragments::footer"></div>
+</div>
+</body>
+</html>
