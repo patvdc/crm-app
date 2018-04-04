@@ -1,16 +1,8 @@
 package be.vdab.crm.entity;
 
-import javax.persistence.*;
+public enum LeadSource {
 
-@Entity
-@Table(name = "lead_source")
-public class LeadSource {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name="value")
-    private String leadSource;
+    ADVERTISEMENT,COLD_CALL,REFERRAL,PARTNER,WEB,SEMINAR
 
 }
 
