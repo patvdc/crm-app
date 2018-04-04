@@ -13,24 +13,21 @@
 <div class="navbar navbar-default" th:fragment="header">
     <div class="container">
         <img th:src="@{/images/crm-logo.png}"/>
-        <ul class="nav navbar-nav">
-            <li><a th:href="@{/index.html}">Home</a> ‖
+        <p class="nav navbar-nav">
+            <p><a th:href="@{/index.html}">Home</a> ‖
             <a th:href="@{/contacts}">Contacts</a> ‖
-            <a th:href="@{/users/list}">Users</a></li>
-        </ul>
-
+            <a th:href="@{/users/list}">Users</a>
+        </p>
+        <hr>
     </div>
-
 </div>
 
 <div th:fragment="footer">
+    <hr>
     &copy; 2018 The CRM Company
+    <hr>
 </div>
 
-<div class="page-header text-center" id="page-header">
-    <h1><span class="rd-green">Realdolmen</span> Blog</h1>
-    <p class="lead">Welcome to the <span class="rd-green">Realdolmen</span> Blog!</p>
-</div>
 <div class="scripts" th:remove="tag">
     <script th:src="@{/js/bootstrap-3.0.3.min.js}"></script>
 </div>
