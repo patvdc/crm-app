@@ -1,6 +1,9 @@
 package be.vdab.crm;
 
 import be.vdab.crm.config.CrmConfig;
+import be.vdab.crm.entity.Product;
+import be.vdab.crm.entity.ProductCategory;
+import be.vdab.crm.service.ProductService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -13,5 +16,6 @@ public class CrmApplication {
 
         ConfigurableApplicationContext ac = SpringApplication.run(CrmApplication.class, args);
         //ConfigurableApplicationContext context = new SpringApplicationBuilder(CrmConfig.class).run();
+
     }
 }

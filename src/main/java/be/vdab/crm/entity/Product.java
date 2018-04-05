@@ -11,20 +11,28 @@ public class Product implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
+
+
     private double unitPrice;
+
+    @Enumerated(EnumType.STRING)
     private ProductCategory category;
+
     private Blob picture;
 
     public Product() {
     }
 
-    public Integer getId() {
-        return id;
+    public Product(String name, double unitPrice, ProductCategory category) {
+        this.name = name;
+        this.unitPrice = unitPrice;
+        this.category = category;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
@@ -39,7 +47,7 @@ public class Product implements java.io.Serializable {
         return unitPrice;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(double price) {
         this.unitPrice = price;
     }
 
@@ -51,5 +59,16 @@ public class Product implements java.io.Serializable {
         this.picture = picture;
     }
 
+    public ProductCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ProductCategory category) {
+        this.category = category;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
 }
 

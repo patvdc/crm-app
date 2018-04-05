@@ -18,7 +18,18 @@ insert into addresses(id, contact_id, zip_code, city, street_name, house_number,
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(4, 4, '5242', 'Baasrode', 'Paddestraat', '10', null);
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(5, 5, '1834', 'Oostende', 'Lange munte', '4', null);
 
-insert into quote(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (1,1,"NEGOTIATION",136,1,1,1);
-insert into quote(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (2,2,"CONFIRMED",236,2,2,2);
-insert into quote(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (3,3,"CLOSED_WON",336,3,3,3);
-insert into quote(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (4,4,"CLOSED_LOST",436,4,4,4);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (1,1,"NEGOTIATION",136,1,1,1);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (2,2,"CONFIRMED",236,2,2,2);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (3,3,"CLOSED_WON",336,3,3,3);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (4,4,"CLOSED_LOST",436,4,4,4);
+
+insert into product(id, category, name, picture, unit_price) values(1,"PORTABLE","Toshiba 500",null,500);
+insert into product(id, category, name, picture, unit_price) values(2,"PORTABLE","Toshiba 600",null,600);
+insert into product(id, category, name, picture, unit_price) values(3,"PORTABLE","Toshiba 700",null,700);
+insert into product(id, category, name, picture, unit_price) values(4,"LAPTOP","Asus 500",null,500);
+insert into product(id, category, name, picture, unit_price) values(5,"LAPTOP","Asus 600",null,600);
+insert into product(id, category, name, picture, unit_price) values(6,"LAPTOP","Asus 700",null,700);
+insert into product(id, category, name, picture, unit_price) values(7,"SERVER","IBM 5000",null,5000);
+insert into product(id, category, name, picture, unit_price) values(8,"SERVER","IBM 6000",null,6000);
+insert into product(id, category, name, picture, unit_price) values(9,"SERVER","IBM 7000",null,7000);
+
