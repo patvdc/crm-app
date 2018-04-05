@@ -11,23 +11,31 @@ public class Quote implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Enumerated(EnumType.STRING)
     private QuoteStage stage;
+
     @ManyToOne
     private User owner;
+
+    @OneToOne
     private Contact contact;
+
     @OneToOne
     private Address billingAddress;
+
     @OneToOne
     private Address shippingAddress;
 
     @OneToMany
-    //@JoinColumn(name = "quote_id")
+//    @JoinColumn(name = "quote_id")
     private List<QuoteLines> lines;
 
-    private long total;    //sum of quote lines total
+    private long total ;    //sum of quote lines total
 
     public Quote() {
     }
+
 
     public Integer getId() {
         return id;

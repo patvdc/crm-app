@@ -18,3 +18,7 @@ insert into addresses(id, contact_id, zip_code, city, street_name, house_number,
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(4, 4, '5242', 'Baasrode', 'Paddestraat', '10', null);
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(5, 5, '1834', 'Oostende', 'Lange munte', '4', null);
 
+insert into quote(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (1,1,"NEGOTIATION",136,1,1,1);
+insert into quote(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (2,2,"CONFIRMED",236,2,2,2);
+insert into quote(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (3,3,"CLOSED_WON",336,3,3,3);
+insert into quote(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (4,4,"CLOSED_LOST",436,4,4,4);
