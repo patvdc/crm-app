@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+
+<body>
+<div class="container">
+
+    <div th:replace="fragments/fragments::header"></div>
+    <div class="header">
+        <h1>Details</h1>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2">Id:</div>
+        <div class="col-sm-10" th:text="${contact.id}"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">Name:</div>
+        <div class="col-sm-10" th:text="${contact.fullName}"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">Email:</div>
+        <div class="col-sm-10" th:text="${contact.email}"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">Owner:</div>
+        <div class="col-sm-10" th:text="${contact.owner.fullName}"></div>
+    </div>
+
+    <br>
+    <a th:href="${#mvc.url('CC#editOrCreateContactRequest').arg(0, contact.id).build()}" class="btn btn-primary">Edit</a>
+    &nbsp;
+    <a th:href="${#mvc.url('CC#listAllContacts').build()}" class="btn btn-primary">Contact List</a>
+
+    <div th:replace="fragments/fragments::footer"></div>
+
+
+</div>
+</body>
+</html>

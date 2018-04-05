@@ -63,6 +63,8 @@ public class Contact implements java.io.Serializable {
         return lastName;
     }
 
+    public String getFullName() { return firstName + " " + lastName; }
+
     public Blob getPicture() {
         return picture;
     }

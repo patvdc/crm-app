@@ -14,7 +14,7 @@
     <logger name="sun" level="INFO"/>
     <logger name="java" level="INFO"/>
 
-    <logger name="org.springframework.security" level="TRACE"/>
+    <!--<logger name="org.springframework.security" level="TRACE"/>-->
 
     <logger name="org.hibernate.SQL" level="DEBUG"/>
     <logger name="be.vdab.crm" level="DEBUG"/>

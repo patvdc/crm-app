@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragments :: head"></head>
 <body>
 <div class="container">
+
     <div th:replace="fragments/fragments::header"></div>
 
     <div class="header">
@@ -22,15 +24,20 @@
         </thead>
         <tbody>
         <tr th:each="contact : ${contactList}">
-            <td th:text="${contact.id}">1</td>
-            <td th:text="${contact.firstName}">John</td>
-            <td th:text="${contact.lastName}">Doe</td>
-            <td th:text="${contact.email}">john.doe@email.com</td>
-            <td th:text="${contact.owner == null ? '' : contact.owner.fullName}">Uncle Sam</td>
+            <td><a th:href="${#mvc.url('CC#contactDetails').arg(0, contact.id).build()}" th:text="${contact.id}">1</a></td>
+            <td th:text="${contact.firstName?:''}">John</td>
+            <td th:text="${contact.lastName?:''}">Doe</td>
+            <td th:text="${contact.email?:''}">john.doe@email.com</td>
+            <td> <a th:href="${#mvc.url('UC#details').arg(0, contact.owner?.id).build()}"
+                    th:text="${contact.owner == null ? '' : contact.owner.fullName}">Uncle Sam</a></td>
         </tr>
         </tbody>
     </table>
+
+    <a th:href="${#mvc.url('CC#editOrCreateContactRequest').build()}" class="btn btn-primary">New contact</a>
+
     <div th:replace="fragments/fragments::footer"></div>
+
 
 </div>
 </body>

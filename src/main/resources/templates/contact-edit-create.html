@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Create/Edit Contact</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/crm.css"/>
-</head>
+<head th:replace="fragments/fragments :: head"></head>
+
 <body>
 <div class="container">
+
+    <div th:replace="fragments/fragments::header"></div>
+
 
     <div class="header">
         <h1>Edit Contact</h1>
@@ -19,26 +18,43 @@
     <form th:object="${contact}" method="POST">
 
         <div class="form-row">
-            <div class="form-group">
-                <label for="fn">First Name</label>
-                <input id="fn" type="text" th:field="*{firstName}"/>
+            <div class="form-group col-md-1">
+                <label for="fn" class="col-form-label">First Name</label>
+            </div>
+            <div class="form-group col-md-5">
+                <input id="fn" type="text" class="form-control" th:field="*{firstName}" , placeholder="First Name"/>
+            </div>
 
-                <label for="ln">Last Name</label>
-                <input id="ln" type="text" th:field="*{lastName}"/>
-
+            <div class="form-group col-md-1">
+                <label for="ln" class="col-form-label">Last Name</label>
+            </div>
+            <div class="form-group col-md-5">
+                <input id="ln" type="text" class="form-control" th:field="*{lastName}" , placeholder="Last Name"/>
             </div>
         </div>
 
         <div class="form-row">
-            <div class="form-group">
-                <label for="em">Email</label>
-                <input id="em" type="text" th:field="*{email}"/>
+            <div class="form-group col-md-1">
+                <label for="em" class="col-form-label">Email</label>
+            </div>
 
-                <label for="own">Owner</label>
+            <div class="form-group col-md-5">
+                <input id="em" type="text" class="form-control" th:field="*{email}" , placeholder="Email"/>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-1">
+
+                <label for="own" class="col-form-label">Owner</label>
+            </div>
+            <div class="form-group col-md-5">
+
                 <select name="owner" id="own">
                     <option disabled
                             th:selected="${contact.id == null}"
-                            th:value="null">-Select owner-</option>
+                            th:value="null">-Select owner-
+                    </option>
                     <option th:each="owner : ${owners}"
                             th:text="${owner.getFullName()}"
                             th:value="${owner.id}"
@@ -47,10 +63,11 @@
             </div>
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
 
+    <div th:replace="fragments/fragments::footer"></div>
 </div>
 </body>
 </html>
