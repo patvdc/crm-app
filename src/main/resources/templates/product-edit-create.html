@@ -20,17 +20,26 @@
 
         <div class="form-row">
             <div class="form-group">
-                <label for="fn">First Name</label>
+                <label for="fn">Product Name</label>
                 <input id="fn" type="text" th:field="*{name}"/>
 
-                <label for="ln">Last Name</label>
+                <label for="ln">Product Price</label>
                 <input id="ln" type="text" th:field="*{price}"/>
 
-                <label for="cat">Category</label>
-                <input id="cat" type="text" th:field="*{category}"/>
+                <label for="categ">Category</label>
 
+                <select name="category" id="categ">
+                    <option disabled
+                            th:selected="${category == null}"
+                            th:value="null">-Select Category-</option>
+                    <option th:each="category : ${T(be.vdab.crm.entity.ProductCategory).values()}"
+                            th:value="${category}"
+                            th:text="${category}">
+                    </option>
+                </select>
             </div>
         </div>
+
          <button type="submit">Submit</button>
     </form>
 
