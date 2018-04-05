@@ -1,6 +1,7 @@
 ivo
 ===
 product
+product-category
 quote-header
 quote-lines
 
@@ -12,13 +13,18 @@ contact
 patrick
 =======
 entities
-user
+user -> free
 navigation
-security (custom login,roles)
-rest json
+security (custom login page,roles,user psw encryption)
+rest ws (json,xml)
+creation date on all forms
+homepage = login page ?
+hide menu when not logged in
+setid
 
 
 Project Description
 ===================
-Mini CRM-app only for B2C-market (no companies, only private people)
+Mini CRM-app only for B2C-market (no companies, only private persons)
+Login pane
 Create contact

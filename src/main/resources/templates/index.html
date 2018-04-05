@@ -4,7 +4,14 @@
 <body>
 <div class="container">
     <div th:replace="fragments/fragments::header"></div>
-    <h1>DashBoard</h1>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>Welcome to the CRM Company</h4>
+            <p>Click <a th:href="@{/login}">here</a> to login</p>
+        </div>
+    </div>
+    <br>
     <div th:replace="fragments/fragments::footer"></div>
 </div>
 </body>
