@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- TODO Exercise 4: Add the Thymeleaf Security namespace -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:fragment="head">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -14,10 +13,13 @@
     <div class="container">
         <img th:src="@{/images/crm-logo.png}"/>
         <p class="nav navbar-nav">
-            <p><a th:href="@{/index.html}">Home</a> ‖
+            <p> <a th:href="@{/index.html}">Home </a> ‖
             <a th:href="@{/contacts/list}">Contacts</a> ‖
             <a th:href="@{/users/list}">Users</a> ‖
             <a th:href="@{/products/list}">Products</a>
+            <a th:href="@{/quotes/list}">Quote</a> ‖
+            <a th:href="@{/activities/list}">Activities</a> ‖
+            <a th:href="@{/logout}">Logout</a>
         </p>
         <hr>
     </div>
