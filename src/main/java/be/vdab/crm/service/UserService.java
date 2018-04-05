@@ -32,6 +32,10 @@ public class UserService {
         repository.save(u);
     }
 
+    public User lookupUser(int id) {
+        logger.info("Looking up user with UID " + id);
+        return repository.getOne(id);
+    }
 
 
 }
