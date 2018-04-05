@@ -10,6 +10,7 @@ import org.thymeleaf.spring5.expression.Mvc;
 import java.util.Map;
 
 @Controller
+//@RequestMapping("/users/")
 public class UserController {
     private static final String ROOT = "users/";
     @Autowired
