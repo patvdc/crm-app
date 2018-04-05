@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>Edit User</h1>
+    </div>
+    <br>
+    <form th:object="${userForm}" method="POST">
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="fn">First Name</label>
+                <input id="fn" type="text" th:field="*{firstName}"/>
+
+                <label for="ln">Last Name</label>
+                <input id="ln" type="text" th:field="*{lastName}"/>
+
+                <label for="em">Email</label>
+                <input id="em" type="text" th:field="*{email}"/>
+
+                <label for="psw">Password</label>
+                <input id="psw" type="text" th:field="*{password}"/>
+            </div>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+
+</div>
+</body>
+</html>
+
+<div class="header">
+    <h1>Edit Product</h1>
+</div>
+<br>
+
+
+
