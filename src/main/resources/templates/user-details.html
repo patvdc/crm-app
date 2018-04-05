@@ -5,9 +5,13 @@
 <div class="container">
     <div th:replace="fragments/fragments::header"></div>
     <div>
-            <div>
-                <h1><a th:href="${#mvc.url('UC#list').build()}">User</a></h1>
-            </div>
+        <div class="header">
+            <h1>User Details</h1>
+        </div>
+        <a th:href="${#mvc.url('UC#list').build()}" class="btn btn-primary">Back</a>
+        <a th:href="${#mvc.url('UC#list').build()}" class="btn btn-primary">Edit</a>
+        <hr/>
+        <br>
             <div class="row">
                 <div class="col-sm-2">Id:</div>
                 <div class="col-sm-10" th:text="${user.id}"></div>
@@ -21,7 +25,6 @@
                 <div class="col-sm-10" th:utext="${user.email}"></div>
             </div>
             <br>
-            <a th:href="${#mvc.url('UC#list').build()}" class="btn btn-primary">Back to list</a>
 
     </div>
     <div th:replace="fragments/fragments::footer"></div>

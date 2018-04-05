@@ -23,10 +23,11 @@
             <td><a th:href="${#mvc.url('UC#details').arg(0, user.id).build()}" th:text="${user.id}"></a></td>
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
-            <td th:text="${user.email}"></td>
+            <td><a th:href="${#mvc.url('UC#details').arg(0, user.id).build()}" th:text="${user.email}"></a></td>
         </tr>
         </tbody>
     </table>
+        <a th:href="${#mvc.url('UC#createAndEditForm').build()}" class="btn btn-secondary">Add</a>
     </div>
     <div th:replace="fragments/fragments::footer"></div>
 </div>
