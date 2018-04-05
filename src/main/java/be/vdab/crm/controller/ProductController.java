@@ -33,10 +33,22 @@ public class ProductController {
         return "product-edit-create";
     }
 
+//    @PostMapping(path = "/create-or-edit")
+//    public String createAndEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br) {
+//        if(br.hasErrors()) {
+//            return "product-edit-create";
+//        } else {
+//            service.save(product);
+//            System.out.println("DO WORK");
+//            return "redirect:/products/list"; // mvc gebruiken?? mvc.url(...)
+//        }
+//
+//    }
+
     @PostMapping(path = "/create-or-edit")
     public String createAndEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br) {
-        if(br.hasErrors()) {
-            return "product-edit-create";
+        if((br.hasErrors()) || (product.getName()==null) || (product.getPrice()==0) || (product.getCategory()==null)) {
+              return "product-edit-create";
         } else {
             service.save(product);
             System.out.println("DO WORK");
