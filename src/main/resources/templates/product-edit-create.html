@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create/Edit Contact</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/crm.css"/>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>Edit Contact</h1>
+    </div>
+    <br>
+
+
+    <form th:object="${contact}" method="POST">
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="fn">First Name</label>
+                <input id="fn" type="text" th:field="*{firstName}"/>
+
+                <label for="ln">Last Name</label>
+                <input id="ln" type="text" th:field="*{lastName}"/>
+
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="em">Email</label>
+                <input id="em" type="text" th:field="*{email}"/>
+
+                <label for="own">Owner</label>
+                <select name="owner" id="own">
+                    <option disabled
+                            th:selected="${contact.id == null}"
+                            th:value="null">-Select owner-</option>
+                    <option th:each="owner : ${owners}"
+                            th:text="${owner.getFullName()}"
+                            th:value="${owner.id}"
+                            th:selected="${owner.equals(contact?.owner)}"></option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+</div>
+</body>
+</html>
