@@ -34,10 +34,16 @@
                 <label for="em">Email</label>
                 <input id="em" type="text" th:field="*{email}"/>
 
-                <!--<label for="own">Owner</label>-->
-                <!--<select id="own">-->
-                    <!--<option th:each="o : ${owners}" th:text="${o.getFullName()}" th:value="${o.id}"></option>-->
-                <!--</select>-->
+                <label for="own">Owner</label>
+                <select name="owner" id="own">
+                    <option disabled
+                            th:selected="${contact.id == null}"
+                            th:value="null">-Select owner-</option>
+                    <option th:each="owner : ${owners}"
+                            th:text="${owner.getFullName()}"
+                            th:value="${owner.id}"
+                            th:selected="${owner.equals(contact?.owner)}"></option>
+                </select>
             </div>
         </div>
 

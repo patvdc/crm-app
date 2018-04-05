@@ -20,4 +20,8 @@ public class UserService {
         return repository.findAll();
     }
 
+    public User getUserById(int id) {
+        return repository.getOne(id);
+    }
+
 }

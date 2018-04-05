@@ -110,4 +110,24 @@ public class Contact implements java.io.Serializable {
     public String getTwitter() {
         return twitter;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 }

@@ -31,7 +31,7 @@
             <td th:text="${contact.firstName}">John</td>
             <td th:text="${contact.lastName}">Doe</td>
             <td th:text="${contact.email}">john.doe@email.com</td>
-            <td th:text="${contact.owner}">Uncle Sam</td>
+            <td th:text="${contact.owner == null ? '' : contact.owner.fullName}">Uncle Sam</td>
         </tr>
         </tbody>
     </table>
