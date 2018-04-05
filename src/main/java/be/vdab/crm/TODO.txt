@@ -15,3 +15,10 @@ entities
 user
 navigation
 security (custom login,roles)
+rest json
+
+
+Project Description
+===================
+Mini CRM-app only for B2C-market (no companies, only private people)
+Create contact
