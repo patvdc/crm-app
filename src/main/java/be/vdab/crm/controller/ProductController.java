@@ -1,10 +1,12 @@
 package be.vdab.crm.controller;
 
+import be.vdab.crm.entity.Product;
 import be.vdab.crm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.spring5.expression.Mvc;
 
 import java.util.Map;
@@ -23,6 +25,24 @@ public class ProductController {
     public String getAllProducts(Map<String,Object> model) {
         model.put("productList", service.getAllProducts());
         return "product-list";
+    }
+
+    @GetMapping(path = "/create-or-edit")
+    public String createAndEditForm(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> model) {
+        model.put("productForm", new Product());
+        return "product-edit-create";
+    }
+
+    @PostMapping(path = "/create-or-edit")
+    public String createAndEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br) {
+        if(br.hasErrors()) {
+            return "product-edit-create";
+        } else {
+            service.save(product);
+            System.out.println("DO WORK");
+            return "redirect:/products/list"; // mvc gebruiken?? mvc.url(...)
+        }
+
     }
 
 

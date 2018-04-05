@@ -11,43 +11,27 @@
 <div class="container">
 
     <div class="header">
-        <h1>Edit Contact</h1>
+        <h1>Edit Product</h1>
     </div>
     <br>
 
 
-    <form th:object="${contact}" method="POST">
+    <form th:object="${productForm}" method="POST">
 
         <div class="form-row">
             <div class="form-group">
                 <label for="fn">First Name</label>
-                <input id="fn" type="text" th:field="*{firstName}"/>
+                <input id="fn" type="text" th:field="*{name}"/>
 
                 <label for="ln">Last Name</label>
-                <input id="ln" type="text" th:field="*{lastName}"/>
+                <input id="ln" type="text" th:field="*{price}"/>
+
+                <label for="cat">Category</label>
+                <input id="cat" type="text" th:field="*{category}"/>
 
             </div>
         </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="em">Email</label>
-                <input id="em" type="text" th:field="*{email}"/>
-
-                <label for="own">Owner</label>
-                <select name="owner" id="own">
-                    <option disabled
-                            th:selected="${contact.id == null}"
-                            th:value="null">-Select owner-</option>
-                    <option th:each="owner : ${owners}"
-                            th:text="${owner.getFullName()}"
-                            th:value="${owner.id}"
-                            th:selected="${owner.equals(contact?.owner)}"></option>
-                </select>
-            </div>
-        </div>
-
-        <button type="submit">Submit</button>
+         <button type="submit">Submit</button>
     </form>
 
 
