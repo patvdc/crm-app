@@ -3,7 +3,6 @@ package be.vdab.crm.entity;
 
 import javax.persistence.*;
 import java.sql.Blob;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +12,7 @@ import java.util.Map;
 
 @Entity
 @Table(name = "contacts")
-public class Contact implements java.io.Serializable {
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,10 +43,10 @@ public class Contact implements java.io.Serializable {
 
     private String accountName;    //Account
 
-//    @OneToMany
-//    @MapKey(name="type")
-//    @JoinColumn(name = "test")
-//    private Map<PhoneType, String> phones;
+    @OneToMany
+    @MapKey(name = "type")
+    @JoinColumn(name = "contact_id")
+    private Map<PhoneType, Phone> phones;
 
     private String facebook;   //api
 
@@ -66,7 +65,9 @@ public class Contact implements java.io.Serializable {
         return lastName;
     }
 
-    public String getFullName() { return firstName + " " + lastName; }
+    public String getFullName() {
+        return firstName == null ? "" : firstName + " " + lastName == null ? "" : lastName;
+    }
 
     public Blob getPicture() {
         return picture;
@@ -100,9 +101,9 @@ public class Contact implements java.io.Serializable {
         return accountName;
     }
 
-//    public Map<PhoneType, String> getPhones() {
-//        return phones;
-//    }
+    public Map<PhoneType, Phone> getPhones() {
+        return phones;
+    }
 
     public String getFacebook() {
         return facebook;
