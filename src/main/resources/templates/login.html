@@ -3,23 +3,19 @@
 <head th:replace="fragments/fragments :: head"></head>
 <body>
 <div class="container">
-    <div th:replace="fragments/fragments :: div#page-header"></div>
+    <div th:replace="fragments/fragments::header"></div>
     <div class="row">
         <div class="col-lg-12">
             <h4>Login</h4>
             <p>You will have to log in:</p>
             <form name="login" th:action="@{/login}" method="POST">
                 <div class="form-group">
-                    <label th:for="${#ids.next('userName')}">User Name:</label>
-                    <input type="text" th:name="username" class="form-control" value=""/>
+                    <label th:for="${#ids.next('email')}">Email:</label>
+                    <input type="text" th:name="email" class="form-control" value=""/>
                 </div>
                 <div class="form-group">
                     <label th:for="${#ids.next('password')}">Password:</label>
                     <input type="password" th:name="password" class="form-control"/>
-                </div>
-                <div class="form-group">
-                    <input id="remember_me" name="remember-me" type="checkbox" />
-                    <label for="remember_me" style="display: inline">Remember me</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
@@ -29,6 +25,5 @@
     <hr/>
 </div>
 
-<div th:replace="fragments/fragments :: div.scripts"></div>
 </body>
 </html>
