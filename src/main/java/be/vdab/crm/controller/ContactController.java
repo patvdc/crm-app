@@ -2,19 +2,17 @@ package be.vdab.crm.controller;
 
 import be.vdab.crm.entity.Contact;
 import be.vdab.crm.service.ContactService;
+import be.vdab.crm.service.QuoteService;
 import be.vdab.crm.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.spring5.expression.Mvc;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/contacts")
@@ -28,6 +26,8 @@ public class ContactController {
     private UserService userService;
     @Autowired
     private Mvc mvc;
+    @Autowired
+    private QuoteService quoteservice;
 
     @GetMapping("list")
     public String listAllContacts(Map<String, Object> model) {
@@ -66,6 +66,7 @@ public class ContactController {
     @GetMapping("details/{id}")
     public String contactDetails(@PathVariable Integer id, Map<String, Object> model) {
         model.put("contact", contactService.findContactById(id));
+        model.put("quoteList",quoteservice.getAllQuotesByContactId(id));
         return "contact-details";
     }
 }

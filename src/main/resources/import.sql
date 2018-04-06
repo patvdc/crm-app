@@ -22,6 +22,14 @@ insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, s
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (2,2,"CONFIRMED",236,2,2,2);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (3,3,"CLOSED_WON",336,3,3,3);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (4,4,"CLOSED_LOST",436,4,4,4);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (5,1,"CLOSED_LOST",436,4,4,4);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (6,2,"CLOSED_LOST",436,4,4,4);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (7,3,"CLOSED_LOST",436,4,4,4);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (8,4,"CLOSED_LOST",436,4,4,4);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (9,1,"CLOSED_LOST",436,4,4,4);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (10,1,"CLOSED_LOST",436,4,4,4);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (11,2,"CLOSED_LOST",436,4,4,4);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (12,2,"CLOSED_LOST",436,4,4,4);
 
 insert into product(id, category, name, picture, unit_price) values(1,"PORTABLE","Toshiba 500",null,500);
 insert into product(id, category, name, picture, unit_price) values(2,"PORTABLE","Toshiba 600",null,600);

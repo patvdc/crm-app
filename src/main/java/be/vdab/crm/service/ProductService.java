@@ -19,8 +19,5 @@ public class ProductService {
 
     public void save(Product p) {repository.save(p);}
 
-
-    public void delete(int id) {
-        repository.deleteById(id);
-    }
+    public void delete(int id) {  repository.deleteById(id);  }
 }

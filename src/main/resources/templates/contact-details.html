@@ -34,6 +34,35 @@
     &nbsp;
     <a th:href="${#mvc.url('CC#listAllContacts').build()}" class="btn btn-primary">Contact List</a>
 
+           <!--<<<<<<<<<<<<<<< START QUOTES >>>>>>>>>>>>>>>>> -->
+    <div class="header">
+        <h2>Quotes</h2>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Stage</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="quote : ${quoteList}">
+                <td th:text="${quote.id}"></td>
+                <td th:text="${quote.stage}"></td>
+                <td th:text="${quote.total}"></td>
+                <td>
+                    <!--<a th:href="${#mvc.url('QC#remove').arg(0, quote.id).build()}" class="btn btn-sm btn-danger">Remove</a>-->
+                    <!--<a th:href="${#mvc.url('PC#createOrEditForm').arg(0, product.id).build()}" class="btn btn-sm btn-warning">Edit</a>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+             <!--<<<<<<<<<<<<<<< END QUOTES >>>>>>>>>>>>>>>>> -->
+
     <div th:replace="fragments/fragments::footer"></div>
 
 
