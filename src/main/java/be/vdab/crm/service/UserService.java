@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 @Transactional
 public class UserService {
+
     private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
@@ -32,14 +33,18 @@ public class UserService {
         repository.save(u);
     }
 
+    //TODO -> xref ?
     public User lookupUser(int id) {
         logger.info("Looking up user with UID " + id);
         return repository.getOne(id);
     }
 
-
     public User getUserById(int id) {
         return repository.getOne(id);
+    }
+
+    public void delete(int id) {
+        repository.deleteById(id);
     }
 
 }

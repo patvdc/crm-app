@@ -19,16 +19,22 @@ user -> registration form
 navigation
 
 security (custom login page,roles,user psw encryption)
-hide menu when not logged in
+hide menu when not authenticated
 
 rest ws (json,xml)
+
+? column click sort
 
 creation date on all forms
 homepage = login page ?
 
 minimize setters
 
+? delete field
+
 bootstrap double
+
+dependency check on delete
 
 ===================
 Project Description
