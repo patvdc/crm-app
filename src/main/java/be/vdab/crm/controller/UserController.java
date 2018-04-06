@@ -19,38 +19,37 @@ public class UserController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-   // private static final String ROOT = "users/";
-
     @Autowired
     Mvc mvc;
 
     @Autowired
-    private UserService service;
+    private UserService userService;
 
     @GetMapping("/list")
     public String list(Map<String,Object> model) {
-        model.put("userList", service.getAllUsers());
+        model.put("userList", userService.getAllUsers());
         return "user-list";
     }
 
     @GetMapping("/details/{id}")
-    public String details(@PathVariable Integer id, Map<String, Object> model) {
-        model.put("user", service.getUserById(id));
+    public String details(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
+        model.put("user", userService.getUserById(id));
         return "user-details";
     }
 
-    @GetMapping(path = "/create-or-edit")
+    @GetMapping("/create-or-edit")
     public String createAndEditForm(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> model) {
-        model.put("userForm", new User());
+        User u = id == null ? new User() : userService.getUserById(id);
+        model.put("userForm", u);
         return "user-edit-create";
     }
 
-    @PostMapping(path = "/create-or-edit")
+    @PostMapping("/create-or-edit")
     public String createAndEditFormSubmit(@ModelAttribute("userForm") User user, BindingResult br) {
         if(br.hasErrors()) {
             return "user-edit-create";
         } else {
-            service.save(user);
+            userService.save(user);
             return "redirect:/users/list";
         //    return "redirect:" + mvc.url("UC#list").build();
         }
@@ -58,7 +57,7 @@ public class UserController {
 
     @RequestMapping(method = {RequestMethod.POST, RequestMethod.GET},path = "/remove")
     public String remove(@RequestParam int id){
-        service.delete(id);
+        userService.delete(id);
         return "redirect:/users/list";
   //      return "redirect:" + mvc.url("UC#list").build();
     }

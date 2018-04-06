@@ -34,7 +34,9 @@ minimize setters
 
 bootstrap double
 
-dependency check on delete
+? dependency check on delete
+
+search
 
 ===================
 Project Description
