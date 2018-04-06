@@ -3,7 +3,9 @@ package be.vdab.crm.entity;
 
 import javax.persistence.*;
 import java.sql.Blob;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 //create note, activity (meeting, call-in, call-out
@@ -42,9 +44,10 @@ public class Contact implements java.io.Serializable {
 
     private String accountName;    //Account
 
-    private String phone;      //fix phone
-
-    private String mobile;    //gsm
+//    @OneToMany
+//    @MapKey(name="type")
+//    @JoinColumn(name = "test")
+//    private Map<PhoneType, String> phones;
 
     private String facebook;   //api
 
@@ -97,13 +100,9 @@ public class Contact implements java.io.Serializable {
         return accountName;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
+//    public Map<PhoneType, String> getPhones() {
+//        return phones;
+//    }
 
     public String getFacebook() {
         return facebook;

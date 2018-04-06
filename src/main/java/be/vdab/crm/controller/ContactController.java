@@ -35,13 +35,14 @@ public class ContactController {
         return "contact-list";
     }
 
-    @GetMapping({"edit-create", "edit-create/{id}"})
+    @GetMapping({"edit-create/{id}", "edit-create"})
     public String editOrCreateContactRequest(@PathVariable(required = false) Integer id, Map<String, Object> model) {
         model.put("contact", (id == null ? new Contact() : contactService.findContactById(id)));
         model.put("owners", userService.getAllUsers());
         return "contact-edit-create";
     }
 
+    //used pathvariable instead
 //    @GetMapping("edit-create")
 //    public String editOrCreateContactRequest(@RequestParam(value="id", required = false) Integer id, Map<String, Object> model) {
 //        model.put("contact", (id == null ? new Contact() : contactService.findContactById(id)));
@@ -49,7 +50,7 @@ public class ContactController {
 //        return "contact-edit-create";
 //    }
 
-    //TODO: a way to do this without requestparam ?
+    //TODO: a way to do this without request?
     //TODO: validate one field not null
     @PostMapping("edit-create")
     public String editOrCreateContactPost(@ModelAttribute("contact") Contact contact, HttpServletRequest req) {
