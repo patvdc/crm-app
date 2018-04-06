@@ -6,7 +6,7 @@
     <div th:replace="fragments/fragments::header"></div>
     <div class="header">
         <h1>Products</h1>
-        <a th:href="${#mvc.url('PC#createAndEditForm').build()}" class="btn btn-secondary">Add</a>
+        <a th:href="${#mvc.url('PC#createOrEditForm').build()}" class="btn btn-secondary">Add</a>
     </div>
 
     <div>
@@ -26,10 +26,13 @@
                 <td th:text="${product.category}"></td>
                 <td th:text="${product.unitPrice}"></td>
                 <td th:text="${product.picture}"></td>
+                <td>
+                    <a th:href="${#mvc.url('PC#remove').arg(0, product.id).build()}" class="btn btn-sm btn-danger">Remove</a>
+                    <!--<a th:href="${#mvc.url('PC#createOrEditForm').arg(0, product.id).build()}" class="btn btn-sm btn-warning">Edit</a>-->
+                </td>
             </tr>
             </tbody>
         </table>
-        <a th:href="${#mvc.url('PC#createAndEditForm').build()}" class="btn btn-secondary">Add</a>
     </div>
     <div th:replace="fragments/fragments::footer"></div>
 </div>

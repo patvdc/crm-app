@@ -28,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping(path = "/create-or-edit")
-    public String createAndEditForm(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> model) {
+    public String createOrEditForm(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> model) {
         model.put("productForm", new Product());
         return "product-edit-create";
     }
@@ -55,6 +55,12 @@ public class ProductController {
             return "redirect:/products/list"; // mvc gebruiken?? mvc.url(...)
         }
 
+    }
+
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.GET},path = "/remove")
+    public String remove(@RequestParam int id){
+        service.delete(id);
+        return "redirect:/products/list";
     }
 
 
