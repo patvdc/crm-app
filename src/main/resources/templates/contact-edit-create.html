@@ -54,15 +54,16 @@
             </div>
             <div class="form-group col-md-5">
 
-                <select class="form-control" name="owner" id="own">
-                    <option disabled
-                            th:selected="${contact.id == null}"
-                            th:value="null">-Select owner-
-                    </option>
-                    <option th:each="owner : ${owners}"
-                            th:text="${owner.getFullName()}"
-                            th:value="${owner.id}"
-                            th:selected="${owner.equals(contact?.owner)}"></option>
+                <select class="form-control" th:field="*{owner}" id="own">
+                    <option th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.fullName}"></option>
+                    <!--<option disabled-->
+                            <!--th:selected="${contact.id == null}"-->
+                            <!--th:value="null">-Select owner- -->
+                    <!--</option>-->
+                    <!--<option th:each="owner : ${owners}"-->
+                            <!--th:text="${owner.getFullName()}"-->
+                            <!--th:value="${owner.id}"-->
+                            <!--th:selected="${owner.equals(contact?.owner)}"></option>-->
                 </select>
             </div>
         </div>

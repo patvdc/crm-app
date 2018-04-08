@@ -56,7 +56,6 @@ public class ContactController {
     //TODO: a way to do this without request?
     @PostMapping({"edit-create/{id}", "edit-create"})
     public String editOrCreateContactPost(@PathVariable(required = false) Integer id, @ModelAttribute("contact") Contact contact
-            , HttpServletRequest req
             , BindingResult br) {
 
         if (contact.getEmail() == "" && contact.getFirstName() == "" && contact.getLastName() == "") {
@@ -66,9 +65,9 @@ public class ContactController {
         if (br.hasErrors()) {
             return "contact-edit-create";
         } else {
-            if (req.getParameter("owner") != null) {
-                contact.setOwner(userService.getUserById(Integer.parseInt(req.getParameter("owner"))));
-            }
+//            if (req.getParameter("owner") != null) {
+//                contact.setOwner(userService.getUserById(Integer.parseInt(req.getParameter("owner"))));
+//            }
             contactService.save(contact);
             return "redirect:" + mvc.url("CC#listAllContacts").build();
         }
