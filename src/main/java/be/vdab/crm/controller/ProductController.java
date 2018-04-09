@@ -34,7 +34,7 @@ public class ProductController {
     }
 
 //    @PostMapping(path = "/create-or-edit")
-//    public String createAndEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br) {
+//    public String createOrEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br) {
 //        if(br.hasErrors()) {
 //            return "product-edit-create";
 //        } else {
@@ -46,7 +46,7 @@ public class ProductController {
 //    }
 
     @PostMapping(path = "/create-or-edit")
-    public String createAndEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br) {
+    public String createOrEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br) {
         if((br.hasErrors()) || (product.getName()==null) || (product.getPrice()==0) || (product.getCategory()==null)) {
               return "product-edit-create";
         } else {

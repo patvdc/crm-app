@@ -54,9 +54,13 @@ public class Quote implements java.io.Serializable {
         return owner;
     }
 
+    public void setOwner(User owner) { this.owner = owner; }
+
     public Contact getContact() {
         return contact;
     }
+
+    public void setContact(Contact contact) { this.contact = contact; }
 
     public Address getBillingAddress() {
         return billingAddress;
@@ -64,6 +68,10 @@ public class Quote implements java.io.Serializable {
 
     public Address getShippingAddress() {
         return shippingAddress;
+    }
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     public List<QuoteLine> getLines() {

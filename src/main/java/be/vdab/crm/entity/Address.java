@@ -60,5 +60,15 @@ public class Address {
         return bus;
     }
 
+    public String prettyAddress() {
+        return this.streetName + " " +
+                this.houseNumber+ ", " +
+                (this.bus == null ? "" : "Bus : " + this.bus + ", ") +
+                this.zipCode + " " +
+                this.city;
+
+
+    }
+
 
 }

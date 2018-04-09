@@ -19,6 +19,8 @@ public class QuoteService {
 
     public Quote findQuoteById(int id) {  return repository.getOne(id);  }
 
+    public Quote findQuoteByContactId(int id) {  return repository.findQuoteByContactIdEquals(id);  }
+
     public void save(Quote quote) {  repository.save(quote);  }
 
     public void delete(int id) {  repository.deleteById(id);  }

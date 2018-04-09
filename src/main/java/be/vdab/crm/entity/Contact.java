@@ -3,9 +3,7 @@ package be.vdab.crm.entity;
 
 import javax.persistence.*;
 import java.sql.Blob;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 //create note, activity (meeting, call-in, call-out
@@ -36,7 +34,7 @@ public class Contact implements java.io.Serializable {
 
     @OneToMany
     @JoinColumn(name = "contact_id")
-    private List<Address> addresses;
+    private List<Address> addresses = new ArrayList<>();
 
     private Salutation salutation;
 
@@ -84,8 +82,15 @@ public class Contact implements java.io.Serializable {
         return owner;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
+    public List<Address> getAddresses() { return Collections.unmodifiableList(addresses); }
+
+    public void setAddresses(List<Address> addresses) { this.addresses = addresses; }
+
+    public void addAddress(Address address) {
+        if(address == null) {
+            throw new IllegalArgumentException("Invalid Address");
+        }
+        this.addresses.add(address);
     }
 
     public Salutation getSalutation() {
@@ -131,4 +136,6 @@ public class Contact implements java.io.Serializable {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
+
 }

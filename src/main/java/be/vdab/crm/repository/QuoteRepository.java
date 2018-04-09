@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface QuoteRepository extends JpaRepository<Quote, Integer> {
-    public List<Quote> findAllByContactIdEquals(int contactId);
+    List<Quote> findAllByContactIdEquals(int contactId);
+
+    Quote findQuoteByContactIdEquals(int contactId);
 }
