@@ -48,7 +48,6 @@ REMARK
 ======
 minimize setters
 
-
 ==================
 Powerpoint content
 ==================
@@ -56,6 +55,7 @@ Mini CRM-app only for B2C-market (no companies, only private persons)
 Login pane
 Create user
 Create contact
+
 
 ============
 Technologies

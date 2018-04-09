@@ -10,8 +10,6 @@ public class LoginController {
 
     @RequestMapping("login")
     public String showLoginPage(Map<String, Object> model) {
-//        model.put("myAttribute", "Hello World");
         return "login";
-
     }
 }
