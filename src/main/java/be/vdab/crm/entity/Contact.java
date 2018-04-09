@@ -25,7 +25,7 @@ public class Contact implements java.io.Serializable {
     @Column(name="last_name",length=100)
     private String lastName;
 
-    private Blob picture;
+    private Blob picture;    //photo of contact
 
     @Enumerated(EnumType.STRING)
     private Salutation salutation;
