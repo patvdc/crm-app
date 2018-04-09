@@ -15,18 +15,24 @@
     <div class="row">
         <div class="col-sm-2">Id:</div>
         <div class="col-sm-10" th:text="${contact.id}"></div>
+
     </div>
     <div class="row">
         <div class="col-sm-2">Name:</div>
         <div class="col-sm-10" th:text="${contact.fullName}"></div>
+
     </div>
     <div class="row">
         <div class="col-sm-2">Email:</div>
         <div class="col-sm-10" th:text="${contact.email}"></div>
     </div>
     <div class="row">
+        <div class="col-sm-2">Phone:</div>
+        <div class="col-sm-10" th:text="${contact.phones?.get(T(be.vdab.crm.entity.PhoneType).MOBILE)?.number}"></div>
+    </div>
+    <div class="row">
         <div class="col-sm-2">Owner:</div>
-        <div class="col-sm-10" th:text="${contact.owner.fullName}"></div>
+        <div class="col-sm-10" th:text="${contact.owner?.fullName}"></div>
     </div>
 
     <br>

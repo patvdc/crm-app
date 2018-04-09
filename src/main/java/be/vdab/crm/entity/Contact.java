@@ -11,7 +11,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "contacts")
-public class Contact implements java.io.Serializable {
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +28,11 @@ public class Contact implements java.io.Serializable {
     @Enumerated(EnumType.STRING)
     private Salutation salutation;
 
-    //@Enumerated(EnumType.STRING)
-    private LeadStatus leadStatus;
-
     @Enumerated(EnumType.STRING)
     private LeadSource leadSource;
+
+    @Enumerated(EnumType.STRING)
+    private LeadStatus leadStatus;
 
     private String email;
 
@@ -45,10 +45,10 @@ public class Contact implements java.io.Serializable {
 
     private String accountName;    //Account
 
-//    @OneToMany
-//    @MapKey(name="type")
-//    @JoinColumn(name = "test")
-//    private Map<PhoneType, String> phones;
+    @OneToMany
+    @MapKey(name = "type")
+    @JoinColumn(name = "contact_id")
+    private Map<PhoneType, Phone> phones;
 
     private String facebook;   //api - later when time
 
@@ -66,7 +66,9 @@ public class Contact implements java.io.Serializable {
         return lastName;
     }
 
-    public String getFullName() { return firstName + " " + lastName; }
+    public String getFullName() {
+        return firstName == null ? "" : firstName + " " + lastName == null ? "" : lastName;
+    }
 
     public Blob getPicture() {
         return picture;
@@ -107,9 +109,9 @@ public class Contact implements java.io.Serializable {
         return accountName;
     }
 
-//    public Map<PhoneType, String> getPhones() {
-//        return phones;
-//    }
+    public Map<PhoneType, Phone> getPhones() {
+        return phones;
+    }
 
     public String getFacebook() {
         return facebook;
@@ -138,6 +140,4 @@ public class Contact implements java.io.Serializable {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-
-
 }
