@@ -2,10 +2,7 @@ package be.vdab.crm.controller;
 
 import be.vdab.crm.entity.*;
 import be.vdab.crm.repository.QuoteRepository;
-import be.vdab.crm.service.AddressService;
-import be.vdab.crm.service.ContactService;
-import be.vdab.crm.service.ProductService;
-import be.vdab.crm.service.QuoteService;
+import be.vdab.crm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -30,10 +27,20 @@ public class QuoteController {
     @Autowired
     private AddressService addressService;
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping({"create/{contactId}"})
-    public String postForm(@PathVariable(required = false) Integer contactId, @ModelAttribute("quote") Quote quote, BindingResult br) {
-        System.out.println("PROCESSING FORM PSOT: " + quote + " CID: " + contactId);
-        return "redirect:/";    // TODO
+    public String postForm(@PathVariable(required = false) Integer contactId,
+                           @ModelAttribute("quote") Quote quote, BindingResult br) {
+
+        Contact contact = contactService.findContactById(contactId);
+
+        quote.setContact(contact);
+        quote.setOwner(contact.getOwner()); // Temporary solution until security subsystem is more full featured...
+        quoteService.save(quote);
+        System.out.println("PROCESSING FORM PSOT: " + quote + " CID: " + contactId + ", OID: " + contact.getOwner().getId() );
+        return "redirect:/contacts/details/{contactId}";    // TODO
     }
 
     @GetMapping({"create/{id}"})

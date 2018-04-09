@@ -15,7 +15,6 @@
 
 
     <form th:object="${quote}" method="POST">
-        <input type="hidden" th:field="*{contact.id}"/>
         <div class="row">
             <div class="col-sm-2">Name:</div>
             <div class="col-sm-10" th:text="${quote.contact.fullName}"></div>
@@ -24,7 +23,6 @@
             <div class="col-sm-2">Email:</div>
             <div class="col-sm-10" th:text="${quote.contact.email}"></div>
         </div>
-        <input type="hidden" th:field="*{contact.owner.id}"/>
         <div class="row">
             <div class="col-sm-2">Owner:</div>
             <div class="col-sm-10" th:text="${quote.contact.owner.fullName}"></div>
