@@ -84,11 +84,11 @@ public class ContactController {
     private void takeCareOfPhoneNumberMumboJumbo(Contact contact, HttpServletRequest req) {
 
         /**
-         * To get contact phone map. Since phones is not binded by th:field the contact object posted
+         * To get contact phone map. Since phones is not bounded by th:field the contact object posted
          * to the controller does not contain the phones map
          * */
         if(contact.getId() != null){
-            contact = contactService.findContactById(contact.getId());
+            contact.getPhones().putAll(contactService.findContactById(contact.getId()).getPhones());
         }
 
         savePhoneNumbers(contact, req, "mobile", PhoneType.MOBILE);
@@ -99,14 +99,13 @@ public class ContactController {
         /**
          * Set phone numbers with request parameter (th field with map is rather difficult)
          * Check wether the map keys already exist or not, then change value or add new phone
+         * if phone is empty and key already existed in map -> deletion. Hence the remove.
          */
         if (!req.getParameter(parameter).equals("")) {
             if (contact.getPhones().get(type) != null) {
-                Phone phone = contact.getPhones().get(type);
-                phone.setNumber(req.getParameter(parameter));
+                contact.getPhones().get(type).setNumber(req.getParameter(parameter));
             } else {
-                Phone phone = new Phone(req.getParameter(parameter), type);
-                contact.addPhone(phone);
+                contact.addPhone(new Phone(req.getParameter(parameter), type));
             }
         } else {
             contact.getPhones().remove(type);

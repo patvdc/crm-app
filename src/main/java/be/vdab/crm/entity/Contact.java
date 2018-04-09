@@ -41,9 +41,10 @@ public class Contact {
     private String accountName;    //Account
 
     /**
-     * orphanRemoval to make sure entries
+     * orphanRemoval to make sure entries get deleted from database when phone is deleted from contact
+     * cascade to make sure phones get persisted, merged and removed along with contact
      */
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE }, orphanRemoval = true)
     @MapKey(name = "type")
     @JoinColumn(name = "contact_id")
     private Map<PhoneType, Phone> phones = new HashMap<>();

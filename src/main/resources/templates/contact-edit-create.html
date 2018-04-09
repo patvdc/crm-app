@@ -77,7 +77,7 @@
             <div class="form-group col-md-5">
 
                 <select class="form-control" th:field="*{owner}" id="owner">
-                    <option th:value="null" th:disabled="${contact.id != null}">-Select owner-</option>
+                    <option th:value="null" th:disabled="${contact.owner != null}">-Without owner-</option>
                     <option th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.fullName}"></option>
                 </select>
             </div>
