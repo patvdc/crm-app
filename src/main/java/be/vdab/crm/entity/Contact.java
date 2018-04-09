@@ -28,7 +28,13 @@ public class Contact implements java.io.Serializable {
     private Blob picture;
 
     @Enumerated(EnumType.STRING)
+    private Salutation salutation;
+
+    //@Enumerated(EnumType.STRING)
     private LeadStatus leadStatus;
+
+    @Enumerated(EnumType.STRING)
+    private LeadSource leadSource;
 
     private String email;
 
@@ -38,12 +44,6 @@ public class Contact implements java.io.Serializable {
     @OneToMany
     @JoinColumn(name = "contact_id")
     private List<Address> addresses;
-
-    @Enumerated(EnumType.STRING)
-    private Salutation salutation;
-
-    @Enumerated(EnumType.STRING)
-    private LeadSource leadSource;
 
     private String accountName;    //Account
 

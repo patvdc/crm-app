@@ -5,57 +5,64 @@ ivo
 ===
 product
 product-category
-quote-header
-quote-lines
+quote ("offerte")
+quote-lines ("offerte-lines")
 
 =====
 johan
 =====
 contact
+address
+note  (comment with attachment)
+activity (call-in, call-out, meeting, todo)
 
 =======
 patrick
 =======
+powerpoint
 entities
 user -> registration form
-navigation
-
-security (custom login page,roles,user psw encryption)
-hide menu when not authenticated
+security -> roles, password encryption, hide menu when not authenticated
+custom login page
 
 rest ws (json,xml)
+
+search
+
+send email
+
+
 
 ? column click sort
 
 ? creation date on all forms
-homepage = login page ?
-
-minimize setters
 
 ? delete field
 
-bootstrap double
-
 ? dependency check on delete
 
-search
+======
+REMARK
+======
+minimize setters
 
-===================
-Project Description
-===================
+
+==================
+Powerpoint content
+==================
 Mini CRM-app only for B2C-market (no companies, only private persons)
 Login pane
+Create user
 Create contact
 
 ============
 Technologies
 ============
-backbone ->
-spring bootstrap
+backend ->
+spring boot
 jpa (sql)
 git
 maven
-
 
 frontend ->
 html/css/bootstrap
