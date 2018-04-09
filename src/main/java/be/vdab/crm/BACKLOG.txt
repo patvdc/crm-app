@@ -20,18 +20,20 @@ activity (call-in, call-out, meeting, todo)
 patrick
 =======
 powerpoint
+
 entities
+
 user -> registration form
-security -> roles, password encryption, hide menu when not authenticated
+
 custom login page
+
+security -> roles, password encryption, hide menu when not authenticated
 
 rest ws (json,xml)
 
-search
+search (when time)
 
 send email
-
-
 
 ? column click sort
 
