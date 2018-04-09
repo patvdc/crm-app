@@ -19,7 +19,13 @@
             <a th:href="@{/products/list}">Products</a> ‖
             <a th:href="@{/quotes/list}">Quotes</a> ‖
             <a th:href="@{/activities/list}">Activities</a> ‖
+
+        <div sec:authorize="isAuthenticated()" style="text-align: right">
+            Name: <span sec:authentication="principal"></span>
             <a th:href="@{/logout}">Logout</a>
+        </div>
+
+
         </p>
         <hr/>
     </div>

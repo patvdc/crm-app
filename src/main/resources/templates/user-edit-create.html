@@ -3,29 +3,60 @@
 <head th:replace="fragments/fragments :: head"></head>
 <body>
 <div class="container">
+
     <div th:replace="fragments/fragments::header"></div>
+
     <div class="header">
         <h1>Edit User</h1>
     </div>
+
     <br>
+
     <form th:object="${userForm}" method="POST">
 
-        <div class="form-row">
-            <div class="form-group">
-                <label for="fn">First Name</label>
-                <input id="fn" type="text" th:field="*{firstName}"/>
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <label for="fn">First name: </label>
+                    <div class="alert alert-danger"
+                         th:if="${#fields.hasErrors('firstName')}"
+                         th:each="e : ${#fields.errors('firstName')}"
+                         th:text="${e}">
+                    </div>
+                    <input type="text" id="fn" th:field="*{firstName}" class="form-control"/>
+                </div>
 
-                <label for="ln">Last Name</label>
-                <input id="ln" type="text" th:field="*{lastName}"/>
+                <div class="form-group">
+                    <label for="ln">Last name: </label>
+                    <div class="alert alert-danger"
+                         th:if="${#fields.hasErrors('lastName')}"
+                         th:each="e : ${#fields.errors('lastName')}"
+                         th:text="${e}">
+                    </div>
+                    <input type="text" id="ln" th:field="*{lastName}" class="form-control"/>
+                </div>
 
-                <label for="em">Email</label>
-                <input id="em" type="text" th:field="*{email}"/>
+                <div class="form-group">
+                    <label for="em">Email: </label>
+                    <div class="alert alert-danger"
+                         th:if="${#fields.hasErrors('email')}"
+                         th:each="e : ${#fields.errors('email')}"
+                         th:text="${e}">
+                    </div>
+                    <input type="text" id="em" th:field="*{email}" class="form-control"/>
+                </div>
 
-                <label for="psw">Password</label>
-                <input id="psw" type="text" th:field="*{password}"/>
-            </div>
-        </div>
-        <button type="submit">Save</button>
+                <div class="form-group">
+                    <label for="psw">Password: </label>
+                    <div class="alert alert-danger"
+                         th:if="${#fields.hasErrors('password')}"
+                         th:each="e : ${#fields.errors('password')}"
+                         th:text="${e}">
+                    </div>
+                    <input type="password" id="psw" th:field="*{password}" class="form-control"/>
+                </div>
+
+        <input type="submit" value="Save" class="btn btn-primary"/>
+
     </form>
 
 </div>

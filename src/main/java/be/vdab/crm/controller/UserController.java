@@ -3,42 +3,63 @@ package be.vdab.crm.controller;
 import be.vdab.crm.entity.Product;
 import be.vdab.crm.entity.User;
 import be.vdab.crm.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.spring5.expression.Mvc;
 
 import java.util.Map;
 
 @Controller
-//@RequestMapping("/users")
+@RequestMapping("/users")
 public class UserController {
-    private static final String ROOT = "users/";
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     Mvc mvc;
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(ROOT + "list")
-    public String list(Map<String, Object> model) {
+    @GetMapping("/list")
+    public String list(Map<String,Object> model) {
         model.put("userList", userService.getAllUsers());
-        return "user-list";    //
+        return "user-list";
     }
 
-    @RequestMapping(ROOT + "details/{id}")
-    public String details(@PathVariable(value = "id") int id, Map<String, Object> model) {
-        model.put("user", userService.lookupUser(id));
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
+        model.put("user", userService.getUserById(id));
         return "user-details";
     }
 
-    @RequestMapping(path= ROOT + "create-or-edit", method = RequestMethod.GET)
+    @GetMapping("/create-or-edit")
     public String createAndEditForm(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> model) {
-        User u = id == null ? new User() : userService.lookupUser(id);
+        User u = id == null ? new User() : userService.getUserById(id);
         model.put("userForm", u);
         return "user-edit-create";
     }
 
+    @PostMapping("/create-or-edit")
+    public String createAndEditFormSubmit(@ModelAttribute("userForm") User user, BindingResult br) {
+        if(br.hasErrors()) {
+            return "user-edit-create";
+        } else {
+            userService.save(user);
+            return "redirect:/users/list";
+        //    return "redirect:" + mvc.url("UC#list").build();
+        }
+    }
 
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.GET},path = "/remove")
+    public String remove(@RequestParam int id){
+        userService.delete(id);
+        return "redirect:/users/list";
+  //      return "redirect:" + mvc.url("UC#list").build();
+    }
 
 }

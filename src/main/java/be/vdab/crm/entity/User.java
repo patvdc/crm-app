@@ -27,7 +27,11 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
     private Language language;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     private Blob picture;
 

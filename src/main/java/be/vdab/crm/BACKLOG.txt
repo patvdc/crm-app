@@ -1,0 +1,71 @@
+BACKLOG
+
+===
+ivo
+===
+product
+product-category
+quote ("offerte")
+quote-lines ("offerte-lines")
+
+=====
+johan
+=====
+contact
+address
+note  (comment with attachment)
+activity (call-in, call-out, meeting, todo)
+
+=======
+patrick
+=======
+powerpoint
+
+entities
+
+user -> registration form
+
+custom login page
+
+security -> roles, password encryption, hide menu when not authenticated
+
+rest ws (json,xml)
+
+search (when time)
+
+send email
+
+? column click sort
+
+? creation date on all forms
+
+? delete field
+
+? dependency check on delete
+
+======
+REMARK
+======
+minimize setters
+
+==================
+Powerpoint content
+==================
+Mini CRM-app only for B2C-market (no companies, only private persons)
+Login pane
+Create user
+Create contact
+
+
+============
+Technologies
+============
+backend ->
+spring boot
+jpa (sql)
+git
+maven
+
+frontend ->
+html/css/bootstrap
+thymeleaf

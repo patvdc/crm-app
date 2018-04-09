@@ -23,9 +23,16 @@ public class Contact implements java.io.Serializable {
     @Column(name="last_name",length=100)
     private String lastName;
 
-    private Blob picture;
+    private Blob picture;    //photo of contact
 
+    @Enumerated(EnumType.STRING)
+    private Salutation salutation;
+
+    //@Enumerated(EnumType.STRING)
     private LeadStatus leadStatus;
+
+    @Enumerated(EnumType.STRING)
+    private LeadSource leadSource;
 
     private String email;
 
@@ -36,10 +43,6 @@ public class Contact implements java.io.Serializable {
     @JoinColumn(name = "contact_id")
     private List<Address> addresses = new ArrayList<>();
 
-    private Salutation salutation;
-
-    private LeadSource leadSource;
-
     private String accountName;    //Account
 
 //    @OneToMany
@@ -47,10 +50,9 @@ public class Contact implements java.io.Serializable {
 //    @JoinColumn(name = "test")
 //    private Map<PhoneType, String> phones;
 
-    private String facebook;   //api
+    private String facebook;   //api - later when time
 
-    private String twitter;   //api
-
+    private String twitter;   //api - later when time
 
     public Integer getId() {
         return id;
