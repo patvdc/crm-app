@@ -35,6 +35,10 @@ search (when time)
 
 send email
 
+export xls
+
+google maps
+
 ? column click sort
 
 ? creation date on all forms
@@ -51,11 +55,12 @@ minimize setters
 ==================
 Powerpoint content
 ==================
+
 Mini CRM-app only for B2C-market (no companies, only private persons)
 Login pane
 Create user
 Create contact
-
+Security -> can be complex
 
 ============
 Technologies
@@ -63,9 +68,9 @@ Technologies
 backend ->
 spring boot
 jpa (sql)
+web
 git
 maven
 
 frontend ->
-html/css/bootstrap
-thymeleaf
+html/css/bootstrap/thymeleaf

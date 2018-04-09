@@ -15,10 +15,15 @@
         <p class="nav navbar-nav">
             <p> <a th:href="@{/index.html}">Home </a> ‖
             <a th:href="@{/contacts/list}">Contacts</a> ‖
-            <a th:href="@{/users/list}">Users</a> ‖
             <a th:href="@{/products/list}">Products</a> ‖
             <a th:href="@{/quotes/list}">Quotes</a> ‖
             <a th:href="@{/activities/list}">Activities</a> ‖
+            <a th:href="@{/users/list}">Users</a> ‖
+
+        <div sec:authorize="isAuthenticated()" style="text-align: right">
+            Name: <span sec:authentication="principal"></span>
+            <a th:href="@{/logout}">Logout</a>
+        </div>
 
         <div sec:authorize="isAuthenticated()" style="text-align: right">
             Name: <span sec:authentication="principal"></span>
