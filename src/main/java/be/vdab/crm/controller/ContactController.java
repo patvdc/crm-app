@@ -2,6 +2,7 @@ package be.vdab.crm.controller;
 
 import be.vdab.crm.entity.Contact;
 import be.vdab.crm.entity.PhoneType;
+import be.vdab.crm.entity.User;
 import be.vdab.crm.service.ContactService;
 import be.vdab.crm.service.QuoteService;
 import be.vdab.crm.service.UserService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.spring5.expression.Mvc;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -56,18 +58,17 @@ public class ContactController {
     //TODO: a way to do this without request?
     @PostMapping({"edit-create/{id}", "edit-create"})
     public String editOrCreateContactPost(@PathVariable(required = false) Integer id, @ModelAttribute("contact") Contact contact
-            , BindingResult br) {
+            ,Map<String, Object> model, BindingResult br) {
 
-        if (contact.getEmail() == "" && contact.getFirstName() == "" && contact.getLastName() == "") {
+
+        if (contact.getEmail().equals("") && contact.getPhones() == null) {
             br.addError(new FieldError("contact", "email", "Contact needs email or phone number"));
-            br.addError(new FieldError("contact", "phones", "Contact needs email or phone number"));
+            br.addError(new FieldError("contact", "phones", "Contact needs phone number or email"));
         }
         if (br.hasErrors()) {
+            model.put("owners", userService.getAllUsers());
             return "contact-edit-create";
         } else {
-//            if (req.getParameter("owner") != null) {
-//                contact.setOwner(userService.getUserById(Integer.parseInt(req.getParameter("owner"))));
-//            }
             contactService.save(contact);
             return "redirect:" + mvc.url("CC#listAllContacts").build();
         }
@@ -76,7 +77,7 @@ public class ContactController {
     @GetMapping("details/{id}")
     public String contactDetails(@PathVariable Integer id, Map<String, Object> model) {
         model.put("contact", contactService.findContactById(id));
-        model.put("quoteList",quoteservice.getAllQuotesByContactId(id));
+        model.put("quoteList", quoteservice.getAllQuotesByContactId(id));
         return "contact-details";
     }
 }

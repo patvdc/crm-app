@@ -33,6 +33,30 @@
             </div>
         </div>
 
+
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="phn" class="col-form-label">Phone</label>
+            </div>
+
+            <div class="form-group col-md-5">
+                <input id="phn" type="text" class="form-control" th:value="${contact.phones?.get(T(be.vdab.crm.entity.PhoneType).PHONE)?.number}" placeholder="Phone number"/>
+                <input id="phnid" type="hidden" class="form-control" th:value="${contact.phones?.get(T(be.vdab.crm.entity.PhoneType).PHONE)?.id}" placeholder="Phone number"/>
+            </div>
+
+            <div class="form-group col-md-1">
+                <label for="mob" class="col-form-label">Mobile</label>
+            </div>
+
+            <div class="form-group col-md-5">
+                <input id="mob" type="text" class="form-control" th:field="*{phones[__${T(be.vdab.crm.entity.PhoneType).MOBILE}__]}"
+                th:id="${contact.phones?.get(T(be.vdab.crm.entity.PhoneType).MOBILE)?.id}"
+                       th:value="${contact.phones?.get(T(be.vdab.crm.entity.PhoneType).MOBILE)?.number}"
+                placeholder="Mobile phone number"/>
+            </div>
+        </div>
+
+
         <div class="alert alert-danger"
              th:if="${#fields.hasErrors('email')}"
              th:each="e : ${#fields.errors('email')}"
@@ -50,20 +74,13 @@
 
         <div class="form-row">
             <div class="form-group col-md-1">
-                <label for="own" class="col-form-label">Owner</label>
+                <label for="owner" class="col-form-label">Owner</label>
             </div>
             <div class="form-group col-md-5">
 
-                <select class="form-control" th:field="*{owner}" id="own">
+                <select class="form-control" th:field="*{owner}" id="owner">
+                    <option th:value="null" th:disabled="${contact.id != null}">-Select owner-</option>
                     <option th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.fullName}"></option>
-                    <!--<option disabled-->
-                            <!--th:selected="${contact.id == null}"-->
-                            <!--th:value="null">-Select owner- -->
-                    <!--</option>-->
-                    <!--<option th:each="owner : ${owners}"-->
-                            <!--th:text="${owner.getFullName()}"-->
-                            <!--th:value="${owner.id}"-->
-                            <!--th:selected="${owner.equals(contact?.owner)}"></option>-->
                 </select>
             </div>
         </div>

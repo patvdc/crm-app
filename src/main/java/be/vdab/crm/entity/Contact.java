@@ -52,7 +52,6 @@ public class Contact {
 
     private String twitter;   //api
 
-
     public Integer getId() {
         return id;
     }
@@ -131,5 +130,9 @@ public class Contact {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public void setPhones(Map<PhoneType, Phone> phones) {
+        this.phones = phones;
     }
 }

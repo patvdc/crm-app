@@ -24,4 +24,10 @@ public class Phone {
     public String getNumber() {
         return number;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+
 }

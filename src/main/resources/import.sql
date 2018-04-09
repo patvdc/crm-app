@@ -6,7 +6,7 @@ insert into users(id, first_name, last_name, email, password) values (5,'pat','v
 insert into users(id, first_name, last_name, email, password) values (6,'johan','vdn','jvdn.java@gmail.com',' ');
 insert into users(id, first_name, last_name, email, password) values (7,'ivo','stv','ivelinstamatov@gmail.com',' ');
 
-insert into phone_numbers(id, number, type, contact_id) values(1, '0032/412597', 'LANDLINE', 1);
+insert into phone_numbers(id, number, type, contact_id) values(1, '0032/412597', 'PHONE', 1);
 insert into phone_numbers(id, number, type, contact_id) values(2, '0031/457577', 'MOBILE', 2);
 insert into phone_numbers(id, number, type, contact_id) values(3, '0032/452377', 'MOBILE', 1);
 
