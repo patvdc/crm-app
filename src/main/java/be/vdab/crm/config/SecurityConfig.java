@@ -24,15 +24,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //    super.configure(auth);
         auth
                 .inMemoryAuthentication()
-                .withUser("user1").password(" ").roles("SALES").and()
-                .withUser("user2").password(" ").roles("ADMIN").and()
+                .withUser("user1").password(" ").roles("SALES")
+                .and()
+                .withUser("user2").password(" ").roles("ADMIN")
+                .and()
                 .withUser("user3").password(" ").roles("SALES", "ADMIN");
 
-        auth
-                .jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select email, password, true from users where email=?")
-                .authoritiesByUsernameQuery("select email, role from users where email=?");
+     //   auth
+     //           .jdbcAuthentication()
+     //           .dataSource(dataSource)
+     //           .usersByUsernameQuery("select email, password, true from users where email=?")
+     //           .authoritiesByUsernameQuery("select email, role from users where email=?");
         //        .passwordEncoder(new StandardPasswordEncoder("53cr3t"));
 
     }
