@@ -30,7 +30,7 @@ public class QuoteLine {
     /**
      * Used by JPA.
      */
-    private QuoteLine() {
+    public QuoteLine() {
     }
 
     public Integer getId() {
@@ -52,4 +52,6 @@ public class QuoteLine {
     public double getTotal() {
         return total;
     }
+
+
 }

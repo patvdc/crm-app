@@ -13,7 +13,7 @@ import java.util.List;
 public class QuoteService {
 
     @Autowired
-    private QuoteRepository repository;
+    public QuoteRepository repository;
 
     public List<Quote> getAllQuotes() {  return repository.findAll();  }
 
@@ -26,5 +26,7 @@ public class QuoteService {
     public void delete(int id) {  repository.deleteById(id);  }
 
     public List<Quote> getAllQuotesByContactId(Integer id) {  return repository.findAllByContactIdEquals(id);
+
+
     }
 }

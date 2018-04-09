@@ -1,7 +1,9 @@
 package be.vdab.crm.controller;
 
 import be.vdab.crm.entity.Contact;
+import be.vdab.crm.entity.QuoteLine;
 import be.vdab.crm.service.ContactService;
+import be.vdab.crm.service.ProductService;
 import be.vdab.crm.service.QuoteService;
 import be.vdab.crm.service.UserService;
 import org.slf4j.Logger;
@@ -28,6 +30,8 @@ public class ContactController {
     private Mvc mvc;
     @Autowired
     private QuoteService quoteservice;
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("list")
     public String listAllContacts(Map<String, Object> model) {
@@ -67,6 +71,9 @@ public class ContactController {
     public String contactDetails(@PathVariable Integer id, Map<String, Object> model) {
         model.put("contact", contactService.findContactById(id));
         model.put("quoteList",quoteservice.getAllQuotesByContactId(id));
+        model.put("products",productService.getAllProducts());
+
+
         return "contact-details";
     }
 }

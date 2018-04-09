@@ -1,6 +1,7 @@
 package be.vdab.crm.controller;
 
 import be.vdab.crm.entity.*;
+import be.vdab.crm.repository.QuoteLineRepository;
 import be.vdab.crm.repository.QuoteRepository;
 import be.vdab.crm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class QuoteController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private QuoteLineService quoteLineService;
+
     @PostMapping({"create/{contactId}"})
     public String postForm(@PathVariable(required = false) Integer contactId,
                            @ModelAttribute("quote") Quote quote, BindingResult br) {
@@ -49,10 +53,15 @@ public class QuoteController {
         List<Address> a = c.getAddresses();
         Quote q = new Quote();
         q.setContact(c);
+        quoteService.save(q);
+        System.out.println( "Quote ID:" + q.getId());
+        QuoteLine quoteLine = new QuoteLine();
+        quoteLineService.save(quoteLine);
         List<Product> p = productService.getAllProducts();
         map.put("products",p);
         map.put("quote",q);
         map.put("addresses",a);
+        map.put("quoteLine",quoteLine);
         return "quote-create";
     }
 
@@ -60,6 +69,11 @@ public class QuoteController {
     public String quoteDetails(@PathVariable Integer id, Map<String, Object> model) {
         model.put("quote", quoteService.findQuoteById(id));
         return "contact-details";
+    }
+
+    @GetMapping("quote/create/{quoteLineId}")
+    public String addQuoteLine(@PathVariable Integer quoteId, Map<String, Object> map)  {
+        return "quote-create";
     }
 
 
