@@ -23,7 +23,7 @@ powerpoint
 
 entities
 
-user -> registration form
+user -> registration form, all fields required
 
 custom login page
 

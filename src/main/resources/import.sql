@@ -1,10 +1,10 @@
-insert into users(id, first_name, last_name,email, password,role) values(1, 'Jon', 'Terry','patvdc@gmail.com',' ','ADMIN');
-insert into users(id, first_name, last_name,email, password,role) values(2, 'Vlad', 'Dracusorul','patvdc@gmail.com',' ','ADMIN');
-insert into users(id, first_name, last_name,email, password,role) values(3, 'Ethel', 'Lufkvist','patvdc@gmail.com',' ','ADMIN');
-insert into users(id, first_name, last_name,email, password,role) values(4, 'Samuel', 'Estiti','patvdc@gmail.com',' ','ADMIN');
-insert into users(id, first_name, last_name, email, password,role) values (5,'pat','vdc','patvdc@gmail.com',' ','ADMIN');
-insert into users(id, first_name, last_name, email, password,role) values (6,'johan','vdn','jvdn.java@gmail.com',' ','SALES');
-insert into users(id, first_name, last_name, email, password,role) values (7,'ivo','stv','ivelinstamatov@gmail.com',' ','SALES');
+insert into users(id, first_name, last_name,email, password,role) values(1, 'Jon', 'Terry','user1@gmail.com','$2a$04$mVYFX9xZv16v9B5MPsa68uV21lXFCeUBySHFbHcU8TqZxIFk2hcQ2','SALES'); -- password: aaa
+insert into users(id, first_name, last_name,email, password,role) values(2, 'Vlad', 'Dracusorul','user2@gmail.com','$2a$04$mVYFX9xZv16v9B5MPsa68uV21lXFCeUBySHFbHcU8TqZxIFk2hcQ2','SALES'); -- password: aaa
+insert into users(id, first_name, last_name,email, password,role) values(3, 'Ethel', 'Lufkvist','user3@gmail.com','$2a$04$mVYFX9xZv16v9B5MPsa68uV21lXFCeUBySHFbHcU8TqZxIFk2hcQ2','ADMIN'); -- password: aaa
+insert into users(id, first_name, last_name,email, password,role) values(4, 'Samuel', 'Estiti','user4@gmail.com','$2a$04$mVYFX9xZv16v9B5MPsa68uV21lXFCeUBySHFbHcU8TqZxIFk2hcQ2','ADMIN'); -- password: aaa
+insert into users(id, first_name, last_name, email, password,role) values (5,'pat','vdc','patvdc@gmail.com','$2a$04$mVYFX9xZv16v9B5MPsa68uV21lXFCeUBySHFbHcU8TqZxIFk2hcQ2','ADMIN'); -- password: aaa
+insert into users(id, first_name, last_name, email, password,role) values (6,'johan','vdn','jvdn.java@gmail.com','$2a$04$mVYFX9xZv16v9B5MPsa68uV21lXFCeUBySHFbHcU8TqZxIFk2hcQ2','ADMIN'); -- password: aaa
+insert into users(id, first_name, last_name, email, password,role) values (7,'ivo','stv','ivelinstamatov@gmail.com','$2a$04$mVYFX9xZv16v9B5MPsa68uV21lXFCeUBySHFbHcU8TqZxIFk2hcQ2','ADMIN'); -- password: aaa
 
 insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(1, 'Patrick', 'Rules', null, 0, 'Patrick.Rules@crm.com',1);
 insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(2, 'Ivo', 'Rocks', null, 1, 'Ivo.Rocks@crm.com',1);

@@ -10,24 +10,56 @@
 </head>
 <body>
 <div class="navbar navbar-default" th:fragment="header">
-    <div class="container">
-        <img th:src="@{/images/crm-logo.png}"/>&nbsp;&nbsp;
-        <p class="nav navbar-nav">
-            <p> <a th:href="@{/index.html}">Home </a> ‖
-            <a th:href="@{/contacts/list}">Contacts</a> ‖
-            <a th:href="@{/products/list}">Products</a> ‖
-            <a th:href="@{/quotes/list}">Quotes</a> ‖
-            <a th:href="@{/activities/list}">Activities</a> ‖
-            <a th:href="@{/users/list}">Users</a> ‖
 
-        <div sec:authorize="isAuthenticated()" style="text-align: right">
-            Name: <span sec:authentication="principal"></span>
-            <a th:href="@{/logout}">Logout</a>
+    <div class="container">
+
+        <img th:src="@{/images/crm-logo.png}"/>
+        &nbsp;&nbsp;
+
+        <p class="nav navbar-nav">
+
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/index.html}">&nbsp;Home&nbsp;</a>
         </div>
 
-        <div sec:authorize="isAuthenticated()" style="text-align: right">
-            Name: <span sec:authentication="principal"></span>
-            <a th:href="@{/logout}">Logout</a>
+
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/contacts/list}">&nbsp;Contacts &nbsp;</a>
+        </div>
+
+
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/products/list}">&nbsp;Products &nbsp;</a>
+        </div>
+
+
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/quotes/list}">&nbsp;Quotes &nbsp;</a>
+        </div>
+
+
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/activities/list}">&nbsp;Activities &nbsp;</a>
+        </div>
+
+
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/users/list}">&nbsp;Users &nbsp;</a>
+        </div>
+
+
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}">&nbsp;Logout&nbsp;</a>
+        </div>
+
+
+        <div sec:authorize="isAuthenticated()">
+            &nbsp;&nbsp;&nbsp;&nbsp;(user=<span sec:authentication="principal.username"></span>)
+        </div>
+
+
+        <div sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}">Login</a>
         </div>
 
 
