@@ -6,15 +6,15 @@ insert into users(id, first_name, last_name, email, password,role) values (5,'pa
 insert into users(id, first_name, last_name, email, password,role) values (6,'johan','vdn','jvdn.java@gmail.com',' ','SALES');
 insert into users(id, first_name, last_name, email, password,role) values (7,'ivo','stv','ivelinstamatov@gmail.com',' ','SALES');
 
-insert into phone_numbers(id, number, type, contact_id) values(1, '0032/412597', 'LANDLINE', 1);
-insert into phone_numbers(id, number, type, contact_id) values(2, '0031/457577', 'MOBILE', 2);
-insert into phone_numbers(id, number, type, contact_id) values(3, '0032/452377', 'MOBILE', 1);
-
 insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(1, 'Patrick', 'Rules', null, 0, 'Patrick.Rules@crm.com',1);
 insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(2, 'Ivo', 'Rocks', null, 1, 'Ivo.Rocks@crm.com',1);
 insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(3, 'Johan', 'Owns', null, 2, 'Johan.Owns@crm.com',2);
 insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(4, 'Gertrude', 'De Nil', null, 3, 'Gertrude.Denil@crm.com',4);
 insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(5, 'Adelbrecht', 'Fonkel', null, 4, 'Adelbrecht.Fonkel@crm.com',2);
+
+insert into phone_numbers(id, number, type, contact_id) values(1, '0032/412597', 'PHONE', 1);
+insert into phone_numbers(id, number, type, contact_id) values(2, '0031/457577', 'MOBILE', 2);
+insert into phone_numbers(id, number, type, contact_id) values(3, '0032/452377', 'MOBILE', 1);
 
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(1, 1, '9000', 'Gent', 'Lange Breestraat', '26', null);
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(2, 2, '2300', 'Kortrijk', 'Feeststraat', '144', null);

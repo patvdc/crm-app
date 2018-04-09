@@ -2,6 +2,7 @@ package be.vdab.crm.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.sql.Blob;
 import java.util.*;
 
@@ -23,17 +24,11 @@ public class Contact {
     @Column(name="last_name",length=100)
     private String lastName;
 
-    private Blob picture;    //photo of contact
+    private Blob picture;
 
-    @Enumerated(EnumType.STRING)
-    private Salutation salutation;
-
-    @Enumerated(EnumType.STRING)
-    private LeadSource leadSource;
-
-    @Enumerated(EnumType.STRING)
     private LeadStatus leadStatus;
 
+    @Email
     private String email;
 
     @ManyToOne
@@ -45,10 +40,13 @@ public class Contact {
 
     private String accountName;    //Account
 
-    @OneToMany
+    /**
+     * orphanRemoval to make sure entries
+     */
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @MapKey(name = "type")
     @JoinColumn(name = "contact_id")
-    private Map<PhoneType, Phone> phones;
+    private Map<PhoneType, Phone> phones = new HashMap<>();
 
     private String facebook;   //api - later when time
 
@@ -97,14 +95,6 @@ public class Contact {
         this.addresses.add(address);
     }
 
-    public Salutation getSalutation() {
-        return salutation;
-    }
-
-    public LeadSource getLeadSource() {
-        return leadSource;
-    }
-
     public String getAccountName() {
         return accountName;
     }
@@ -139,5 +129,9 @@ public class Contact {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public void addPhone(Phone phone) {
+        phones.put(phone.getType(),phone);
     }
 }
