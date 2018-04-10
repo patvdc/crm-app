@@ -2,6 +2,9 @@ package be.vdab.crm.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Blob;
 import java.util.*;
 
@@ -11,29 +14,28 @@ import java.util.*;
 
 @Entity
 @Table(name = "contacts")
-public class Contact implements java.io.Serializable {
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name="first_name",length=50)
+    @Size(max = 50, message = "Maximum 50 character")
     private String firstName;
 
     @Column(name="last_name",length=100)
+    @Size(max = 100, message = "Maximum 100 character")
     private String lastName;
 
-    private Blob picture;    //photo of contact
+    private Blob picture;
 
     @Enumerated(EnumType.STRING)
-    private Salutation salutation;
-
-    //@Enumerated(EnumType.STRING)
+    @NotNull
     private LeadStatus leadStatus;
 
-    @Enumerated(EnumType.STRING)
-    private LeadSource leadSource;
-
+    @Email(message = "Must be a valid email address")
+    @Column(length=50)
     private String email;
 
     @ManyToOne
@@ -43,16 +45,21 @@ public class Contact implements java.io.Serializable {
     @JoinColumn(name = "contact_id")
     private List<Address> addresses = new ArrayList<>();
 
-    private String accountName;    //Account
+    /**
+     * orphanRemoval to make sure entries get deleted from database when phone is deleted from contact
+     * cascade to make sure phones get persisted, merged and removed along with contact
+     */
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE }, orphanRemoval = true)
+    @MapKey(name = "type")
+    @JoinColumn(name = "contact_id")
+    private Map<PhoneType, Phone> phones = new HashMap<>();
 
-//    @OneToMany
-//    @MapKey(name="type")
-//    @JoinColumn(name = "test")
-//    private Map<PhoneType, String> phones;
-
+    @Transient
     private String facebook;   //api - later when time
-
+    @Transient
     private String twitter;   //api - later when time
+    @Transient
+    private String accountName;    //Account -> company, later
 
     public Integer getId() {
         return id;
@@ -66,7 +73,9 @@ public class Contact implements java.io.Serializable {
         return lastName;
     }
 
-    public String getFullName() { return firstName + " " + lastName; }
+    public String getFullName() {
+        return (firstName == null ? "" : firstName) + " " + (lastName == null ? "" : lastName);
+    }
 
     public Blob getPicture() {
         return picture;
@@ -95,21 +104,13 @@ public class Contact implements java.io.Serializable {
         this.addresses.add(address);
     }
 
-    public Salutation getSalutation() {
-        return salutation;
-    }
-
-    public LeadSource getLeadSource() {
-        return leadSource;
-    }
-
     public String getAccountName() {
         return accountName;
     }
 
-//    public Map<PhoneType, String> getPhones() {
-//        return phones;
-//    }
+    public Map<PhoneType, Phone> getPhones() {
+        return phones;
+    }
 
     public String getFacebook() {
         return facebook;
@@ -139,5 +140,15 @@ public class Contact implements java.io.Serializable {
         this.owner = owner;
     }
 
+    public void setPhones(Map<PhoneType, Phone> phones) {
+        this.phones = phones;
+    }
 
+    public void setLeadStatus(LeadStatus leadStatus) {
+        this.leadStatus = leadStatus;
+    }
+
+    public void addPhone(Phone phone) {
+        phones.put(phone.getType(),phone);
+    }
 }
