@@ -4,9 +4,9 @@
 <body>
 <div class="container">
     <div th:replace="fragments/fragments::header"></div>
+
     <div class="header">
         <h1>Products</h1>
-        <a th:href="${#mvc.url('PC#createOrEditForm').build()}" class="btn btn-secondary">Add</a>
     </div>
 
     <div>
@@ -33,7 +33,9 @@
             </tr>
             </tbody>
         </table>
+        <a th:href="${#mvc.url('PC#createOrEditForm').build()}" class="btn btn-primary">Add</a>
     </div>
+
     <div th:replace="fragments/fragments::footer"></div>
 </div>
 </body>

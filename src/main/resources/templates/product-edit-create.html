@@ -1,46 +1,65 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Create/Edit Contact</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/crm.css"/>
-</head>
+<head th:replace="fragments/fragments :: head"></head>
+
 <body>
 <div class="container">
+
+    <div th:replace="fragments/fragments::header"></div>
 
     <div class="header">
         <h1>Edit Product</h1>
     </div>
-    <br>
 
+    <br>
 
     <form th:object="${productForm}" method="POST">
 
-        <div class="form-row">
-            <div class="form-group">
-                <label for="fn">Product Name</label>
-                <input id="fn" type="text" th:field="*{name}"/>
+        <input type="hidden" th:field="*{id}"/>
 
-                <label for="ln">Product Price</label>
-                <input id="ln" type="text" th:field="*{price}"/>
-
-                <label for="categ">Category</label>
-
-                <select name="category" id="categ">
-                    <option disabled
-                            th:selected="${category == null}"
-                            th:value="null">-Select Category-</option>
-                    <option th:each="category : ${T(be.vdab.crm.entity.ProductCategory).values()}"
-                            th:value="${category}"
-                            th:text="${category}">
-                    </option>
-                </select>
+        <div class="form-group">
+            <label for="na">Name: </label>
+            <div class="alert alert-danger"
+                 th:if="${#fields.hasErrors('name')}"
+                 th:each="e : ${#fields.errors('name')}"
+                 th:text="${e}">
             </div>
+            <input type="text" id="na" th:field="*{name}" class="form-control"/>
         </div>
 
-         <button type="submit">Submit</button>
+
+        <div class="form-group">
+            <label for="pr">Price: </label>
+            <div class="alert alert-danger"
+                 th:if="${#fields.hasErrors('price')}"
+                 th:each="e : ${#fields.errors('price')}"
+                 th:text="${e}">
+            </div>
+            <input type="text" id="pr" th:field="*{price}" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="cat">Category: </label>
+            <div class="alert alert-danger"
+                 th:if="${#fields.hasErrors('category')}"
+                 th:each="e : ${#fields.errors('category')}"
+                 th:text="${e}">
+            </div>
+
+            <select name="category" id="cat">
+                <option disabled
+                        th:selected="${category == null}"
+                        th:value="null">-Select Category-</option>
+                <option th:each="category : ${T(be.vdab.crm.entity.ProductCategory).values()}"
+                        th:value="${category}"
+                        th:text="${category}">
+                </option>
+            </select>
+
+        </div>
+
+        <input type="submit" value="Save" class="btn btn-primary"/>
+
     </form>
 
 
