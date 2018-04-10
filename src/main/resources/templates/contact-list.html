@@ -16,18 +16,16 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
+            <th>Name</th>
+            <th>Status</th>
             <th>Owner</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="contact : ${contactList}">
-            <td><a th:href="${#mvc.url('CC#contactDetails').arg(0, contact.id).build()}" th:text="${contact.id}">1</a></td>
-            <td th:text="${contact.firstName?:''}">John</td>
-            <td th:text="${contact.lastName?:''}">Doe</td>
-            <td th:text="${contact.email?:''}">john.doe@email.com</td>
+            <td th:href="${#mvc.url('CC#contactDetails').arg(0, contact.id).build()}" th:text="${contact.id}">1</td>
+            <td><a th:href="${#mvc.url('CC#contactDetails').arg(0, contact.id).build()}" th:text="${contact.fullName?:''}">John Doe</a></td>
+            <td th:text="${contact.leadStatus?:''}">NEW</td>
             <td> <a th:href="${#mvc.url('UC#details').arg(0, contact.owner?.id).build()}"
                     th:text="${contact.owner == null ? '' : contact.owner.fullName}">Uncle Sam</a></td>
         </tr>

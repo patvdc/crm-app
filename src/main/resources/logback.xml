@@ -17,6 +17,8 @@
     <!--<logger name="org.springframework.security" level="TRACE"/>-->
 
     <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.type" level="TRACE"/>
+
     <logger name="be.vdab.crm" level="DEBUG"/>
 
     <root level="TRACE">
