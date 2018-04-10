@@ -1,7 +1,6 @@
 package be.vdab.crm.controller;
 
 import be.vdab.crm.entity.Contact;
-import be.vdab.crm.entity.QuoteLine;
 import be.vdab.crm.entity.Phone;
 import be.vdab.crm.entity.PhoneType;
 import be.vdab.crm.service.ContactService;
@@ -19,6 +18,7 @@ import org.thymeleaf.spring5.expression.Mvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.Map;
 
 @Controller
@@ -48,8 +48,6 @@ public class ContactController {
     public String editOrCreateContactRequest(@PathVariable(required = false) Integer id, Map<String, Object> model) {
         model.put("contact", (id == null ? new Contact() : contactService.findContactById(id)));
         model.put("owners", userService.getAllUsers());
-        model.put("quoteList", (id == null ? new Contact() : quoteservice.getAllQuotesByContactId(id)));
-        model.put("products", productService.getAllProducts());
         return "contact-edit-create";
     }
 
@@ -60,7 +58,7 @@ public class ContactController {
         model.put("products", productService.getAllProducts());
         return "contact-details";
     }
-        //used pathvariable instead
+    //used pathvariable instead
 //    @GetMapping("edit-create")
 //    public String editOrCreateContactRequest(@RequestParam(value="id", required = false) Integer id, Map<String, Object> model) {
 //        model.put("contact", (id == null ? new Contact() : contactService.findContactById(id)));
@@ -69,22 +67,23 @@ public class ContactController {
 //    }
 
 
-        @PostMapping({"edit-create/{id}", "edit-create"})
-        public String editOrCreateContactPost (@ModelAttribute("contact") @Valid Contact contact, BindingResult br
-                , Map < String, Object > model, HttpServletRequest req){
+    @PostMapping({"edit-create/{id}", "edit-create"})
+    public String editOrCreateContactPost(@ModelAttribute("contact") @Valid Contact contact, BindingResult br
+            , Map<String, Object> model, HttpServletRequest req) {
 
-            takeCareOfPhoneNumberMumboJumbo(contact, req);
+        takeCareOfPhoneNumberMumboJumbo(contact, req);
 
-            extraValidation(contact, br);
+        extraValidation(contact, br);
 
-            if (br.hasErrors()) {
-                model.put("owners", userService.getAllUsers());
-                return "contact-edit-create";
-            } else {
-                contactService.save(contact);
-                return "redirect:" + mvc.url("CC#listAllContacts").build();
-            }
+        if (br.hasErrors()) {
+            model.put("owners", userService.getAllUsers());
+            br.getAllErrors().forEach(System.out::println);
+            return "contact-edit-create";
+        } else {
+            contactService.save(contact);
+            return "redirect:" + mvc.url("CC#listAllContacts").build();
         }
+    }
 
     private void takeCareOfPhoneNumberMumboJumbo(Contact contact, HttpServletRequest req) {
 
@@ -96,8 +95,10 @@ public class ContactController {
             contact.getPhones().putAll(contactService.findContactById(contact.getId()).getPhones());
         }
 
-        savePhoneNumbers(contact, req, "mobile", PhoneType.MOBILE);
-        savePhoneNumbers(contact, req, "phone", PhoneType.PHONE);
+//        savePhoneNumbers(contact, req);
+
+        savePhoneNumbers(contact, req, "mobilenr", PhoneType.MOBILE);
+        savePhoneNumbers(contact, req, "phonenr", PhoneType.PHONE);
     }
 
     private void savePhoneNumbers(Contact contact, HttpServletRequest req, String parameter, PhoneType type) {
@@ -106,16 +107,16 @@ public class ContactController {
          * Check wether the map keys already exist or not, then change value or add new phone
          * if phone is empty and key already existed in map -> deletion. Hence the remove.
          */
-        if (!req.getParameter(parameter).equals("")) {
-            if (contact.getPhones().get(type) != null) {
-                contact.getPhones().get(type).setNumber(req.getParameter(parameter));
+            if (!req.getParameter(parameter).equals("")) {
+                if (contact.getPhones().get(type) != null) {
+                    contact.getPhones().get(type).setNumber(req.getParameter(parameter));
+                } else {
+                    contact.setPhone(new Phone(req.getParameter(parameter), type));
+                }
             } else {
-                contact.addPhone(new Phone(req.getParameter(parameter), type));
+                contact.getPhones().remove(type);
             }
-        } else {
-            contact.getPhones().remove(type);
         }
-    }
 
     private void extraValidation(Contact contact, BindingResult br) {
         if (contact.getEmail().equals("") && contact.getPhones().size() == 0) {

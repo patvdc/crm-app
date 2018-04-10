@@ -13,7 +13,7 @@ public class Address {
     private Integer id;
 
     @Column(name = "zip_code")
-    @Pattern(regexp = "^\\d{1,4}$")
+    @Pattern(regexp = "^\\d{4}$")
     private String zipCode;
 
     @Size(min = 2, max = 100)

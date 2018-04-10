@@ -2,6 +2,8 @@ package be.vdab.crm.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -15,6 +17,8 @@ public class Phone {
     @Enumerated(EnumType.STRING)
     private PhoneType type;
 
+    @NotNull
+   // @Pattern(regexp = "^[0-9]{8,10}$")
     private String number;
 
     public Phone() {
