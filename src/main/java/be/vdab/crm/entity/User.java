@@ -2,6 +2,7 @@ package be.vdab.crm.entity;
 
 import javax.persistence.*;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.sql.Blob;
@@ -12,8 +13,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Email
     @NotBlank
     private String email;
+
     @NotBlank
     private String password;    //encryption !!
 

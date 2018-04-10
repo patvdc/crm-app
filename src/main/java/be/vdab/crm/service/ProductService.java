@@ -1,6 +1,7 @@
 package be.vdab.crm.service;
 
 import be.vdab.crm.entity.Product;
+import be.vdab.crm.entity.User;
 import be.vdab.crm.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,4 +21,9 @@ public class ProductService {
     public void save(Product p) {repository.save(p);}
 
     public void delete(int id) {  repository.deleteById(id);  }
+
+    public Product getProductById(int id) {
+        return repository.getOne(id);
+    }
+
 }

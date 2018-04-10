@@ -51,6 +51,7 @@ public class UserController {
 
     @PostMapping("/create-or-edit")
     public String createAndEditFormSubmit(@ModelAttribute("userForm") User user, BindingResult br) {
+        System.out.println("POSTMAPPING");
         if(br.hasErrors()) {
             return "user-edit-create";
         } else {

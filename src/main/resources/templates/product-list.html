@@ -21,7 +21,7 @@
             </thead>
             <tbody>
             <tr th:each="product : ${productList}">
-                <td th:text="${product.id}"></td>
+                <td><a th:href="${#mvc.url('PC#details').arg(0, product.id).build()}" th:text="${product.id}"></a></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.category}"></td>
                 <td th:text="${product.unitPrice}"></td>
