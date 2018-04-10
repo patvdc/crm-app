@@ -28,7 +28,6 @@ public class Contact {
 
     private LeadStatus leadStatus;
 
-    @Email
     private String email;
 
     @ManyToOne
@@ -130,6 +129,10 @@ public class Contact {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public void setPhones(Map<PhoneType, Phone> phones) {
+        this.phones = phones;
     }
 
     public void addPhone(Phone phone) {
