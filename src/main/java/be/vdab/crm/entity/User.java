@@ -106,4 +106,7 @@ public class User {
         return firstName + " " + lastName;
     }
 
+    public void setId(Integer id) {     //required otherwise save creates new entry with new id
+        this.id = id;
+    }
 }
