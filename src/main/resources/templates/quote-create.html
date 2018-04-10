@@ -16,21 +16,16 @@
 
     <form th:object="${quote}" method="POST">
         <div class="row">
-            <div class="col-sm-2">Quote Id:</div>
-            <div class="col-sm-10" th:text="${quote.id}"></div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-2">Name:</div>
-            <div class="col-sm-10" th:text="${quote.contact.fullName}"></div>
+            <div class="col-sm-10" th:text="${contact.fullName}"></div>
         </div>
         <div class="row">
             <div class="col-sm-2">Email:</div>
-            <div class="col-sm-10" th:text="${quote.contact.email}"></div>
+            <div class="col-sm-10" th:text="${contact.email}"></div>
         </div>
         <div class="row">
             <div class="col-sm-2">Owner:</div>
-            <div class="col-sm-10" th:text="${quote.contact.owner.fullName}"></div>
+            <div class="col-sm-10" th:text="${contact.owner.fullName}"></div>
         </div><br>
 
         <div class="form-row">
@@ -38,15 +33,14 @@
                 <label for="baddr" class="col-form-label">Billing Address</label>
             </div>
             <div class="form-group col-md-5">
-                <select name="address" id="baddr" th:field="*{billingAddress}">
+                <select name="address" id="baddr" th:field="*{billingAddress}" class="form-control">
                     <option disabled
-                            th:selected="${address == null}"
+                            th:selected="${quote.billingAddress == null}"
                             th:value="null">-Select Billing Address
                     </option>
-                    <option th:each="address : ${addresses}"
+                    <option th:each="address : ${contact.addresses}"
                             th:value="${address.id}"
                             th:text="${address.prettyAddress()}">
-
                     </option>
                 </select>
             </div>
@@ -55,15 +49,14 @@
                 <label for="shaddr" class="col-form-label">Shipping Address</label>
             </div>
             <div class="form-group col-md-5">
-                <select name="address" id="shaddr" th:field="*{shippingAddress}">
+                <select name="address" id="shaddr" th:field="*{shippingAddress}" class="form-control">
                     <option disabled
-                            th:selected="${address == null}"
+                            th:selected="${quote.shippingAddress == null}"
                             th:value="null">-Select Shipping Address
                     </option>
-                    <option th:each="address : ${addresses}"
+                    <option th:each="address : ${contact.addresses}"
                             th:value="${address.id}"
                             th:text="${address.prettyAddress()}">
-
                     </option>
                 </select>
             </div>
@@ -73,10 +66,7 @@
                 <label for="stage" class="col-form-label">Quote Stage</label>
             </div>
             <div class="form-group col-md-5">
-                <select name="stage" id="stage">
-                    <option disabled
-                            th:selected="${stage == null}"
-                            th:value="null">-Select Stage-</option>
+                <select name="stage" id="stage" class="form-control">
                     <option th:each="stage : ${T(be.vdab.crm.entity.QuoteStage).values()}"
                             th:value="${stage}"
                             th:text="${stage}">
@@ -86,38 +76,53 @@
 
         </div>
 
-        <div  class="header">
-            <h3>Quote Lines</h3>
-        </div><br>
-        <form th:object="${quoteLine}" method="POST">
-            <div class="form-row">
-                <div class="form-group col-md-1">
-                    <label for="shaddr" class="col-form-label">Product Name</label>
-                </div>
-                <div class="form-group col-md-5">
-                    <select name="product" id="pr">
-                        <option disabled
-                                th:selected="${product == null}"
-                                th:value="null">-Select Product-</option>
+        <div id="quoteLines">
+            <div  class="header">
+                <h3>Quote Lines</h3>
+            </div>
+        </div>
+        <button type="button" onclick="addQuoteLineEntry()" class="btn btn-default">Add quote line</button>
+
+        <!-- Acts as a template for the JavaScript to dynamically add filled in select boxes (better would be to use a proper JavaScript framework for this -->
+        <script type="text/kevin-template" id="productsSelectTemplate">
+            <div class="row">
+                <div class="col-sm-6">
+                    <select name="{{product-name}}" class="form-control">
                         <option th:each="product : ${products}"
-                                th:value="${product}"
+                                th:value="${product.id}"
                                 th:text="${product.name}">
                         </option>
                     </select>
                 </div>
-                <div class="form-group col-md-1">
-                    <label for="quantity" class="col-form-label">Product Name</label>
-                </div>
-                <div class="form-group col-md-5">
-                    <input id="quantity" type="number" class="form-control" th:field="*{quantity}" , placeholder="quantity"/>
+                <div class="col-sm-6">
+                    <input type="number" name="{{quantity-name}}" class="form-control"/>
                 </div>
             </div>
-            <td><a th:href="${#mvc.url('QC#addQuoteLine').arg(0, quote.id).build()}" th:text="${quote.id}">1</a></td>
+        </script>
 
-        </form><br>
+        <script>
+            var quoteLineCount = 0; // Todo: don't use global variables...
 
+            function addQuoteLineEntry() {
+                var line = loadTemplate("productsSelectTemplate", quoteLineCount++);
+                document.getElementById("quoteLines").appendChild(line);
+            }
 
-        <button type="submit" class="btn btn-primary">Create Quote</button>
+            function loadTemplate(id, index) {
+                var selectTemplateText = document.getElementById(id).innerText;
+                var indexedLineName = "lines[" + index + "]";
+                var resolvedTemplateText = selectTemplateText
+                    .replace("{{product-name}}", indexedLineName + ".product.id")
+                    .replace("{{quantity-name}}", indexedLineName + ".quantity");
+                return new DOMParser().parseFromString(resolvedTemplateText, "text/html").firstChild;
+            }
+        </script>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary">Create Quote</button>
+            </div>
+        </div>
     </form>
 
 
