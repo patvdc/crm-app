@@ -70,6 +70,10 @@ public class Quote implements java.io.Serializable {
         return shippingAddress;
     }
 
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
     public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
     }
