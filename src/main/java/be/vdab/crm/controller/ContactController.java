@@ -48,7 +48,7 @@ public class ContactController {
     public String editOrCreateContactRequest(@PathVariable(required = false) Integer id, Map<String, Object> model) {
         model.put("contact", (id == null ? new Contact() : contactService.findContactById(id)));
         model.put("owners", userService.getAllUsers());
-        model.put("quoteList", quoteservice.getAllQuotesByContactId(id));
+        model.put("quoteList", (id == null ? new Contact() : quoteservice.getAllQuotesByContactId(id)));
         model.put("products", productService.getAllProducts());
         return "contact-edit-create";
     }
