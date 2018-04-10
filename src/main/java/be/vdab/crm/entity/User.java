@@ -14,7 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Email
+    @Email(message = "Must be a valid email address")
     @NotBlank
     private String email;
 
