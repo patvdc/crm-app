@@ -23,7 +23,7 @@
                          th:each="e : ${#fields.errors('firstName')}"
                          th:text="${e}">
                     </div>
-                    <input type="text" id="fn" th:field="*{firstName}" class="form-control"/>
+                    <input type="text" id="fn" th:field="*{firstName}" class="form-control" placeholder="First Name"/>
                 </div>
 
                 <div class="form-group">
@@ -33,7 +33,7 @@
                          th:each="e : ${#fields.errors('lastName')}"
                          th:text="${e}">
                     </div>
-                    <input type="text" id="ln" th:field="*{lastName}" class="form-control"/>
+                    <input type="text" id="ln" th:field="*{lastName}" class="form-control" placeholder="Last Name"/>
                 </div>
 
                 <div class="form-group">
@@ -43,7 +43,7 @@
                          th:each="e : ${#fields.errors('email')}"
                          th:text="${e}">
                     </div>
-                    <input type="text" id="em" th:field="*{email}" class="form-control"/>
+                    <input type="text" id="em" th:field="*{email}" class="form-control" placeholder="please use format name@domain.com"/>
                 </div>
 
                 <div class="form-group">
@@ -53,10 +53,11 @@
                          th:each="e : ${#fields.errors('password')}"
                          th:text="${e}">
                     </div>
-                    <input type="password" id="psw" th:field="*{password}" class="form-control"/>
+                    <input type="password" id="psw" th:field="*{password}" class="form-control" placeholder="Password" />
                 </div>
 
         <input type="submit" value="Save" class="btn btn-primary"/>
+        <a th:href="${#mvc.url('UC#list').build()}" class="btn btn-primary">Back</a>
 
     </form>
 

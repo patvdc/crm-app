@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.spring5.expression.Mvc;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -43,15 +44,15 @@ public class UserController {
     }
 
     @GetMapping("/create-or-edit")
-    public String createAndEditForm(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> model) {
+    public String createOrEditUserForm(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> model) {
         User u = id == null ? new User() : userService.getUserById(id);
         model.put("userForm", u);
         return "user-edit-create";
     }
 
     @PostMapping("/create-or-edit")
-    public String createAndEditFormSubmit(@ModelAttribute("userForm") User user, BindingResult br) {
-        System.out.println("POSTMAPPING");
+    public String createOrEditUserFormSubmit(@ModelAttribute("userForm") @Valid User user, BindingResult br) {
+
         if(br.hasErrors()) {
             return "user-edit-create";
         } else {

@@ -14,7 +14,7 @@
     <br>
 
     <a th:href="${#mvc.url('UC#list').build()}" class="btn btn-primary">Back</a>
-    <a th:href="${#mvc.url('UC#createAndEditForm').arg(0, user.id).build()}" class="btn btn-primary">Edit</a>
+    <a th:href="${#mvc.url('UC#createOrEditUserForm').arg(0, user.id).build()}" class="btn btn-primary">Edit</a>
 
     <br>
 
