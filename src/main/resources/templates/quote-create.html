@@ -108,17 +108,6 @@
                 document.getElementById("quoteLines").appendChild(line);
             }
 
-            function createLine(index) {
-                var line = document.createElement("div");
-                line.classList.add("row");
-
-                var indexedLineName = "lines[" + index + "]";
-                line.appendChild(createColumn(createFieldFromTemplate("productsSelectTemplate", indexedLineName + ".product.id")));
-                line.appendChild(createColumn(createField("input", indexedLineName + ".quantity")));
-
-                return line;
-            }
-
             function loadTemplate(id, index) {
                 var selectTemplateText = document.getElementById(id).innerText;
                 var indexedLineName = "lines[" + index + "]";
@@ -126,25 +115,6 @@
                     .replace("{{product-name}}", indexedLineName + ".product.id")
                     .replace("{{quantity-name}}", indexedLineName + ".quantity");
                 return new DOMParser().parseFromString(resolvedTemplateText, "text/html").firstChild;
-            }
-
-            function createFieldFromTemplate(id, name) {
-                var selectTemplate = document.getElementById(id).innerText.replace("{{name}}", name);
-                return new DOMParser().parseFromString(selectTemplate, "text/html").firstChild;
-            }
-
-            function createField(type, name) {
-                var element = document.createElement(type);
-                element.name = name;
-                element.classList.add("form-control");
-                return element;
-            }
-
-            function createColumn(child) {
-                var column = document.createElement("div");
-                column.classList.add("col-sm-6");
-                column.appendChild(child);
-                return column;
             }
         </script>
 
