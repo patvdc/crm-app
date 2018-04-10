@@ -74,8 +74,11 @@ public class Quote implements java.io.Serializable {
         this.billingAddress = billingAddress;
     }
 
+    /**
+     * Not an Unmodifiable collection due to it being used in Spring MVC form binding. Consider separating domain objects from form processing for security and encapsulation.
+     */
     public List<QuoteLine> getLines() {
-        return Collections.unmodifiableList(lines);
+        return lines;
     }
 
     public void addLine(QuoteLine line) {
@@ -90,6 +93,9 @@ public class Quote implements java.io.Serializable {
         return this.total;
     }
 
+    public void setTotal(double total) {
+        this.total = total;
+    }
 }
 
 
