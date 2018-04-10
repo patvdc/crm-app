@@ -31,7 +31,13 @@ public class QuoteController {
     @Autowired
     private QuoteLineService quoteLineService;
 
-    @PostMapping({"create/{contactId}"})
+    @GetMapping("/list")
+    public String listAllQuotes(Map<String,Object> map){
+        map.put("quoteList", quoteService.getAllQuotes());
+        return "quote-list";
+    }
+
+    @PostMapping({"/create/{contactId}"})
     public String postForm(@PathVariable(required = false) Integer contactId,
                            @ModelAttribute("quote") Quote quote, BindingResult br) {
 
@@ -46,6 +52,7 @@ public class QuoteController {
         return "redirect:/contacts/details/{contactId}";    // TODO
     }
 
+<<<<<<< HEAD
     public void refreshSalesNumbers(Quote quote) {
         double total = 0;
         for (QuoteLine line : quote.getLines()) {
@@ -63,16 +70,38 @@ public class QuoteController {
         map.put("contact", contactService.findContactById(contactId));
         map.put("products", productService.getAllProducts());
 
+=======
+    @GetMapping({"/create/{id}"})
+    public String createQuoteForm(@PathVariable(required = false) Integer id, Map<String,Object> map) {
+        Contact c = contactService.findContactById(id);
+        List<Address> a = c.getAddresses();
+        Quote q = new Quote();
+        q.setContact(c);
+        quoteService.save(q);
+        System.out.println( "Quote ID:" + q.getId());
+        QuoteLine quoteLine = new QuoteLine();
+        quoteLineService.save(quoteLine);
+        List<Product> p = productService.getAllProducts();
+        map.put("products",p);
+        map.put("quote",q);
+        map.put("addresses",a);
+        map.put("quoteLine",quoteLine);
+>>>>>>> Added quote/list and quote/details
         return "quote-create";
     }
 
-    @GetMapping("details/{id}")
+    @GetMapping("/details/{id}")
     public String quoteDetails(@PathVariable Integer id, Map<String, Object> model) {
-        model.put("quote", quoteService.findQuoteById(id));
-        return "contact-details";
+        Quote q = quoteService.findQuoteById(id);
+//        Address billingAddres = addressService.findById(q.getBillingAddress().getId());
+//        Address shippingAddres = addressService.findById(q.getShippingAddress().getId());
+//        q.setBillingAddress(billingAddres);
+//        q.setShippingAddress(shippingAddres);
+        model.put("quote", q);
+        return "quote-details";
     }
 
-    @GetMapping("quote/create/{quoteLineId}")
+    @GetMapping("/quote/create/{quoteLineId}")
     public String addQuoteLine(@PathVariable Integer quoteId, Map<String, Object> map)  {
         return "quote-create";
     }
