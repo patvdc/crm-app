@@ -3,6 +3,8 @@ package be.vdab.crm.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Blob;
 import java.util.*;
 
@@ -19,15 +21,21 @@ public class Contact {
     private Integer id;
 
     @Column(name="first_name",length=50)
+    @Size(max = 50, message = "Maximum 50 character")
     private String firstName;
 
     @Column(name="last_name",length=100)
+    @Size(max = 100, message = "Maximum 100 character")
     private String lastName;
 
     private Blob picture;
 
+    @Enumerated(EnumType.STRING)
+    @NotNull
     private LeadStatus leadStatus;
 
+    @Email(message = "Must be a valid email address")
+    @Column(length=50)
     private String email;
 
     @ManyToOne
@@ -36,8 +44,6 @@ public class Contact {
     @OneToMany
     @JoinColumn(name = "contact_id")
     private List<Address> addresses = new ArrayList<>();
-
-    private String accountName;    //Account
 
     /**
      * orphanRemoval to make sure entries get deleted from database when phone is deleted from contact
@@ -48,9 +54,12 @@ public class Contact {
     @JoinColumn(name = "contact_id")
     private Map<PhoneType, Phone> phones = new HashMap<>();
 
+    @Transient
     private String facebook;   //api - later when time
-
+    @Transient
     private String twitter;   //api - later when time
+    @Transient
+    private String accountName;    //Account -> company, later
 
     public Integer getId() {
         return id;
@@ -65,7 +74,7 @@ public class Contact {
     }
 
     public String getFullName() {
-        return firstName == null ? "" : firstName + " " + lastName == null ? "" : lastName;
+        return (firstName == null ? "" : firstName) + " " + (lastName == null ? "" : lastName);
     }
 
     public Blob getPicture() {
@@ -133,6 +142,10 @@ public class Contact {
 
     public void setPhones(Map<PhoneType, Phone> phones) {
         this.phones = phones;
+    }
+
+    public void setLeadStatus(LeadStatus leadStatus) {
+        this.leadStatus = leadStatus;
     }
 
     public void addPhone(Phone phone) {
