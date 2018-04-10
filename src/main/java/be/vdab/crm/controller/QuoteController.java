@@ -1,12 +1,15 @@
 package be.vdab.crm.controller;
 
 import be.vdab.crm.entity.*;
+import be.vdab.crm.repository.QuoteLineRepository;
+import be.vdab.crm.repository.QuoteRepository;
 import be.vdab.crm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -41,36 +44,15 @@ public class QuoteController {
     public String postForm(@PathVariable(required = false) Integer contactId,
                            @ModelAttribute("quote") Quote quote, BindingResult br) {
 
-
-
         Contact contact = contactService.findContactById(contactId);
+
         quote.setContact(contact);
         quote.setOwner(contact.getOwner()); // Temporary solution until security subsystem is more full featured...
-        refreshSalesNumbers(quote);
         quoteService.save(quote);
         System.out.println("PROCESSING FORM PSOT: " + quote + " CID: " + contactId + ", OID: " + contact.getOwner().getId() );
         return "redirect:/contacts/details/{contactId}";    // TODO
     }
 
-<<<<<<< HEAD
-    public void refreshSalesNumbers(Quote quote) {
-        double total = 0;
-        for (QuoteLine line : quote.getLines()) {
-            line.setProduct(productService.getProductById(line.getProduct().getId()));
-            line.setPrice(line.getProduct().getPrice());
-            line.setTotal(line.getPrice() * line.getQuantity());
-            total += line.getTotal();
-        }
-        quote.setTotal(total);
-    }
-
-    @GetMapping({"create/{contactId}"})
-    public String createQuoteForm(@PathVariable(required = false) Integer contactId, Map<String,Object> map) {
-        map.put("quote", new Quote());
-        map.put("contact", contactService.findContactById(contactId));
-        map.put("products", productService.getAllProducts());
-
-=======
     @GetMapping({"/create/{id}"})
     public String createQuoteForm(@PathVariable(required = false) Integer id, Map<String,Object> map) {
         Contact c = contactService.findContactById(id);
@@ -86,7 +68,6 @@ public class QuoteController {
         map.put("quote",q);
         map.put("addresses",a);
         map.put("quoteLine",quoteLine);
->>>>>>> Added quote/list and quote/details
         return "quote-create";
     }
 
