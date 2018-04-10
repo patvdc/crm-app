@@ -55,7 +55,7 @@ public class UserController {
 
         if(br.hasErrors()) {
             return "user-edit-create";
-        } else {
+        } else {     //setId required !
             user.setPassword(pswEncoder.encode(user.getPassword()));
             userService.save(user);
             return "redirect:/users/list";

@@ -13,6 +13,7 @@ johan
 =====
 contact
 address
+phones
 note  (comment with attachment)
 activity (call-in, call-out, meeting, todo)
 
@@ -33,9 +34,9 @@ rest ws (json,xml)
 
 search (when time)
 
-send email
+send email (when time)
 
-export xls
+export xls (when time)
 
 google maps
 

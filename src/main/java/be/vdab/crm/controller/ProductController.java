@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.spring5.expression.Mvc;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -35,7 +36,8 @@ public class ProductController {
 
     @GetMapping(path = "/create-or-edit")
     public String createOrEditForm(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> model) {
-        model.put("productForm", new Product());
+        Product p = id == null ? new Product() : service.getProductById(id);
+        model.put("productForm", p);
         return "product-edit-create";
     }
 
@@ -52,12 +54,12 @@ public class ProductController {
 //    }
 
     @PostMapping(path = "/create-or-edit")
-    public String createOrEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br) {
+    public String createOrEditFormSubmit(@ModelAttribute("productForm") @Valid Product product, BindingResult br) {
         if((br.hasErrors()) || (product.getName()==null) || (product.getPrice()==0) || (product.getCategory()==null)) {
               return "product-edit-create";
         } else {
             service.save(product);
-            System.out.println("DO WORK");
+   //         System.out.println("DO WORK");
             return "redirect:/products/list"; // mvc gebruiken?? mvc.url(...)
         }
 
