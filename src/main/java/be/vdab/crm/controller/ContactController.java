@@ -53,7 +53,14 @@ public class ContactController {
         return "contact-edit-create";
     }
 
-    //used pathvariable instead
+    @GetMapping("details/{id}")
+    public String contactDetails(@PathVariable Integer id, Map<String, Object> model) {
+        model.put("contact", contactService.findContactById(id));
+        model.put("quoteList", quoteservice.getAllQuotesByContactId(id));
+        model.put("products", productService.getAllProducts());
+        return "contact-details";
+    }
+        //used pathvariable instead
 //    @GetMapping("edit-create")
 //    public String editOrCreateContactRequest(@RequestParam(value="id", required = false) Integer id, Map<String, Object> model) {
 //        model.put("contact", (id == null ? new Contact() : contactService.findContactById(id)));
@@ -62,22 +69,22 @@ public class ContactController {
 //    }
 
 
-    @PostMapping({"edit-create/{id}", "edit-create"})
-    public String editOrCreateContactPost(@ModelAttribute("contact") @Valid Contact contact, BindingResult br
-            , Map<String, Object> model, HttpServletRequest req) {
+        @PostMapping({"edit-create/{id}", "edit-create"})
+        public String editOrCreateContactPost (@ModelAttribute("contact") @Valid Contact contact, BindingResult br
+                , Map < String, Object > model, HttpServletRequest req){
 
-        takeCareOfPhoneNumberMumboJumbo(contact, req);
+            takeCareOfPhoneNumberMumboJumbo(contact, req);
 
-        extraValidation(contact, br);
+            extraValidation(contact, br);
 
-        if (br.hasErrors()) {
-            model.put("owners", userService.getAllUsers());
-            return "contact-edit-create";
-        } else {
-            contactService.save(contact);
-            return "redirect:" + mvc.url("CC#listAllContacts").build();
+            if (br.hasErrors()) {
+                model.put("owners", userService.getAllUsers());
+                return "contact-edit-create";
+            } else {
+                contactService.save(contact);
+                return "redirect:" + mvc.url("CC#listAllContacts").build();
+            }
         }
-    }
 
     private void takeCareOfPhoneNumberMumboJumbo(Contact contact, HttpServletRequest req) {
 
