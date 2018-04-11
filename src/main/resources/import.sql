@@ -13,9 +13,9 @@ insert into contacts(id, first_name, last_name, picture, lead_status, email, own
 insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(4, 'Gertrude', 'De Nil', null, 'NEW', 'Gertrude.Denil@crm.com',4);
 insert into contacts(id, first_name, last_name, picture, lead_status, email, owner_id) values(5, 'Adelbrecht', 'Fonkel', null, 'LOST', 'Adelbrecht.Fonkel@crm.com',2);
 
-insert into phone_numbers(id, number, type, contact_id) values(1, '0032/412597', 'PHONE', 1);
-insert into phone_numbers(id, number, type, contact_id) values(2, '0031/457577', 'MOBILE', 2);
-insert into phone_numbers(id, number, type, contact_id) values(3, '0032/452377', 'MOBILE', 1);
+insert into phone_numbers(id, number, type, contact_id) values(1, '022412597', 'PHONE', 1);
+insert into phone_numbers(id, number, type, contact_id) values(2, '0478457577', 'MOBILE', 2);
+insert into phone_numbers(id, number, type, contact_id) values(3, '0502452377', 'MOBILE', 1);
 
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(1, 1, '9000', 'Gent', 'Lange Breestraat', '26', null);
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(2, 2, '2300', 'Kortrijk', 'Feeststraat', '144', null);

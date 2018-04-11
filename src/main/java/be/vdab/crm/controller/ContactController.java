@@ -1,7 +1,6 @@
 package be.vdab.crm.controller;
 
 import be.vdab.crm.entity.Contact;
-import be.vdab.crm.entity.QuoteLine;
 import be.vdab.crm.entity.Phone;
 import be.vdab.crm.entity.PhoneType;
 import be.vdab.crm.service.ContactService;
@@ -19,6 +18,7 @@ import org.thymeleaf.spring5.expression.Mvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.Map;
 
 @Controller
@@ -48,8 +48,6 @@ public class ContactController {
     public String editOrCreateContactRequest(@PathVariable(required = false) Integer id, Map<String, Object> model) {
         model.put("contact", (id == null ? new Contact() : contactService.findContactById(id)));
         model.put("owners", userService.getAllUsers());
-        model.put("quoteList", (id == null ? new Contact() : quoteservice.getAllQuotesByContactId(id)));
-        model.put("products", productService.getAllProducts());
         return "contact-edit-create";
     }
 
@@ -60,7 +58,7 @@ public class ContactController {
         model.put("products", productService.getAllProducts());
         return "contact-details";
     }
-        //used pathvariable instead
+    //used pathvariable instead
 //    @GetMapping("edit-create")
 //    public String editOrCreateContactRequest(@RequestParam(value="id", required = false) Integer id, Map<String, Object> model) {
 //        model.put("contact", (id == null ? new Contact() : contactService.findContactById(id)));
@@ -69,24 +67,24 @@ public class ContactController {
 //    }
 
 
-        @PostMapping({"edit-create/{id}", "edit-create"})
-        public String editOrCreateContactPost (@ModelAttribute("contact") @Valid Contact contact, BindingResult br
-                , Map < String, Object > model, HttpServletRequest req){
+    @PostMapping({"edit-create/{id}", "edit-create"})
+    public String editOrCreateContactPost(@ModelAttribute("contact") @Valid Contact contact, BindingResult br
+            , Map<String, Object> model, HttpServletRequest req) {
 
-            takeCareOfPhoneNumberMumboJumbo(contact, req);
+        takeCareOfPhoneNumberMumboJumbo(contact, req, br);
 
-            extraValidation(contact, br);
+        extraValidation(contact, br, req);
 
-            if (br.hasErrors()) {
-                model.put("owners", userService.getAllUsers());
-                return "contact-edit-create";
-            } else {
-                contactService.save(contact);
-                return "redirect:" + mvc.url("CC#listAllContacts").build();
-            }
+        if (br.hasErrors()) {
+            model.put("owners", userService.getAllUsers());
+            return "contact-edit-create";
+        } else {
+            contactService.save(contact);
+            return "redirect:" + mvc.url("CC#contactDetails").arg(0, contact.getId()).build();
         }
+    }
 
-    private void takeCareOfPhoneNumberMumboJumbo(Contact contact, HttpServletRequest req) {
+    private void takeCareOfPhoneNumberMumboJumbo(Contact contact, HttpServletRequest req, BindingResult br) {
 
         /**
          * To get contact phone map. Since phones is not bounded by th:field the contact object posted
@@ -96,8 +94,8 @@ public class ContactController {
             contact.getPhones().putAll(contactService.findContactById(contact.getId()).getPhones());
         }
 
-        savePhoneNumbers(contact, req, "mobile", PhoneType.MOBILE);
-        savePhoneNumbers(contact, req, "phone", PhoneType.PHONE);
+        savePhoneNumbers(contact, req, "mobilenr", PhoneType.MOBILE);
+        savePhoneNumbers(contact, req, "phonenr", PhoneType.PHONE);
     }
 
     private void savePhoneNumbers(Contact contact, HttpServletRequest req, String parameter, PhoneType type) {
@@ -105,22 +103,26 @@ public class ContactController {
          * Set phone numbers with request parameter (th field with map is rather difficult)
          * Check wether the map keys already exist or not, then change value or add new phone
          * if phone is empty and key already existed in map -> deletion. Hence the remove.
+         * check phone validation here and throw error if not valid
          */
         if (!req.getParameter(parameter).equals("")) {
             if (contact.getPhones().get(type) != null) {
                 contact.getPhones().get(type).setNumber(req.getParameter(parameter));
             } else {
-                contact.addPhone(new Phone(req.getParameter(parameter), type));
+                contact.setPhone(new Phone(req.getParameter(parameter), type));
             }
         } else {
             contact.getPhones().remove(type);
         }
     }
 
-    private void extraValidation(Contact contact, BindingResult br) {
+    private void extraValidation(Contact contact, BindingResult br, HttpServletRequest req) {
         if (contact.getEmail().equals("") && contact.getPhones().size() == 0) {
             br.addError(new FieldError("contact", "email", "Contact needs email or phone number"));
             br.addError(new FieldError("contact", "phones", "Contact needs phone number or email"));
+        }
+        if (!req.getParameter("mobilenr").matches("^[0]{1}[0-9]{7,9}$|$") || !req.getParameter("phonenr").matches("^[0]{1}[0-9]{7,9}$|$")  ) {
+            br.addError(new FieldError("contact", "phones", "Please enter only valid phonenumbers"));
         }
     }
 }
