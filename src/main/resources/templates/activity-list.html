@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.com">
-<head th:replace="fragments/fragments :: head"></head>
-<head>
-    <meta charset="UTF-8">
-    <title>Activities</title>
-</head>
-<body>
-    <div class="conteiner">
-        <div th:replace="fragments/fragment :: head"></div>
 
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body>
+    <div class="container">
+
+        <div th:replace="fragments/fragments :: header"></div>
         <div class="header">
             <h1>Activities</h1>
         </div>
@@ -24,7 +21,8 @@
                 </thead>
                 <tbody>
                 <tr th:each="activity : ${activityList}">
-                    <td><a th:href="${#mvc.url('QC#activityDetails').arg(0, activity.id).build()}" th:text="${activity.id}">1</a></td>
+                    <!--<td><a th:href="${#mvc.url('QC#activityDetails').arg(0, activity.id).build()}" th:text="${activity.id}">1</a></td>-->
+                    <td th:text="${activity.id}"></td>
                     <td th:text="${activity.category?:''}">NEW</td>
                     <td th:text="${activity.status}"></td>
                     <!--<td>-->
