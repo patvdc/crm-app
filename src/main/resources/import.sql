@@ -23,16 +23,16 @@ insert into addresses(id, contact_id, zip_code, city, street_name, house_number,
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(4, 4, '5242', 'Baasrode', 'Paddestraat', '10', null);
 insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(5, 5, '1834', 'Oostende', 'Lange munte', '4', null);
 
-insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (1,1,"NEGOTIATION",136,1,1,1);
+insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (1,1,"NEGOTIATION",8500,1,1,1);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (2,2,"CONFIRMED",236,2,2,2);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (3,3,"CLOSED_WON",336,3,3,3);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (4,4,"CLOSED_LOST",436,4,4,4);
-insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (5,1,"CLOSED_LOST",436,4,4,4);
+--insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (5,1,"CLOSED_LOST",436,4,4,4);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (6,2,"CLOSED_LOST",436,4,4,4);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (7,3,"CLOSED_LOST",436,4,4,4);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (8,4,"CLOSED_LOST",436,4,4,4);
-insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (9,1,"CLOSED_LOST",436,4,4,4);
-insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (10,1,"CLOSED_LOST",436,4,4,4);
+--insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (9,1,"CLOSED_LOST",436,4,4,4);
+--insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (10,1,"CLOSED_LOST",436,4,4,4);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (11,2,"CLOSED_LOST",436,4,4,4);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (12,2,"CLOSED_LOST",436,4,4,4);
 
@@ -45,4 +45,27 @@ insert into product(id, category, name, picture, unit_price) values(6,"LAPTOP","
 insert into product(id, category, name, picture, unit_price) values(7,"SERVER","IBM 5000",null,5000);
 insert into product(id, category, name, picture, unit_price) values(8,"SERVER","IBM 6000",null,6000);
 insert into product(id, category, name, picture, unit_price) values(9,"SERVER","IBM 7000",null,7000);
+
+insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(1,500,2,1000,1,1)
+insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(2,500,3,1500,4,1)
+insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(3,6000,1,6000,8,1)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(4)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(5)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(6)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(7)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(8,500,3,1500,1)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(9)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(10)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(11)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(12)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(13)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(14,500,5,2500,1)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(15)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(16)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(17,500,3,1500,1)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(18)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(19)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(20)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(21)
+--insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(22)
 

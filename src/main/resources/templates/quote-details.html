@@ -16,7 +16,7 @@
 
     <br>
 
-    <a th:href="${#mvc.url('QC#listAllQuotes').build()}" class="btn btn-primary">Back</a>
+    <button id="backbutton" class="btn btn-primary">Back</button>
     <!--<a th:href="${#mvc.url('UC#createAndEditForm').arg(0, quote.id).build()}" class="btn btn-primary">Edit</a>-->
 
     <br>
@@ -47,6 +47,44 @@
     </div>
 
     <br>
+
+    <!--<<<<<<<<<<<<<<< START QUOTE LINES >>>>>>>>>>>>>>>>> -->
+    <div class="header">
+        <h2>Quote Lines</h2>
+
+
+    </div>
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="quoteLine : ${quote.lines}">
+                <!--<td><a th:href="${#mvc.url('QC#quoteDetails').arg(0, quote.id).build()}" th:text="${quoteLine.id}">1</a></td>-->
+                <td th:text="${quoteLine.id}"></td>
+                <td th:text="${quoteLine.product.name}"></td>
+                <td th:text="${quoteLine.product.unitPrice}"></td>
+                <td th:text="${quoteLine.quantity}"></td>
+                <td th:text="${quoteLine.total}"></td>
+                <td>
+                    <!--<a th:href="${#mvc.url('QC#remove').arg(0, quote.id).build()}" class="btn btn-sm btn-danger">Remove</a>-->
+                    <!--<a th:href="${#mvc.url('PC#createOrEditForm').arg(0, product.id).build()}" class="btn btn-sm btn-warning">Edit</a>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!--<a th:href="${#mvc.url('QC#createQuoteForm').arg(0, contact.id).build()}" class="btn btn-primary">New Quote</a>-->
+
+    </div>
+
+    <!--<<<<<<<<<<<<<<< END QUOTE LINES >>>>>>>>>>>>>>>>> -->
 
     <div th:replace="fragments/fragments::footer"></div>
 

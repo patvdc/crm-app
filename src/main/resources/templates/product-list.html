@@ -26,7 +26,6 @@
                 <td th:text="${product.category}"></td>
                 <td th:text="${product.unitPrice}"></td>
                 <td>
-                    <a th:href="${#mvc.url('PC#remove').arg(0, product.id).build()}" class="btn btn-sm btn-danger">Remove</a>
                     <a th:href="${#mvc.url('PC#createOrEditForm').arg(0, product.id).build()}" class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>

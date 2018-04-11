@@ -37,6 +37,13 @@ public class ProductController {
         return "product-details";
     }
 
+
+//    @GetMapping(path = {"/create-or-edit/{id}", "/create-or-edit"})
+//    public String createOrEditForm(@PathVariable(required = false) Integer id, Map<String, Object> model) {
+//        model.put("productForm", (id == null ? new Product() : service.getProductById(id)));
+//        return "product-edit-create";
+//    }
+
     @GetMapping("/create-or-edit")
     public String createOrEditForm(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> model) {
         Product p = id == null ? new Product() : service.getProductById(id);
