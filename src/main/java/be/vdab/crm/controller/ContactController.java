@@ -109,7 +109,7 @@ public class ContactController {
             if (contact.getPhones().get(type) != null) {
                 contact.getPhones().get(type).setNumber(req.getParameter(parameter));
             } else {
-                contact.setPhone(new Phone(req.getParameter(parameter), type));
+                contact.addPhone(new Phone(req.getParameter(parameter), type));
             }
         } else {
             contact.getPhones().remove(type);
