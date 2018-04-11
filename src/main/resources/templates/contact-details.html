@@ -78,7 +78,39 @@
 
              <!--<<<<<<<<<<<<<<< END QUOTES >>>>>>>>>>>>>>>>> -->
 
+             <!--<<<<<<<<<<<<<<< START ACTIVITIES>>>>>>>>>>>>>>>>> -->
+    <div class="header">
+        <h2>Activities</h2>
 
+
+    </div>
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="activity : ${activities}">
+                <td><a th:href="${#mvc.url('AC#activityDetails').arg(0, activity.id).build()}" th:text="${activity.id}">1</a></td>
+                <!--<td th:text="${activity.id}"></td>-->
+                <td th:text="${activity.category?:''}">NEW</td>
+                <td th:text="${activity.status}"></td>
+                <!--<td>-->
+                <!--&lt;!&ndash;<a th:href="${#mvc.url('QC#remove').arg(0, quote.id).build()}" class="btn btn-sm btn-danger">Remove</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;<a th:href="${#mvc.url('PC#createOrEditForm').arg(0, product.id).build()}" class="btn btn-sm btn-warning">Edit</a>&ndash;&gt;-->
+                <!--</td>-->
+            </tr>
+            </tbody>
+        </table>
+        <!--<a th:href="${#mvc.url('QC#createQuoteForm').arg(0, contact.id).build()}" class="btn btn-primary">New Quote</a>-->
+
+    </div>
+
+                      <!--<<<<<<<<<<<<<<< END ACTIVITIES >>>>>>>>>>>>>>>>> -->
     <div th:replace="fragments/fragments::footer"></div>
 
 

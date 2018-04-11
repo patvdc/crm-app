@@ -3,10 +3,7 @@ package be.vdab.crm.controller;
 import be.vdab.crm.entity.Contact;
 import be.vdab.crm.entity.Phone;
 import be.vdab.crm.entity.PhoneType;
-import be.vdab.crm.service.ContactService;
-import be.vdab.crm.service.ProductService;
-import be.vdab.crm.service.QuoteService;
-import be.vdab.crm.service.UserService;
+import be.vdab.crm.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +34,8 @@ public class ContactController {
     private QuoteService quoteservice;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ActivityService activityService;
 
     @GetMapping("list")
     public String listAllContacts(Map<String, Object> model) {
@@ -56,6 +55,7 @@ public class ContactController {
         model.put("contact", contactService.findContactById(id));
         model.put("quoteList", quoteservice.getAllQuotesByContactId(id));
         model.put("products", productService.getAllProducts());
+        model.put("activities",activityService.getListByContactId(id));
         return "contact-details";
     }
     //used pathvariable instead

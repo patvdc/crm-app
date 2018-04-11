@@ -19,5 +19,7 @@ public class ActivityService {
 
     public Activity findActivityById(Integer id) { return activityReposotory.getOne(id);}
 
+    public List<Activity> getListByContactId(Integer id) {return activityReposotory.findAllByContactId(id);}
+
 
 }
