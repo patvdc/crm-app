@@ -1,6 +1,8 @@
 package be.vdab.crm.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -61,6 +63,7 @@ public class Contact {
     @Transient
     private String accountName;    //Account -> company, later
 
+    @JsonIgnore
     public Integer getId() {
         return id;
     }
