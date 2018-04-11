@@ -17,6 +17,22 @@
 
     <form th:object="${contact}" method="POST">
 
+        <div th:if="${#fields.hasErrors('firstName') || #fields.hasErrors('lastName')}" class="form-row">
+            <div class="col-md-1"></div>
+            <div class="alert alert-danger form-group col-md-5"
+                 th:if="${#fields.hasErrors('firstName')}"
+                 th:each="e : ${#fields.errors('firstName')}"
+                 th:text="${e}">
+            </div>
+            <div th:if="${#fields.hasErrors('lastName')}"
+                 th:attr="class=${#fields.hasErrors('firstName')? 'col-md-1' : 'col-md-6'}"></div>
+            <div class="alert alert-danger form-group col-md-5 naar-rechts"
+                 th:if="${#fields.hasErrors('lastName')}"
+                 th:each="e : ${#fields.errors('lastName')}"
+                 th:text="${e}">
+            </div>
+        </div>
+
         <div class="form-row">
             <div class="form-group col-md-1">
                 <label for="fn" class="col-form-label">First Name</label>
@@ -33,11 +49,14 @@
             </div>
         </div>
 
-        <div class="alert alert-danger"
-             th:if="${#fields.hasErrors('phones')}"
-             th:each="e : ${#fields.errors('phones')}"
-             th:text="${e}">
+        <div th:if="${#fields.hasErrors('phones')}" class="form-row">
+            <div class="col-md-1"></div>
+            <div class="alert alert-danger form-group col-md-11"
+                 th:each="e : ${#fields.errors('phones')}"
+                 th:text="${e}">
+            </div>
         </div>
+
         <div class="form-row">
             <div class="form-group col-md-1">
                 <label for="phn" class="col-form-label">Phone</label>
@@ -59,10 +78,12 @@
         </div>
 
 
-        <div class="alert alert-danger"
-             th:if="${#fields.hasErrors('email')}"
-             th:each="e : ${#fields.errors('email')}"
-             th:text="${e}">
+        <div th:if="${#fields.hasErrors('email')}" class="form-row">
+            <div class="col-md-1"></div>
+            <div class="alert alert-danger form-group col-md-5"
+                 th:each="e : ${#fields.errors('email')}"
+                 th:text="${e}">
+            </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-1">
@@ -99,6 +120,8 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a th:if="${contact.id}" th:href="${#mvc.url('CC#contactDetails').arg(0, contact.id).build()}" type="submit"
+           class="btn btn-primary">Back to details</a>
     </form>
 
 

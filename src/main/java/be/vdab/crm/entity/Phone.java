@@ -18,7 +18,6 @@ public class Phone {
     private PhoneType type;
 
     @NotNull
-   // @Pattern(regexp = "^[0-9]{8,10}$")
     private String number;
 
     public Phone() {

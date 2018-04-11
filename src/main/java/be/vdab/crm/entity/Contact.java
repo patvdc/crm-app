@@ -24,11 +24,11 @@ public class Contact {
     private Integer id;
 
     @Column(name="first_name",length=50)
-    @Size(max = 50, message = "Maximum 50 character")
+    @Size(max = 50, message = "Maximum 50 characters")
     private String firstName;
 
     @Column(name="last_name",length=100)
-    @Size(max = 100, message = "Maximum 100 character")
+    @Size(max = 100, message = "Maximum 100 characters")
     private String lastName;
 
     private Blob picture;
