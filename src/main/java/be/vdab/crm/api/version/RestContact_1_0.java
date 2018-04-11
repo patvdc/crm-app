@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "contact")
 public class RestContact_1_0 {
 
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
@@ -36,6 +37,7 @@ public class RestContact_1_0 {
         return lastName;
     }
 
+    @JsonProperty("email")
     public String getEmail() {
         return email;
     }
