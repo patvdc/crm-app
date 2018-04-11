@@ -49,6 +49,11 @@ insert into product(id, category, name, picture, unit_price) values(9,"SERVER","
 insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(1,500,2,1000,1,1)
 insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(2,500,3,1500,4,1)
 insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(3,6000,1,6000,8,1)
+
+insert into activities(id, category, comment, date, end_time, start_time, status, subject, contact_id) values(1,"CALL_IN","some call in",'2018-03-15','09:30','09:35',"OPEN","call in",1)
+insert into activities(id, category, comment, date, end_time, start_time, status, subject, contact_id) values(2,"CALL_OUT","some call out",'2018-04-3','13:15','13:45',"CLOSED","call out",2)
+insert into activities(id, category, comment, date, end_time, start_time, status, subject, contact_id) values(3,"MEETING","appointment with some VIP asshole",'2018-04-9','10:45','11:45',"CLOSED","appointment",3)
+insert into activities(id, category, comment, date, end_time, start_time, status, subject, contact_id) values(4,"TODO","order a burger and cola",'2018-04-09','15:10','15:12',"OPEN","order a lunch",4)
 --insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(4)
 --insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(5)
 --insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(6)
