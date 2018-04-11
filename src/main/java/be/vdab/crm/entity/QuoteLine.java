@@ -23,7 +23,7 @@ public class QuoteLine {
     public QuoteLine(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
-        this.price = this.product.getPrice();
+        this.price = this.product.getUnitPrice();
         this.total = this.quantity * this.price;
     }
 

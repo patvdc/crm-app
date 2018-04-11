@@ -15,6 +15,7 @@ public class Activity {
     private Date date;
     private Time startTime;
     private Time endTime;
+    private String comment;
     private ActivityStatus status;
 
 }

@@ -27,23 +27,22 @@
                  th:text="${e}">
             </div>
             <div class="form-group col-md-5">
-                 <input id="na" type="text" class="form-control" th:field="*{name}" placehouder="Product Name"/>
+                 <input id="na" type="text" class="form-control" th:field="*{name}" />
             </div>
 
         </div>
-
 
         <div class="form-row">
             <div class="form-group col-md-1">
                 <label for="pr" class="col-form-label">Product Price</label>
             </div>
             <div class="alert alert-danger"
-                 th:if="${#fields.hasErrors('price')}"
-                 th:each="e : ${#fields.errors('price')}"
+                 th:if="${#fields.hasErrors('unitPrice')}"
+                 th:each="e : ${#fields.errors('unitPrice')}"
                  th:text="${e}">
             </div>
             <div class="form-group col-md-5">
-                <input id="pr" type="text" class="form-control" th:field="*{unitPrice}" placehouder="Product Price"/>
+                <input id="pr" type="text" class="form-control" th:field="*{unitPrice}" />
             </div>
         </div>
 
@@ -55,7 +54,7 @@
                  th:text="${e}">
             </div>
 
-            <select name="category" id="cat">
+            <select name="category" id="cat" th:field="*{category}">
                 <option disabled
                         th:selected="${category == null}"
                         th:value="null">-Select Category-</option>
@@ -66,6 +65,8 @@
             </select>
 
         </div>
+
+
 
         <input type="submit" value="Save" class="btn btn-primary"/>
         <a th:href="${#mvc.url('PC#getAllProducts').build()}" class="btn btn-primary">Back</a>

@@ -1,15 +1,12 @@
 package be.vdab.crm.controller;
 
 import be.vdab.crm.entity.*;
-import be.vdab.crm.repository.QuoteLineRepository;
-import be.vdab.crm.repository.QuoteRepository;
 import be.vdab.crm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -59,7 +56,7 @@ public class QuoteController {
         double total = 0;
         for (QuoteLine line : quote.getLines()) {
             line.setProduct(productService.getProductById(line.getProduct().getId()));
-            line.setPrice(line.getProduct().getPrice());
+            line.setPrice(line.getProduct().getUnitPrice());
             line.setTotal(line.getPrice() * line.getQuantity());
             total += line.getTotal();
         }

@@ -50,11 +50,11 @@ public class Product implements java.io.Serializable {
         this.name = name;
     }
 
-    public double getPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setPrice(double price) {
+    public void setUnitPrice(double price) {
         this.unitPrice = price;
     }
 
@@ -74,8 +74,5 @@ public class Product implements java.io.Serializable {
         this.category = category;
     }
 
-    public double getUnitPrice() {
-        return unitPrice;
-    }
 }
 
