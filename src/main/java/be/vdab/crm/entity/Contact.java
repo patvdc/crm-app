@@ -50,9 +50,9 @@ public class Contact {
     @JoinColumn(name = "contact_id")
     private List<Address> addresses = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "contact_id")
-    private List<Activity> activities = new ArrayList<>();
+//    @OneToMany
+//    @JoinColumn(name = "contact_id")
+//    private List<Activity> activities = new ArrayList<>();
 
     /**
      * orphanRemoval to make sure entries get deleted from database when phone is deleted from contact
@@ -114,16 +114,7 @@ public class Contact {
         this.addresses.add(address);
     }
 
-    public List<Activity> getActivities() { return activities; }
 
-    public void setActivities(List<Activity> activities) { this.activities = activities; }
-
-    public void addActiviy(Activity activity) {
-        if(activity == null) {
-            throw new IllegalArgumentException("Invalid Activity");
-        }
-        this.activities.add(activity);
-    }
 
     public String getAccountName() {
         return accountName;

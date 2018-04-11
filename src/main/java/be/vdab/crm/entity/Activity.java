@@ -22,6 +22,11 @@ public class Activity {
     @Enumerated(EnumType.STRING)
     private ActivityStatus status;    //open  -> not yet done , closed -> done
 
+
+    @ManyToOne
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
+
     public Activity() {
     }
 
@@ -56,4 +61,6 @@ public class Activity {
     public ActivityStatus getStatus() { return status; }
 
     public void setStatus(ActivityStatus status) { this.status = status; }
+
+    public Contact getContact() { return contact; }
 }

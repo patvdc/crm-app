@@ -21,8 +21,8 @@
                 </thead>
                 <tbody>
                 <tr th:each="activity : ${activityList}">
-                    <!--<td><a th:href="${#mvc.url('QC#activityDetails').arg(0, activity.id).build()}" th:text="${activity.id}">1</a></td>-->
-                    <td th:text="${activity.id}"></td>
+                    <td><a th:href="${#mvc.url('AC#activityDetails').arg(0, activity.id).build()}" th:text="${activity.id}">1</a></td>
+                    <!--<td th:text="${activity.id}"></td>-->
                     <td th:text="${activity.category?:''}">NEW</td>
                     <td th:text="${activity.status}"></td>
                     <!--<td>-->
