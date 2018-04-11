@@ -65,10 +65,10 @@
                 <td><a th:href="${#mvc.url('QC#quoteDetails').arg(0, quote.id).build()}" th:text="${quote.id}">1</a></td>
                 <td th:text="${quote.stage}"></td>
                 <td th:text="${quote.total}"></td>
-                <td>
+                <!--<td>-->
                     <!--<a th:href="${#mvc.url('QC#remove').arg(0, quote.id).build()}" class="btn btn-sm btn-danger">Remove</a>-->
                     <!--<a th:href="${#mvc.url('PC#createOrEditForm').arg(0, product.id).build()}" class="btn btn-sm btn-warning">Edit</a>-->
-                </td>
+                <!--</td>-->
             </tr>
             </tbody>
         </table>
