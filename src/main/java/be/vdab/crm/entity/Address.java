@@ -1,8 +1,9 @@
 package be.vdab.crm.entity;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "addresses")
@@ -13,27 +14,27 @@ public class Address {
     private Integer id;
 
     @Column(name = "zip_code")
-    @Pattern(regexp = "^\\d{4}$")
+    @Pattern(regexp = "^\\d{4}$", message = "Not a valid zipcode")
     private String zipCode;
 
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = 100, message = "City name too long")
     private String city;
 
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = 100, message = "Streetname too long")
     @Column(name = "street_name")
+    @NotNull(message = "Street number is required")
     private String streetName;
 
     @Column(name = "house_number")
-    @Pattern(regexp = "^\\d{1,3}$")
+    @NotNull(message = "House number is required")
+    @Pattern(regexp = "^\\d{1,3}$", message = "Not a valid housenumber")
     private String houseNumber;
 
-    @Pattern(regexp = "^\\d{1,3}$")
+    @Pattern(regexp = "^\\d{1,3}$", message = "Not a valid busnumber")
+    @Nullable
     private String bus;
 
-
-
-    /*Used by JPA*/
-    protected Address() {
+    public Address() {
     }
 
     public Integer getId() {
@@ -70,5 +71,27 @@ public class Address {
 
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public void setBus(String bus) {
+        this.bus = bus;
+    }
 }

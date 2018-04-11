@@ -46,8 +46,9 @@ public class Contact {
     @ManyToOne
     private User owner;     //owner of the lead - from user table
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
     @JoinColumn(name = "contact_id")
+    @Valid
     private List<Address> addresses = new ArrayList<>();
 
 //    @OneToMany
@@ -103,7 +104,7 @@ public class Contact {
         return owner;
     }
 
-    public List<Address> getAddresses() { return Collections.unmodifiableList(addresses); }
+    public List<Address> getAddresses() { return addresses; }
 
     public void setAddresses(List<Address> addresses) { this.addresses = addresses; }
 

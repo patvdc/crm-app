@@ -43,10 +43,28 @@
     </div>
 
     <br>
-    <a th:href="${#mvc.url('CC#editOrCreateContactRequest').arg(0, contact.id).build()}" class="btn btn-primary">Edit</a>
+
+    <!--<<<<<<<<<<<<<<< START Addresses >>>>>>>>>>>>>>>>> -->
+
+    <button id="changeView">Addresses</button>
+    <ul id="addresses">
+        <li th:each="address : ${contact.addresses}">
+            <span th:text="${address.streetName + ' '}"></span>
+            <span th:text="${address.houseNumber + ((address.bus != null && !address.bus?.equals(''))? ' (bus: ' + address.bus + '), ' : ', ')}"></span>
+            <span th:text="${(address.zipCode != null ? address.zipCode + ' ' : '') + address.city}"></span>
+        </li>
+    </ul>
+
+    <!--<<<<<<<<<<<<<<< END Addresses >>>>>>>>>>>>>>>>> -->
+
+    <br>
+    <br>
+    <a th:href="${#mvc.url('CC#editOrCreateContactRequest').arg(0, contact.id).build()}"
+       class="btn btn-primary">Edit</a>
     <a th:href="${#mvc.url('CC#listAllContacts').build()}" class="btn btn-primary">Contact List</a>
 
-           <!--<<<<<<<<<<<<<<< START QUOTES >>>>>>>>>>>>>>>>> -->
+
+    <!--<<<<<<<<<<<<<<< START QUOTES >>>>>>>>>>>>>>>>> -->
     <div class="header">
         <h2>Quotes</h2>
 
@@ -63,7 +81,8 @@
             </thead>
             <tbody>
             <tr th:each="quote : ${quoteList}">
-                <td><a th:href="${#mvc.url('QC#quoteDetails').arg(0, quote.id).build()}" th:text="${quote.id}">1</a></td>
+                <td><a th:href="${#mvc.url('QC#quoteDetails').arg(0, quote.id).build()}" th:text="${quote.id}">1</a>
+                </td>
                 <td th:text="${quote.stage}"></td>
                 <td th:text="${quote.total}"></td>
                 <!--<td>-->
@@ -77,7 +96,7 @@
 
     </div>
 
-             <!--<<<<<<<<<<<<<<< END QUOTES >>>>>>>>>>>>>>>>> -->
+    <!--<<<<<<<<<<<<<<< END QUOTES >>>>>>>>>>>>>>>>> -->
 
              <!--<<<<<<<<<<<<<<< START ACTIVITIES>>>>>>>>>>>>>>>>> -->
     <div class="header">

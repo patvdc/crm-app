@@ -4,3 +4,6 @@
 .naar-rechts {
     float: right;
 }
+#addresses {
+    display: none;
+}

@@ -116,9 +116,95 @@
                     <option th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.fullName}"></option>
                 </select>
             </div>
-
         </div>
+        <br><br>
 
+        <div>Addresses:</div>
+        <br>
+            <div th:each="address, iteration : ${contact.addresses}">
+                <div th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].streetName}')} or
+                        ${#fields.hasErrors('*{addresses[__${iteration.index}__].houseNumber}')}" class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="alert alert-danger form-group col-md-5"
+                         th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].streetName}')}"
+                         th:each="e : ${#fields.errors('*{addresses[__${iteration.index}__].streetName}')}"
+                         th:text="${e}">
+                    </div>
+                    <div th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].houseNumber}')}"
+                         th:attr="class=${#fields.hasErrors('*{addresses[__${iteration.index}__].streetName}')? 'col-md-1' : 'col-md-6'}"></div>
+                    <div class="alert alert-danger form-group col-md-5 naar-rechts"
+                         th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].houseNumber}')}"
+                         th:each="e : ${#fields.errors('*{addresses[__${iteration.index}__].houseNumber}')}"
+                         th:text="${e}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label class="col-form-label col-md-1">Street</label>
+                    <input type="text" class="form-control col-md-5"
+                           th:field="*{addresses[__${iteration.index}__].streetName}" placeholder="Street name"/>
+                    <label th:for="*{addresses[__${iteration.index}__].id + 'number'}"
+                           class="col-form-label col-md-1">Nr</label>
+                    <input th:id="*{addresses[__${iteration.index}__].id + 'number'}" type="text"
+                           class="form-control col-md-5"
+                           th:field="*{addresses[__${iteration.index}__].houseNumber}" placeholder="House number"/>
+                </div>
+
+                <div th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].bus}')} or
+                        ${#fields.hasErrors('*{addresses[__${iteration.index}__].city}')}" class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="alert alert-danger form-group col-md-5"
+                         th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].bus}')}"
+                         th:each="e : ${#fields.errors('*{addresses[__${iteration.index}__].bus}')}"
+                         th:text="${e}">
+                    </div>
+                    <div th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].city}')}"
+                         th:attr="class=${#fields.hasErrors('*{addresses[__${iteration.index}__].bus}')? 'col-md-1' : 'col-md-6'}"></div>
+                    <div class="alert alert-danger form-group col-md-5 naar-rechts"
+                         th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].city}')}"
+                         th:each="e : ${#fields.errors('*{addresses[__${iteration.index}__].city}')}"
+                         th:text="${e}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label th:for="*{addresses[__${iteration.index}__].id + 'bus'}"
+                           class="col-form-label col-md-1">Bus</label>
+                    <input th:id="*{addresses[__${iteration.index}__].id + 'bus'}" type="text"
+                           class="form-control col-md-5"
+                           th:field="*{addresses[__${iteration.index}__].bus}" placeholder="Bus number"/>
+                    <label th:for="*{addresses[__${iteration.index}__].id + 'id'}"
+                           class="col-form-label col-md-1">City</label>
+                    <input th:id="*{addresses[__${iteration.index}__].id + 'city'}" type="text"
+                           class="form-control col-md-5"
+                           th:field="*{addresses[__${iteration.index}__].city}" placeholder="City"/>
+                </div>
+
+                <div th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].zipCode}')}" class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="alert alert-danger form-group col-md-5"
+                         th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].zipCode}')}"
+                         th:each="e : ${#fields.errors('*{addresses[__${iteration.index}__].zipCode}')}"
+                         th:text="${e}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label th:for="*{addresses[__${iteration.index}__].id + 'zip'}"
+                           class="col-form-label col-md-1">Zip</label>
+                    <input th:id="*{addresses[__${iteration.index}__].id + 'zip'}" type="text"
+                           class="form-control col-md-5"
+                           th:field="*{addresses[__${iteration.index}__].zipCode}" placeholder="Zipcode"/>
+                    <div class="col-md-1"></div>
+                    <button type="button" class="col-md-3"
+                            onclick="*{addresses.remove([__${iteration.index}__])}">Delete</button>
+                    <div class="col-md-2"></div>
+                    <input th:id="*{addresses[__${iteration.index}__].id + 'id'}" type="hidden"
+                           th:field="*{addresses[__${iteration.index}__].id}" placeholder="id"/>
+                    <div></div>
+                </div>
+                <br>
+            </div>
+
+        <br>
+        <br>
         <button type="submit" class="btn btn-primary">Submit</button>
         <a th:if="${contact.id}" th:href="${#mvc.url('CC#contactDetails').arg(0, contact.id).build()}" type="submit"
            class="btn btn-primary">Back to details</a>

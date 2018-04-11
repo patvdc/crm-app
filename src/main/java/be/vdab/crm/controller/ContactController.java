@@ -7,9 +7,11 @@ import be.vdab.crm.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.spring5.expression.Mvc;
 
@@ -77,6 +79,7 @@ public class ContactController {
 
         if (br.hasErrors()) {
             model.put("owners", userService.getAllUsers());
+            br.getAllErrors().forEach(System.out::println);
             return "contact-edit-create";
         } else {
             contactService.save(contact);
@@ -103,7 +106,6 @@ public class ContactController {
          * Set phone numbers with request parameter (th field with map is rather difficult)
          * Check wether the map keys already exist or not, then change value or add new phone
          * if phone is empty and key already existed in map -> deletion. Hence the remove.
-         * check phone validation here and throw error if not valid
          */
         if (!req.getParameter(parameter).equals("")) {
             if (contact.getPhones().get(type) != null) {
@@ -121,8 +123,16 @@ public class ContactController {
             br.addError(new FieldError("contact", "email", "Contact needs email or phone number"));
             br.addError(new FieldError("contact", "phones", "Contact needs phone number or email"));
         }
-        if (!req.getParameter("mobilenr").matches("^[0]{1}[0-9]{7,9}$|$") || !req.getParameter("phonenr").matches("^[0]{1}[0-9]{7,9}$|$")  ) {
+        /**
+         * check phone validation here to throw error if not valid
+        */
+        if (!req.getParameter("mobilenr").matches("^[0]{1}[0-9]{7,9}$|^$") || !req.getParameter("phonenr").matches("^[0]{1}[0-9]{7,9}$|$")  ) {
             br.addError(new FieldError("contact", "phones", "Please enter only valid phonenumbers"));
         }
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
 }
