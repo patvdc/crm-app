@@ -52,7 +52,7 @@
         <li th:each="address : ${contact.addresses}">
             <span th:text="${address.streetName + ' '}"></span>
             <span th:text="${address.houseNumber + ((address.bus != null && !address.bus?.equals(''))? ' (bus: ' + address.bus + '), ' : ', ')}"></span>
-            <span th:text="${(address.zipCode != null ? address.zipCode + ' ' : '') + address.city}"></span>
+            <span th:text="${(address.zipCode != null ? address.zipCode + ' ' : '') + address.city != null ? address.city : ''}"></span>
         </li>
     </ul>
 

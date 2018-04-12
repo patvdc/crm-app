@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -129,6 +132,7 @@ public class ContactController {
         if (!req.getParameter("mobilenr").matches("^[0]{1}[0-9]{7,9}$|^$") || !req.getParameter("phonenr").matches("^[0]{1}[0-9]{7,9}$|$")  ) {
             br.addError(new FieldError("contact", "phones", "Please enter only valid phonenumbers"));
         }
+
     }
 
     @InitBinder
