@@ -6,13 +6,19 @@ import be.vdab.crm.entity.User;
 import be.vdab.crm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.bind.BindResult;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.spring5.expression.Mvc;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Map;
 
 @Controller
@@ -34,6 +40,7 @@ public class ProductController {
     @GetMapping("/details/{id}")
     public String details(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
         model.put("product", service.getProductById(id));
+//        model.put("picture", Base64.getEncoder().encodeToString(service.getProductById(id).getPicture()));
         return "product-details";
     }
 
@@ -52,12 +59,18 @@ public class ProductController {
     }
 
     @PostMapping("/create-or-edit")
-    public String createOrEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br) {
+    public String createOrEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br, @RequestParam("picture2") MultipartFile part) {
      //   if((br.hasErrors()) || (product.getName()==null) || (product.getUnitPrice()==0) || (product.getCategory()==null)) {
         if(br.hasErrors()) {
             return "product-edit-create";
         } else {   //setId required !
             System.out.println("SAVE PRODUCT");
+            try {
+             //   part.getContentType()
+                product.setPicture(part.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             service.save(product);
             return "redirect:/products/list";
         }
@@ -68,6 +81,5 @@ public class ProductController {
         service.delete(id);
         return "redirect:/products/list";
     }
-
 
 }

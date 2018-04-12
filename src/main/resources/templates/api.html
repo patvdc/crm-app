@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragments/fragments :: head"></head>
+
+<body>
+<div class="container">
+    <div th:replace="fragments/fragments::header"></div>
+
+    <div class="header">
+        <h1>Rest API</h1>
+    </div>
+    <br>
+
+    <a href="http://localhost:8080/api/contacts/" target="_blank">Rest XML Contact Controller</a>
+    <br>
+    <a href="http://localhost:8080/api/contacts/json/list" target="_blank">Rest Json Contact List</a>
+    <br>
+    <a href="http://localhost:8080/api/contacts/xml/v_1_0/1" target="_blank">Rest XML Contact by id - version 1.0</a>
+    <br>
+    <a href="http://localhost:8080/api/contacts/json/v_1_0/1" target="_blank">Rest Json Contact by id - version 1.0</a>
+    <br>
+    <a href="http://localhost:8080/connect/facebook" target="_blank">Facebook feeds</a>
+    <br>
+
+    <div th:replace="fragments/fragments::footer"></div>
+
+</div>
+</body>
+</html>

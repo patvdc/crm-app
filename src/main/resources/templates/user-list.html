@@ -25,15 +25,15 @@
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
             <td><a th:href="${#mvc.url('UC#details').arg(0, user.id).build()}" th:text="${user.email}"></a></td>
-            <td>
-                <a th:href="${#mvc.url('UC#remove').arg(0, user.id).build()}" class="btn btn-sm btn-danger">Remove</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-        <a th:href="${#mvc.url('UC#createOrEditUserForm').build()}" class="btn btn-primary">New user</a>
+            <!--    <td>
+                    <a th:href="${#mvc.url('UC#remove').arg(0, user.id).build()}" class="btn btn-sm btn-danger">Remove</a>
+                </td> -->
+            </tr>
+            </tbody>
+        </table>
+            <a th:href="${#mvc.url('UC#createOrEditUserForm').build()}" class="btn btn-primary">New user</a>
+        </div>
+        <div th:replace="fragments/fragments::footer"></div>
     </div>
-    <div th:replace="fragments/fragments::footer"></div>
-</div>
-</body>
-</html>
+    </body>
+    </html>

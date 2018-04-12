@@ -23,7 +23,8 @@ public class Product implements java.io.Serializable {
     @NotNull
     private ProductCategory category;
 
-    private Blob picture;
+    @Lob
+    private byte[] picture;
 
     public Product() {
     }
@@ -58,11 +59,11 @@ public class Product implements java.io.Serializable {
         this.unitPrice = price;
     }
 
-    public Blob getPicture() {
+    public byte[] getPicture() {
         return picture;
     }
 
-    public void setPicture(Blob picture) {
+    public void setPicture(byte[] picture) {
         this.picture = picture;
     }
 
