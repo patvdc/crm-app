@@ -3,6 +3,7 @@ package be.vdab.crm.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -25,7 +26,11 @@ public class Activity {
     private LocalTime startTime;    //when started
     private LocalTime endTime;    //when stopped
 
+    @Column(length=150)
+    @Size(max = 150, message = "Maximum 150 characters")
     private String comment;     // saying that ..........
+    @Column(length=50)
+    @Size(max = 50, message = "Maximum 50 characters")
     private String subject;    //meeting @ customer x
     @Enumerated(EnumType.STRING)
     private ActivityStatus status;    //open  -> not yet done , closed -> done
