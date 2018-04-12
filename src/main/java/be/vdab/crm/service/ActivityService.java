@@ -22,4 +22,5 @@ public class ActivityService {
     public List<Activity> getListByContactId(Integer id) {return activityReposotory.findAllByContactId(id);}
 
 
+    public void save(Activity a) { activityReposotory.save(a); }
 }

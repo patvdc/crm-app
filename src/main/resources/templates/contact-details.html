@@ -11,6 +11,7 @@
     </div>
     <br>
 
+    <a th:href="@{/contacts/list}" class="btn btn-primary">Back</a>
     <div class="row">
         <div class="col-sm-2">Id:</div>
         <div class="col-sm-10" th:text="${contact.id}"></div>
@@ -106,7 +107,7 @@
             </tr>
             </tbody>
         </table>
-        <!--<a th:href="${#mvc.url('QC#createQuoteForm').arg(0, contact.id).build()}" class="btn btn-primary">New Quote</a>-->
+        <a th:href="${#mvc.url('AC#createActivityForm').arg(0, contact.id).build()}" class="btn btn-primary">New Activity</a>
 
     </div>
 
