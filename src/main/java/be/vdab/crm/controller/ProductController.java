@@ -39,8 +39,9 @@ public class ProductController {
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
+        System.out.println("DETAILS PAGE");
         model.put("product", service.getProductById(id));
-//        model.put("picture", Base64.getEncoder().encodeToString(service.getProductById(id).getPicture()));
+        //model.put("image", Base64.getEncoder().encodeToString(service.getProductById(id).getPicture()));
         return "product-details";
     }
 
@@ -59,15 +60,14 @@ public class ProductController {
     }
 
     @PostMapping("/create-or-edit")
-    public String createOrEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br, @RequestParam("picture2") MultipartFile part) {
+    public String createOrEditFormSubmit(@ModelAttribute("productForm") Product product, BindingResult br, @RequestParam("picture2") MultipartFile file) {
      //   if((br.hasErrors()) || (product.getName()==null) || (product.getUnitPrice()==0) || (product.getCategory()==null)) {
         if(br.hasErrors()) {
             return "product-edit-create";
         } else {   //setId required !
             System.out.println("SAVE PRODUCT");
             try {
-             //   part.getContentType()
-                product.setPicture(part.getBytes());
+                product.setPicture(file.getBytes());
             } catch (IOException e) {
                 e.printStackTrace();
             }

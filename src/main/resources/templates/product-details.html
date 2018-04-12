@@ -40,8 +40,8 @@
 
     <div class="row">
         <div class="col-sm-2">Picture</div>
-        <div class="col-sm-10" th:text="${product.picture}"></div>
-
+        <!--<img th:src="*{'data:image/png;base64,'+ image}" alt="" />-->
+        <img th:if="${product.picture != null}" th:src="${'data:image/png;base64,'+ T(java.util.Base64).encoder.encodeToString(product.picture)}" alt="" />
     </div>
 
     <br>
