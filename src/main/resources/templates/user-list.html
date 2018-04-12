@@ -17,6 +17,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -28,7 +29,11 @@
             <!--    <td>
                     <a th:href="${#mvc.url('UC#remove').arg(0, user.id).build()}" class="btn btn-sm btn-danger">Remove</a>
                 </td> -->
-            </tr>
+            <td>
+                <a th:href="${#mvc.url('UC#createOrEditUserForm').arg(0, user.id).build()}" class="btn btn-sm btn-warning">Edit</a>
+            </td>
+
+        </tr>
             </tbody>
         </table>
             <a th:href="${#mvc.url('UC#createOrEditUserForm').build()}" class="btn btn-primary">New user</a>

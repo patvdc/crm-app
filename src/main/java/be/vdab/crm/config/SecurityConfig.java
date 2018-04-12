@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user2").password(" ").roles("ADMIN")
                 .and()
                 .withUser("user3").password(" ").roles("SALES", "ADMIN");
+
                 */
 
         auth
@@ -54,16 +55,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/login")
                     .usernameParameter("email")   //otherwise username is used as default
-                .and().httpBasic()
+                .and()
+                .logout()
+                    .logoutSuccessUrl("/")
+                    .and().httpBasic()
                 .and().authorizeRequests()
+                    .antMatchers("/css*").permitAll()
+                    .antMatchers("/images*").permitAll()
+                    .antMatchers("/js*").permitAll()
+                    .antMatchers("/login*").permitAll()
+                    .antMatchers("/logout*").permitAll()
                     .antMatchers("/contacts").hasAnyRole("SALES")
                     .antMatchers("/quotes").hasAnyRole("SALES")
                     .antMatchers("/products").hasAnyRole("ADMIN")
                     .antMatchers("/users").hasAnyRole("ADMIN")
-                    .anyRequest().permitAll()    //catch-all
-                .and().logout()
-                    .logoutSuccessUrl("/");
-
+                    .antMatchers("/activities").hasAnyRole("ADMIN")
+                    .anyRequest().permitAll() ;   //catch-all
+             //       .antMatchers("/**/*").denyAll();
     }
 
     @Bean

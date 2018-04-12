@@ -41,6 +41,7 @@ public class ProductController {
     public String details(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
         System.out.println("DETAILS PAGE");
         model.put("product", service.getProductById(id));
+        //better to use thymeleaf
         //model.put("image", Base64.getEncoder().encodeToString(service.getProductById(id).getPicture()));
         return "product-details";
     }
@@ -65,9 +66,8 @@ public class ProductController {
         if(br.hasErrors()) {
             return "product-edit-create";
         } else {   //setId required !
-            System.out.println("SAVE PRODUCT");
             try {
-                product.setPicture(file.getBytes());
+                product.setPicture(file.getBytes());   //test filesize
             } catch (IOException e) {
                 e.printStackTrace();
             }
