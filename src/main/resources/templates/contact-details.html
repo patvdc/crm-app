@@ -25,7 +25,7 @@
         <div class="col-sm-2">Status:</div>
         <div class="col-sm-10" th:text="${contact.leadStatus}"></div>
     </div>
-    <div class="row" th:if="${!contact.email?.trim().isEmpty()}">
+    <div class="row" th:if="${contact.email}">
         <div class="col-sm-2">Email:</div>
         <div class="col-sm-10" th:text="${contact.email}"></div>
     </div>
@@ -57,6 +57,62 @@
     </ul>
 
     <!--<<<<<<<<<<<<<<< END Addresses >>>>>>>>>>>>>>>>> -->
+<br>
+<br>
+    <!--<<<<<<<<<<<<<<< START NOTES >>>>>>>>>>>>>>>>> -->
+
+    <div>Notes:</div>
+    <br>
+    <form method="post" th:action="${#mvc.url('CC#contactDetailsPost').arg(0,__${contact.id}__).build()}" th:object="${contact}">
+        <div th:if="${contact.notes?.isEmpty()}">No current notes.</div>
+
+        <div th:each="notes, status : ${contact.notes}">
+            <div class="alert alert-danger form-group"
+                 th:if="${#fields.hasErrors('*{notes[__${status.index}__].comment}')}"
+                 th:each="e : ${#fields.errors('*{notes[__${status.index}__].comment}')}"
+                 th:text="${e}"></div>
+            <div class="row"></div>
+            <textarea type="text" th:field="*{notes[__${status.index}__].comment}" class="form-control col-md-8"/>
+            <input type="hidden" th:field="*{notes[__${status.index}__].id}"/>
+        </div>
+        <div id="extraNotes"></div>
+        <button>Save notes</button>
+
+        <button type="button" th:onclick="'addNote(\'' + ${contact.notes.size()} +'\')'">Add</button>
+
+        <script type="text" id="noteTemplate">
+            <div class="row">
+                 <input class="form-control col-md-8" type="text" name="{{comment}}" placeholder="Write your note comments here"/>
+                 <input type="hidden" name="{{id}}" class="form-control col-md-4"/>
+             </div>
+        </script>
+
+    </form>
+
+
+
+    <script>
+            let extraNoteCount = 0;
+
+            function addNote(size) {
+                let note = loadNoteTemplate("noteTemplate", (size++));
+                document.getElementById("extraNotes").appendChild(note);
+            }
+
+            function loadNoteTemplate(id, index) {
+                let selectTemplateText = document.getElementById(id).innerText;
+                let noteIndex = "notes[" + (index + 1) +"]";
+                let resolvedTemplateText = selectTemplateText
+                    .replace("{{comment}}", noteIndex + ".comment")
+                    .replace("{{id}}", noteIndex + ".id");
+                return new DOMParser().parseFromString(resolvedTemplateText, "text/html").firstChild;
+            }
+
+
+        </script>
+
+
+    <!--<<<<<<<<<<<<<<< END NOTES >>>>>>>>>>>>>>>>> -->
 
     <br>
     <br>

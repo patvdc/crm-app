@@ -76,3 +76,9 @@ insert into activities(id, category, comment, date, end_time, start_time, status
 --insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(21)
 --insert into quote_lines(id, price, quantity, total, product_id, quote_id) values(22)
 
+insert into note(value, contact_id) values('lalalalalalalalalalalala',1);
+insert into note(value, contact_id) values('lalalalalalalalalalalala',1);
+insert into note(value, contact_id) values('lalalalalalalalalalalala',2);
+insert into note(value, contact_id) values('lalalalalalalalalalalala',3);
+
+

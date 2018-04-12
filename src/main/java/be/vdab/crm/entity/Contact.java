@@ -53,6 +53,11 @@ public class Contact {
     @Where(clause = "deleted = 0")
     private List<Address> addresses = new ArrayList<>();
 
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JoinColumn(name = "contact_id")
+    @Valid
+    private List<Note> notes = new ArrayList<>();
+
 //    @OneToMany
 //    @JoinColumn(name = "contact_id")
 //    private List<Activity> activities = new ArrayList<>();
@@ -163,5 +168,13 @@ public class Contact {
 
     public void addPhone(Phone phone) {
         phones.put(phone.getType(),phone);
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 }

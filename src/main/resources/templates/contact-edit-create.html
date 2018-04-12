@@ -207,15 +207,9 @@
 
         <div id="extraAddresses"></div>
 
-        <div class="alert alert-danger form-group col-md-5"
-             th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].city}')}"
-             th:each="e : ${#fields.errors('*{addresses[__${iteration.index}__].zipCode}')}"
-             th:text="${e}">
-        </div>
-
         <button type="button" th:onclick="${'addAddress()'}">Add</button>
 
-        <script type="text-" id="addressTemplate">
+        <script type="text" id="addressTemplate">
             <div class="row">
                 <div class="col-sm-6">
                     <input type="text" name="{{streetName}}" class="form-control" placeholder="Street name"/>

@@ -15,9 +15,11 @@ public class Address {
 
     @Column(name = "zip_code")
     @Pattern(regexp = "^\\d{4}$", message = "Not a valid zipcode")
+    @NotNull
     private String zipCode;
 
     @Size(min = 2, max = 100, message = "City name too long")
+    @NotNull
     private String city;
 
     @Size(min = 2, max = 100, message = "Streetname too long")
