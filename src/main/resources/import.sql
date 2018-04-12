@@ -17,13 +17,13 @@ insert into phone_numbers(id, number, type, contact_id) values(1, '022412597', '
 insert into phone_numbers(id, number, type, contact_id) values(2, '0478457577', 'MOBILE', 2);
 insert into phone_numbers(id, number, type, contact_id) values(3, '0502452377', 'MOBILE', 1);
 
-insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(1, 1, '9000', 'Gent', 'Lange Breestraat', '26', '');
-insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(2, 2, '2300', 'Kortrijk', 'Feeststraat', '144', '');
-insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(3, 3, '4400', 'Muizingen', 'Kerkhoflaan', '12', '6');
-insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(4, 4, '5242', 'Baasrode', 'Paddestraat', '10', '6');
-insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(5, 5, '1834', 'Oostende', 'Lange munte', '4', '');
-insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(6, 5, '5442', 'Destelbergen', 'Dwaalstraat', '4', '');
-insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus) values(7, 5, '7588', 'Zwijnaarde', 'Hogeweg', '8', '12');
+insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus, deleted) values(1, 1, '9000', 'Gent', 'Lange Breestraat', '26', '', false);
+insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus, deleted) values(2, 2, '2300', 'Kortrijk', 'Feeststraat', '144', '', false);
+insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus, deleted) values(3, 3, '4400', 'Muizingen', 'Kerkhoflaan', '12', '6', false);
+insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus, deleted) values(4, 4, '5242', 'Baasrode', 'Paddestraat', '10', '6', false);
+insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus, deleted) values(5, 5, '1834', 'Oostende', 'Lange munte', '4', '', false);
+insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus, deleted) values(6, 5, '5442', 'Destelbergen', 'Dwaalstraat', '4', '', false);
+insert into addresses(id, contact_id, zip_code, city, street_name, house_number, bus, deleted) values(7, 5, '7588', 'Zwijnaarde', 'Hogeweg', '8', '12', false);
 
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (1,1,"NEGOTIATION",8500,1,1,1);
 insert into quotes(id, contact_id, stage, total, billing_address_id, owner_id, shipping_address_id) values (2,2,"CONFIRMED",236,2,2,2);

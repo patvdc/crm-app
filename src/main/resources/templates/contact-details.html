@@ -17,7 +17,7 @@
         <div class="col-sm-10" th:text="${contact.id}"></div>
 
     </div>
-    <div class="row" th:if="${!contact.fullName.trim().isEmpty()}">
+    <div class="row" th:if="${!contact?.fullName?.trim().isEmpty()}">
         <div class="col-sm-2">Name:</div>
         <div class="col-sm-10" th:text="${contact.fullName}"></div>
     </div>
@@ -48,6 +48,7 @@
 
     <button id="changeView">Addresses</button>
     <ul id="addresses">
+        <div th:if="${contact.addresses.isEmpty()}">No current addresses</div>
         <li th:each="address : ${contact.addresses}">
             <span th:text="${address.streetName + ' '}"></span>
             <span th:text="${address.houseNumber + ((address.bus != null && !address.bus?.equals(''))? ' (bus: ' + address.bus + '), ' : ', ')}"></span>

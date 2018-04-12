@@ -7,6 +7,7 @@ window.addEventListener('load', () =>{
     }
 
     let changeView = document.getElementById("changeView");
+    if(changeView){
     changeView.addEventListener("click", function() {
         let addresses = document.getElementById("addresses");
         if (addresses.style.display === "block") {
@@ -15,4 +16,6 @@ window.addEventListener('load', () =>{
              addresses.style.display = "block";
         }
         });
+        }
+
 });

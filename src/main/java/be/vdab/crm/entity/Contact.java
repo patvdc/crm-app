@@ -2,6 +2,7 @@ package be.vdab.crm.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Where;
 
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
@@ -49,6 +50,7 @@ public class Contact {
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
     @JoinColumn(name = "contact_id")
     @Valid
+    @Where(clause = "deleted = 0")
     private List<Address> addresses = new ArrayList<>();
 
 //    @OneToMany
@@ -114,8 +116,6 @@ public class Contact {
         }
         this.addresses.add(address);
     }
-
-
 
     public String getAccountName() {
         return accountName;

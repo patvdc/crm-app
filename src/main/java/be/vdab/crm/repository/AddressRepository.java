@@ -2,6 +2,7 @@ package be.vdab.crm.repository;
 
 
 import be.vdab.crm.entity.Address;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,5 +16,4 @@ public interface AddressRepository extends JpaRepository<Address, Integer> {
     List<Address> findAllByContactIdEquals(@Param("id") int id) ;
 
     // FOREIGN KEYS AS ASSOCIATIONS!!!
-
 }

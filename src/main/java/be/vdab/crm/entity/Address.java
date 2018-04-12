@@ -31,8 +31,10 @@ public class Address {
     private String houseNumber;
 
     @Pattern(regexp = "^\\d{1,3}$", message = "Not a valid busnumber")
-    @Nullable
     private String bus;
+
+    @Column(name = "deleted", nullable = false)
+    private boolean deleted;
 
     public Address() {
     }
@@ -93,5 +95,14 @@ public class Address {
 
     public void setBus(String bus) {
         this.bus = bus;
+    }
+
+    public boolean getDeleted() {
+        return deleted;
+    }
+
+    public Address setDeleted(boolean deleted) {
+        this.deleted = deleted;
+        return this;
     }
 }
