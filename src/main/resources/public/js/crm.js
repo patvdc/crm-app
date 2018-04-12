@@ -7,15 +7,23 @@ window.addEventListener('load', () =>{
         });
     }
 
-    let changeView = document.getElementById("changeView");
-    if(changeView){
-    changeView.addEventListener("click", function() {
-        let addresses = document.getElementById("addresses");
-        if (addresses.style.display === "block") {
-             addresses.style.display = "none";
-        } else {
-             addresses.style.display = "block";
+    let changeViewAddress = document.getElementById("changeViewAddress");
+    if(changeViewAddress){
+    changeViewAddress.addEventListener("click", function(){showHide(changeViewAddress, "addresses", "Addresses")});
         }
-        });
-        }
+    let changeViewNotes = document.getElementById("changeViewNotes");
+    if(changeViewNotes){
+    changeViewNotes.addEventListener("click", function(){showHide(changeViewNotes, "notesForm", "Notes")});
+    }
 });
+
+function showHide(button, content, text) {
+        let contentHolder = document.getElementById(content);
+        if (contentHolder.style.display === "block") {
+             contentHolder.style.display = "none";
+             button.innerHTML = "Show " + text;
+        } else {
+             contentHolder.style.display = "block";
+             button.innerHTML = "Hide " + text;
+        }
+}

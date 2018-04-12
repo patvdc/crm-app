@@ -15,11 +15,11 @@ public class Address {
 
     @Column(name = "zip_code")
     @Pattern(regexp = "^\\d{4}$", message = "Not a valid zipcode")
-    @NotNull
+    @NotNull(message = "Can't be empty")
     private String zipCode;
 
     @Size(min = 2, max = 100, message = "City name too long")
-    @NotNull
+    @NotNull(message = "Can't be empty")
     private String city;
 
     @Size(min = 2, max = 100, message = "Streetname too long")

@@ -1,6 +1,6 @@
 package be.vdab.crm.entity;
 
-import be.vdab.crm.utility.ValidationForNotesInterface;
+import be.vdab.crm.utility.constraint_groups.ValidationForNotesInterface;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

@@ -193,7 +193,7 @@
                        class="form-control col-md-5"
                        th:field="*{addresses[__${iteration.index}__].zipCode}" placeholder="Zipcode"/>
                 <div class="col-md-1"></div>
-                <button type="button" class="col-md-3"
+                <button type="button" class="col-md-1 btn-danger"
                         th:onclick="'deleteAddress(' + ${contact.addresses[__${iteration.index}__].id} + ')'">Delete
                 </button>
                 <div class="col-md-2"></div>
@@ -207,29 +207,29 @@
 
         <div id="extraAddresses"></div>
 
-        <button type="button" th:onclick="${'addAddress()'}">Add</button>
+        <button type="button" th:onclick="'addAddress(' + ${contact.addresses.size()} + ')'">Add</button>
 
         <script type="text" id="addressTemplate">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <input type="text" name="{{streetName}}" class="form-control" placeholder="Street name"/>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <input type="text" name="{{houseNumber}}" class="form-control" placeholder="House number"/>
                 </div>
              </div>
 
              <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <input type="text" name="{{bus}}" class="form-control" placeholder="Bus number"/>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <input type="text" name="{{city}}" class="form-control" placeholder="City"/>
                 </div>
              </div>
 
              <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <input type="text" name="{{zip}}" class="form-control" placeholder="Zipcode"/>
                 </div>
 
@@ -239,14 +239,14 @@
         <script>
             let extraAddressCount = 0;
 
-            function addAddress() {
-                let address = loadTemplate("addressTemplate", extraAddressCount++);
+            function addAddress(size) {
+                let address = loadTemplate("addressTemplate", (size + extraAddressCount++) );
                 document.getElementById("extraAddresses").appendChild(address);
             }
 
             function loadTemplate(id, index) {
                 let selectTemplateText = document.getElementById(id).innerText;
-                let addressIndex = "addresses[" + (index + 1) +"]";
+                let addressIndex = "addresses[" + index +"]";
                 let resolvedTemplateText = selectTemplateText
                     .replace("{{streetName}}", addressIndex + ".streetName")
                     .replace("{{bus}}", addressIndex + ".bus")

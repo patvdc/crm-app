@@ -4,6 +4,6 @@
 .naar-rechts {
     float: right;
 }
-#addresses {
+#addresses, #notesForm {
     display: none;
 }

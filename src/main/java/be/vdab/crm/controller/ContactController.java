@@ -5,14 +5,11 @@ import be.vdab.crm.entity.Note;
 import be.vdab.crm.entity.Phone;
 import be.vdab.crm.entity.PhoneType;
 import be.vdab.crm.service.*;
-import be.vdab.crm.utility.ValidationForNotesInterface;
+import be.vdab.crm.utility.constraint_groups.ValidationForNotesInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.expression.Expression;
-import org.springframework.expression.ExpressionParser;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -23,8 +20,7 @@ import org.thymeleaf.spring5.expression.Mvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import javax.validation.Validator;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +59,9 @@ public class ContactController {
 
     @GetMapping("details/{id}")
     public String contactDetails(@PathVariable Integer id, Map<String, Object> model) {
-        model.put("contact", contactService.findContactById(id));
+        Contact contact = contactService.findContactById(id);
+        contact.getNotes().sort(Comparator.<Note>comparingInt(note -> note.getId()).reversed());
+        model.put("contact", contact);
         model.put("quoteList", quoteservice.getAllQuotesByContactId(id));
         model.put("products", productService.getAllProducts());
         model.put("activities",activityService.getListByContactId(id));
@@ -73,9 +71,6 @@ public class ContactController {
     @PostMapping("post-notes/{id}")
     public String contactDetailsPost(@PathVariable Integer id, Map<String, Object> model, @ModelAttribute("contact") @Validated({ValidationForNotesInterface.class}) Contact contact, BindingResult br) {
         if(br.hasErrors()){
-            br.getAllErrors().forEach(System.out::println);
-            br.getAllErrors().forEach(System.out::println);
-            br.getAllErrors().forEach(System.out::println);
             model.put("contact", contact);
             model.put("quoteList", quoteservice.getAllQuotesByContactId(id));
             model.put("products", productService.getAllProducts());
