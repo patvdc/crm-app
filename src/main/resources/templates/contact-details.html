@@ -78,7 +78,7 @@
         <div id="extraNotes"></div>
         <button>Save notes</button>
 
-        <button type="button" th:onclick="'addNote(\'' + ${contact.notes.size()} +'\')'">Add</button>
+        <button type="button" th:onclick="'addNote(' + ${contact.notes.size()} + ')'">Add</button>
 
         <script type="text" id="noteTemplate">
             <div class="row">
@@ -92,23 +92,21 @@
 
 
     <script>
-            let extraNoteCount = 0;
-
+            let addExtraNote = 0;
             function addNote(size) {
-                let note = loadNoteTemplate("noteTemplate", (size++));
+                let note = loadNoteTemplate("noteTemplate", (size + addExtraNote++) );
+                console.log(addExtraNote);
                 document.getElementById("extraNotes").appendChild(note);
             }
 
             function loadNoteTemplate(id, index) {
                 let selectTemplateText = document.getElementById(id).innerText;
-                let noteIndex = "notes[" + (index + 1) +"]";
+                let noteIndex = "notes[" + index +"]";
                 let resolvedTemplateText = selectTemplateText
                     .replace("{{comment}}", noteIndex + ".comment")
                     .replace("{{id}}", noteIndex + ".id");
                 return new DOMParser().parseFromString(resolvedTemplateText, "text/html").firstChild;
             }
-
-
         </script>
 
 
