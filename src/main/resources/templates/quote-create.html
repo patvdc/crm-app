@@ -81,6 +81,12 @@
                 <h3>Quote Lines</h3>
             </div>
         </div>
+
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <ul>
+                <li th:each="e : ${#fields.errors('*')}" th:text="${e}" style="alert alert-danger"></li>
+            </ul>
+        </div>
         <button type="button" onclick="addQuoteLineEntry()" class="btn btn-default">Add quote line</button>
 
         <!-- Acts as a template for the JavaScript to dynamically add filled in select boxes (better would be to use a proper JavaScript framework for this -->

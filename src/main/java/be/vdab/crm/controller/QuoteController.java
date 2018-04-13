@@ -5,6 +5,7 @@ import be.vdab.crm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -39,8 +40,14 @@ public class QuoteController {
 
     @PostMapping({"/create/{contactId}"})
     public String postForm(@PathVariable(required = false) Integer contactId,
+                           Map<String, Object> map,
                            @ModelAttribute("quote") Quote quote, BindingResult br) {
-
+        if(quote.getLines().size() == 0) {
+            br.addError(new FieldError("quote", "lines", "To save a new Quote you have to add some Quote Lines first !"));
+            map.put("contact", contactService.findContactById(contactId));
+            map.put("products", productService.getAllProducts());
+            return "quote-create";
+        }
 
 
         Contact contact = contactService.findContactById(contactId);
