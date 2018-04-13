@@ -56,6 +56,26 @@
                     <input type="password" id="psw" th:field="*{password}" class="form-control" placeholder="will be encrypted" />
                 </div>
 
+        <div class="form-group">
+        <label for="ro">Role: </label>
+        <div class="alert alert-danger"
+             th:if="${#fields.hasErrors('role')}"
+             th:each="e : ${#fields.errors('role')}"
+             th:text="${e}">
+        </div>
+
+        <select name="role" id="ro" th:field="*{role}" class="form-control">
+            <option disabled
+                    th:selected="${role == null}"
+                    th:value="null">-Select Role-</option>
+            <option th:each="role : ${T(be.vdab.crm.entity.UserRole).values()}"
+                    th:value="${role}"
+                    th:text="${role}">
+            </option>
+        </select>
+        </div>
+
+
         <input type="submit" value="Save" class="btn btn-primary"/>
         <a th:href="${#mvc.url('UC#list').build()}" class="btn btn-primary">Back</a>
 

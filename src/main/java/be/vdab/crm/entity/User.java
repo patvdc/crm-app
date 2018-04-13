@@ -110,6 +110,14 @@ public class User {
         this.id = id;
     }
 
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
