@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .jdbcAuthentication()
                 .dataSource(dataSource)
+                .rolePrefix("ROLE_")
                 .usersByUsernameQuery("select email, password, true from users where email=?")
                 .authoritiesByUsernameQuery("select email, role from users where email=?");
    //             .passwordEncoder(new StandardPasswordEncoder("53cr3t"));
@@ -65,11 +66,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/js/**/*").permitAll()
                     .antMatchers("/login*").permitAll()
                     .antMatchers("/logout*").permitAll()
-                    .antMatchers("/contacts").hasAnyRole("SALES")
-                    .antMatchers("/quotes").hasAnyRole("SALES")
-                    .antMatchers("/products").hasAnyRole("ADMIN")
-                    .antMatchers("/users").hasAnyRole("ADMIN")
-                    .antMatchers("/activities").hasAnyRole("ADMIN")
+                    .antMatchers("/contacts/*").hasAnyRole("SALES", "ADMIN")
+                    .antMatchers("/api/*").hasAnyRole("SALES", "ADMIN")
+                    .antMatchers("/index*").hasAnyRole("SALES", "ADMIN")
+                    .antMatchers("/quotes/*").hasAnyRole("SALES", "ADMIN")
+                    .antMatchers("/products/*").hasAnyRole("SALES", "ADMIN")
+                    .antMatchers("/users/*").hasAnyRole("SALES", "ADMIN")
+                    .antMatchers("/activities/*").hasAnyRole("SALES", "ADMIN")
              //       .anyRequest().permitAll() ;   //catch-all
                     .antMatchers("/**/*").denyAll();
     }
