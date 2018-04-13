@@ -60,9 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/")
                     .and().httpBasic()
                 .and().authorizeRequests()
-                    .antMatchers("/css*").permitAll()
-                    .antMatchers("/images*").permitAll()
-                    .antMatchers("/js*").permitAll()
+                    .antMatchers("/css/**/*").permitAll()
+                    .antMatchers("/images/**/*").permitAll()
+                    .antMatchers("/js/**/*").permitAll()
                     .antMatchers("/login*").permitAll()
                     .antMatchers("/logout*").permitAll()
                     .antMatchers("/contacts").hasAnyRole("SALES")
@@ -70,8 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/products").hasAnyRole("ADMIN")
                     .antMatchers("/users").hasAnyRole("ADMIN")
                     .antMatchers("/activities").hasAnyRole("ADMIN")
-                    .anyRequest().permitAll() ;   //catch-all
-             //       .antMatchers("/**/*").denyAll();
+             //       .anyRequest().permitAll() ;   //catch-all
+                    .antMatchers("/**/*").denyAll();
     }
 
     @Bean

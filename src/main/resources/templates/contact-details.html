@@ -70,6 +70,7 @@
     <button id="changeViewNotes" class="btn btn-dark btn-sm" onclick="showHide(changeViewNotes, 'notesForm')">Hide</button>
     <br>
 
+
     <form id="notesForm" method="post" th:action="${#mvc.url('CC#contactDetailsPost').arg(0,__${contact.id}__).build()}"
           th:object="${contact}">
         <br>
@@ -80,6 +81,7 @@
                  th:each="e : ${#fields.errors('*{notes[__${status.index}__].comment}')}"
                  th:text="${e}"></div>
             <textarea type="text" th:field="*{notes[__${status.index}__].comment}" class="form-control"/>
+
             <input type="hidden" th:field="*{notes[__${status.index}__].id}"/>
         </div>
 
