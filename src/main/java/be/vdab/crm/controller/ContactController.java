@@ -23,6 +23,7 @@ import javax.validation.Valid;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/contacts")
@@ -77,7 +78,7 @@ public class ContactController {
             model.put("activities",activityService.getListByContactId(id));
             return "contact-details";
         }else {
-            List<Note> notes = contact.getNotes();
+            List<Note> notes = contact.getNotes().stream().filter(note -> !note.getComment().equals("--remove this--")).collect(Collectors.toList());
             contact = contactService.findContactById(id);
             contact.setNotes(notes);
             contactService.save(contact);

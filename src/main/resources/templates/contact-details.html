@@ -80,9 +80,14 @@
                  th:if="${#fields.hasErrors('*{notes[__${status.index}__].comment}')}"
                  th:each="e : ${#fields.errors('*{notes[__${status.index}__].comment}')}"
                  th:text="${e}"></div>
-            <textarea type="text" th:field="*{notes[__${status.index}__].comment}" class="form-control"/>
+            <div class="row">
+            <textarea class="col-sm-8 form-control" type="text" th:id="'NoteComment' + ${contact.notes[__${status.index}__].id}" th:field="*{notes[__${status.index}__].comment}"/>
+            <input class="col-sm-3" type="hidden" th:id="'NoteId' + ${contact.notes[__${status.index}__].id}" th:field="*{notes[__${status.index}__].id}"/>
 
-            <input type="hidden" th:field="*{notes[__${status.index}__].id}"/>
+            <button type="button" class="col-md-1 btn-danger"
+                    th:onclick="'deleteNote(' + ${contact.notes[__${status.index}__].id} + ')'">Delete</button>
+           </div>
+
         </div>
 
         <div id="extraNotes"></div>

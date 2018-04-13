@@ -11,7 +11,6 @@ window.addEventListener('load', () =>{
 
 function showHide(button, content) {
         let contentHolder = document.getElementById(content);
-                console.log(contentHolder.style.display);
 
         if (contentHolder.style.display == "block" || contentHolder.style.display == "") {
              contentHolder.style.display = "none";
@@ -21,3 +20,15 @@ function showHide(button, content) {
              button.innerHTML = "Hide";
         }
 }
+
+function deleteNote(noteIdForm) {
+            let noteComment = document.getElementById('NoteComment' + noteIdForm);
+            let noteId = document.getElementById('NoteId' + noteIdForm);
+
+            let form = document.getElementById('notesForm');
+
+            if(window.confirm("Are you sure?")){
+                noteComment.value = "--remove this--";
+                form.submit();
+            }
+        }

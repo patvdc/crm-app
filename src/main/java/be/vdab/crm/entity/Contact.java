@@ -53,7 +53,7 @@ public class Contact {
     @Where(clause = "deleted = 0")
     private List<Address> addresses = new ArrayList<>();
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
     @JoinColumn(name = "contact_id")
     @Valid
     private List<Note> notes = new ArrayList<>();
@@ -175,7 +175,10 @@ public class Contact {
     }
 
     public void setNotes(List<Note> notes) {
-        this.notes = notes;
+        this.notes.clear();
+        if(notes != null) {
+            this.notes.addAll(notes);
+        }
     }
 
     public void addNote(Note note) {
