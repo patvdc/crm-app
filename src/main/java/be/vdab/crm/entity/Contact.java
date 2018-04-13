@@ -177,4 +177,8 @@ public class Contact {
     public void setNotes(List<Note> notes) {
         this.notes = notes;
     }
+
+    public void addNote(Note note) {
+        notes.add(note);
+    }
 }

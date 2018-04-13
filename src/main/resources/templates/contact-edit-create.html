@@ -9,11 +9,12 @@
     <div th:replace="fragments/fragments::header"></div>
 
 
-    <div class="header">
-        <h1>Edit Contact</h1>
+    <div class="header border border-dark" id="details">
+        <h2>Edit Contact</h2>
+        <a href="#address" class="badge badge-secondary">Addresses</a>
     </div>
-    <br>
-
+    <button id="backbutton" class="btn btn-primary">Back</button>
+    <br><br>
 
     <form th:object="${contact}" method="POST" id="contactForm">
 
@@ -119,7 +120,13 @@
         </div>
         <br><br>
 
-        <div id="addresses">Addresses:</div>
+
+        <div class="header border border-dark" id="address">
+            <h2>Addresses</h2>
+            <a href="#details" class="badge badge-secondary">Contact</a>
+        </div>
+
+        <div id="addresses"></div>
         <br>
         <div th:each="address, iteration : ${contact.addresses}">
             <div th:if="${#fields.hasErrors('*{addresses[__${iteration.index}__].streetName}')} or
@@ -207,7 +214,7 @@
 
         <div id="extraAddresses"></div>
 
-        <button type="button" th:onclick="'addAddress(' + ${contact.addresses.size()} + ')'">Add</button>
+        <button type="button" class="btn btn-dark btn-sm" th:onclick="'addAddress(' + ${contact.addresses.size()} + ')'">Add</button>
 
         <script type="text" id="addressTemplate">
             <div class="row">
@@ -279,7 +286,7 @@
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
         <a th:if="${contact.id}" th:href="${#mvc.url('CC#contactDetails').arg(0, contact.id).build()}" type="submit"
-           class="btn btn-primary">Back to details</a>
+           class="btn btn-primary">Contact details</a>
     </form>
 
 

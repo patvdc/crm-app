@@ -7,23 +7,17 @@ window.addEventListener('load', () =>{
         });
     }
 
-    let changeViewAddress = document.getElementById("changeViewAddress");
-    if(changeViewAddress){
-    changeViewAddress.addEventListener("click", function(){showHide(changeViewAddress, "addresses", "Addresses")});
-        }
-    let changeViewNotes = document.getElementById("changeViewNotes");
-    if(changeViewNotes){
-    changeViewNotes.addEventListener("click", function(){showHide(changeViewNotes, "notesForm", "Notes")});
-    }
 });
 
-function showHide(button, content, text) {
+function showHide(button, content) {
         let contentHolder = document.getElementById(content);
-        if (contentHolder.style.display === "block") {
+                console.log(contentHolder.style.display);
+
+        if (contentHolder.style.display == "block" || contentHolder.style.display == "") {
              contentHolder.style.display = "none";
-             button.innerHTML = "Show " + text;
+             button.innerHTML = "Show";
         } else {
              contentHolder.style.display = "block";
-             button.innerHTML = "Hide " + text;
+             button.innerHTML = "Hide";
         }
 }

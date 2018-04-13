@@ -3,6 +3,7 @@ package be.vdab.crm.service;
 import be.vdab.crm.entity.Contact;
 import be.vdab.crm.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,5 +28,6 @@ public class ContactService {
     public List<Contact> getAllContacts(){
         return repository.findAll();
     }
+
 
 }
